@@ -1,0 +1,191 @@
+/* DentalHub Dashboard – Modern Clean Design */
+.dashboard-wrap {
+  padding: 28px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header */
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.dash-greeting {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0 0 4px;
+  color: #1a1a2e;
+}
+.dash-sub {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+@media (max-width: 900px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.stat-card {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: box-shadow .15s, transform .15s;
+}
+.stat-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.06); transform: translateY(-1px); }
+.stat-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.stat-value { font-size: 20px; font-weight: 600; color: #1a1a2e; line-height: 1.2; }
+.stat-label { font-size: 12px; color: #6b7280; margin-top: 2px; }
+
+/* Main layout */
+.main-cols {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 1000px) { .main-cols { grid-template-columns: 1fr; } }
+
+/* Section header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.section-title { font-size: 15px; font-weight: 600; color: #1a1a2e; margin: 0; }
+.btn-link { background: none; border: none; color: #1D9E75; font-size: 13px; cursor: pointer; padding: 0; font-weight: 500; }
+.btn-link:hover { color: #0F6E56; }
+
+/* Order list */
+.order-list { display: flex; flex-direction: column; gap: 8px; }
+.order-card {
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.order-card:hover { border-color: #1D9E75; box-shadow: 0 2px 12px rgba(29,158,117,.1); }
+.order-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.order-info { flex: 1; min-width: 0; }
+.order-title { font-size: 14px; font-weight: 500; color: #1a1a2e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.order-meta { font-size: 12px; color: #6b7280; margin-top: 3px; display: flex; gap: 4px; flex-wrap: wrap; }
+.order-ref { font-family: monospace; font-size: 11px; background: #f5f5f5; padding: 1px 5px; border-radius: 4px; }
+.order-dot { color: #d1d5db; }
+.order-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.order-time { font-size: 11px; color: #9ca3af; }
+
+/* Status badges */
+.status-badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.status-new      { background: #E1F5EE; color: #0F6E56; }
+.status-progress { background: #E6F1FB; color: #185FA5; }
+.status-review   { background: #FAEEDA; color: #854F0B; }
+.status-done     { background: #EAF3DE; color: #3B6D11; }
+.status-urgent   { background: #FCEBEB; color: #A32D2D; }
+
+/* Skeleton */
+.skeleton-list { display: flex; flex-direction: column; gap: 8px; }
+.skeleton-item {
+  height: 68px;
+  background: linear-gradient(90deg, #f5f5f5 25%, #ebebeb 50%, #f5f5f5 75%);
+  background-size: 200% 100%;
+  border-radius: 12px;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* Side panels */
+.col-side { display: flex; flex-direction: column; gap: 16px; }
+.panel { background: #fff; border: 1px solid #f0f0f0; border-radius: 14px; padding: 18px; }
+
+/* Designer rows */
+.designer-list { display: flex; flex-direction: column; gap: 12px; }
+.designer-row { display: flex; align-items: center; gap: 10px; }
+.designer-avatar { width: 40px; height: 40px; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+.designer-info { flex: 1; }
+.designer-name { font-size: 13px; font-weight: 500; color: #1a1a2e; }
+.designer-spec { font-size: 11px; color: #6b7280; }
+.designer-rating { font-size: 11px; color: #BA7517; margin-top: 1px; }
+.designer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.online-dot { width: 8px; height: 8px; background: #1D9E75; border-radius: 50%; }
+.online-dot.offline { background: #d1d5db; }
+.designer-price { font-size: 12px; color: #1D9E75; font-weight: 500; }
+
+/* Quick types */
+.quick-panel { background: linear-gradient(135deg, #f0fdf8, #e8f5ff); }
+.quick-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.quick-type {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #374151;
+  transition: all .15s;
+  font-weight: 500;
+}
+.quick-type:hover { border-color: #1D9E75; background: #f0fdf8; transform: scale(1.03); }
+.quick-type span:first-child { font-size: 22px; }
+
+/* Buttons */
+.btn-primary {
+  background: #1D9E75;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background .15s;
+  white-space: nowrap;
+}
+.btn-primary:hover { background: #0F6E56; }
+.btn-icon { font-size: 18px; line-height: 1; }
+.btn-outline {
+  background: transparent;
+  color: #1D9E75;
+  border: 1px solid #1D9E75;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .15s;
+  text-align: center;
+}
+.btn-outline:hover { background: #E1F5EE; }
+.full-width { width: 100%; }
