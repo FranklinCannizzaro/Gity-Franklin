@@ -1,141 +1,57 @@
 <div class="detail-page" *ngIf="orderDetailsNew" #pdfContent id="pdfContent">
-
-  <!-- Header -->
   <div class="detail-header">
     <div class="detail-header-left">
-      <button class="back-btn" (click)="goBack()">← Zurück</button>
+      <button class="back-btn" (click)="router.navigate(['task-list/all-tasks'])">← Zurück</button>
       <div>
         <div class="detail-id">Auftrag #{{ orderDetailsNew.taskId || taskId }}</div>
-        <span class="detail-status-badge" [ngStyle]="getStatusStyle()">
-          {{ statusMap.get(taskDetails?.status) || 'Entwurf' }}
-        </span>
+        <span class="detail-status">{{ statusMap.get(taskDetails?.status) || 'Entwurf' }}</span>
       </div>
-    </div>
-    <div class="detail-header-actions">
-      <button class="outline-btn" (click)="location.back()">← Zurück</button>
     </div>
   </div>
 
-  <!-- Summary cards row -->
   <div class="summary-row">
-    <div class="summary-card">
-      <div class="summary-ico">⭐</div>
-      <div>
-        <div class="summary-label">Paket</div>
-        <div class="summary-val">{{ orderDetailsNew.tier }}</div>
-      </div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-ico">🔄</div>
-      <div>
-        <div class="summary-label">Korrekturen</div>
-        <div class="summary-val">{{ orderDetailsNew.remainingCorrections }} verbleibend</div>
-      </div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-ico">⏱</div>
-      <div>
-        <div class="summary-label">Lieferzeit</div>
-        <div class="summary-val">{{ orderDetailsNew.deliveryTime }}h</div>
-      </div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-ico">🦷</div>
-      <div>
-        <div class="summary-label">Einheiten</div>
-        <div class="summary-val">{{ getAllToothCountFromOrderDetails }}</div>
-      </div>
-    </div>
-    <div class="summary-card">
-      <div class="summary-ico">💶</div>
-      <div>
-        <div class="summary-label">Betrag</div>
-        <div class="summary-val price">{{ orderDetailsNew.amount }}€</div>
-      </div>
-    </div>
-    <div class="summary-card" *ngIf="orderDetailsNew.designer">
-      <div class="summary-ico">👤</div>
-      <div>
-        <div class="summary-label">Designer</div>
-        <div class="summary-val">{{ orderDetailsNew.designer }}</div>
-      </div>
-    </div>
+    <div class="summary-card"><div class="summary-ico">⭐</div><div><div class="summary-label">Paket</div><div class="summary-val">{{ orderDetailsNew.tier }}</div></div></div>
+    <div class="summary-card"><div class="summary-ico">🔄</div><div><div class="summary-label">Korrekturen</div><div class="summary-val">{{ orderDetailsNew.remainingCorrections }} verbleibend</div></div></div>
+    <div class="summary-card"><div class="summary-ico">⏱</div><div><div class="summary-label">Lieferzeit</div><div class="summary-val">{{ orderDetailsNew.deliveryTime }}h</div></div></div>
+    <div class="summary-card"><div class="summary-ico">🦷</div><div><div class="summary-label">Einheiten</div><div class="summary-val">{{ getAllToothCountFromOrderDetails }}</div></div></div>
+    <div class="summary-card"><div class="summary-ico">👤</div><div><div class="summary-label">Designer</div><div class="summary-val">{{ orderDetailsNew.designer || '–' }}</div></div></div>
   </div>
 
-  <!-- Main content -->
   <div class="detail-cols">
-
-    <!-- Left: Order info + Files -->
     <div class="detail-main">
-
-      <!-- Files section -->
       <div class="section-card">
         <h3 class="section-title">Scans & Dateien</h3>
         <app-files></app-files>
       </div>
     </div>
-
-    <!-- Right: Comments + Status -->
     <div class="detail-side">
-
-      <!-- Status timeline -->
       <div class="section-card">
-        <h3 class="section-title">Auftragsverlauf</h3>
+        <h3 class="section-title">Auftragsstatus</h3>
         <div class="status-timeline">
-          <div class="timeline-item" [class.done]="isStatusDone('submitted')" [class.active]="taskDetails?.status === 'submitted'">
-            <div class="tl-dot"></div>
-            <div class="tl-content">
-              <div class="tl-label">Eingereicht</div>
-            </div>
+          <div class="timeline-item" [class.done]="taskDetails?.status === 'completed' || taskDetails?.status === 'delivered' || taskDetails?.status === 'in_progress' || taskDetails?.status === 'pending_designer'">
+            <div class="tl-dot"></div><div class="tl-label">Eingereicht</div>
           </div>
-          <div class="timeline-item" [class.done]="isStatusDone('pending_designer')" [class.active]="taskDetails?.status === 'pending_designer'">
-            <div class="tl-dot"></div>
-            <div class="tl-content">
-              <div class="tl-label">Designer ausstehend</div>
-            </div>
+          <div class="timeline-item" [class.done]="taskDetails?.status === 'completed' || taskDetails?.status === 'delivered' || taskDetails?.status === 'in_progress'" [class.active]="taskDetails?.status === 'pending_designer'">
+            <div class="tl-dot"></div><div class="tl-label">Designer ausstehend</div>
           </div>
-          <div class="timeline-item" [class.done]="isStatusDone('in_progress')" [class.active]="taskDetails?.status === 'in_progress'">
-            <div class="tl-dot"></div>
-            <div class="tl-content">
-              <div class="tl-label">In Bearbeitung</div>
-            </div>
+          <div class="timeline-item" [class.done]="taskDetails?.status === 'completed' || taskDetails?.status === 'delivered'" [class.active]="taskDetails?.status === 'in_progress'">
+            <div class="tl-dot"></div><div class="tl-label">In Bearbeitung</div>
           </div>
-          <div class="timeline-item" [class.done]="isStatusDone('delivered')" [class.active]="taskDetails?.status === 'delivered'">
-            <div class="tl-dot"></div>
-            <div class="tl-content">
-              <div class="tl-label">Geliefert</div>
-            </div>
+          <div class="timeline-item" [class.done]="taskDetails?.status === 'completed'" [class.active]="taskDetails?.status === 'delivered'">
+            <div class="tl-dot"></div><div class="tl-label">Geliefert</div>
           </div>
-          <div class="timeline-item" [class.done]="isStatusDone('completed')" [class.active]="taskDetails?.status === 'completed'">
-            <div class="tl-dot"></div>
-            <div class="tl-content">
-              <div class="tl-label">Abgeschlossen</div>
-            </div>
+          <div class="timeline-item" [class.active]="taskDetails?.status === 'completed'">
+            <div class="tl-dot"></div><div class="tl-label">Abgeschlossen</div>
           </div>
         </div>
       </div>
-
-      <!-- Comments -->
-      <div class="section-card comments-card">
+      <div class="section-card">
         <h3 class="section-title">Nachrichten</h3>
         <app-comments></app-comments>
       </div>
-
-      <!-- Actions placeholder -->
-      <div class="section-card" *ngIf="taskDetails?.status">
-        <h3 class="section-title">Aktionen</h3>
-        <div class="action-list">
-          <button class="action-full" (click)="location.back()">
-            ← Zurück zur Liste
-          </button>
-        </div>
-      </div>
     </div>
-
   </div>
 </div>
-
 <div class="loading-state" *ngIf="!orderDetailsNew">
-  <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
   <p>Lade Auftragsdetails...</p>
 </div>

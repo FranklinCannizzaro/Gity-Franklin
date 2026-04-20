@@ -1,96 +1,55 @@
 <div class="designers-page">
-
-  <!-- Header -->
   <div class="page-header">
     <div>
       <h1 class="page-title">Designer</h1>
       <p class="page-sub">{{ (showFavouriteuse ? filteredUsersByDR.length : filteredUsers.length) }} Designer gefunden</p>
     </div>
-    <mat-slide-toggle [(ngModel)]="showFavouriteuse" (change)="onToggleChange($event)" color="primary">
-      Nur Favoriten
-    </mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="showFavouriteuse" (change)="onToggleChange($event)" color="primary">Nur Favoriten</mat-slide-toggle>
   </div>
-
-  <!-- Search -->
   <div class="search-wrap">
     <div class="search-box">
-      <span class="search-ico">🔍</span>
-      <input #designerInput type="text" placeholder="Designer suchen..."
-             (input)="filterUsers($event)"
-             (focus)="isInputActive = true"
-             (blur)="onInputBlur(designerInput.value)"
-             class="search-input">
+      <span>🔍</span>
+      <input #designerInput type="text" placeholder="Designer suchen..." (input)="filterUsers($event)" (focus)="isInputActive = true" (blur)="onInputBlur(designerInput.value)" class="search-input">
     </div>
   </div>
-
-  <!-- Empty -->
   <div class="empty-state" *ngIf="(showFavouriteuse ? filteredUsersByDR : filteredUsers).length === 0">
-    <div class="empty-icon">👤</div>
+    <div style="font-size:48px">👤</div>
     <h3>Keine Designer gefunden</h3>
-    <p>Versuche andere Suchbegriffe</p>
   </div>
-
-  <!-- Designer Grid -->
   <div class="designer-grid">
     <div class="designer-card" *ngFor="let user of (showFavouriteuse ? filteredUsersByDR : filteredUsers)">
-
-      <!-- Card header -->
       <div class="dc-header">
-        <div class="dc-avatar" [style.background]="getAvatarColor(user)">
+        <div class="dc-avatar">
           <img *ngIf="user.displayImageBytes" [src]="'data:image/png;base64,' + user.displayImageBytes" class="dc-img">
-          <span *ngIf="!user.displayImageBytes">{{ user.firstName?.charAt(0) }}{{ user.lastName?.charAt(0) }}</span>
+          <span *ngIf="!user.displayImageBytes">{{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}</span>
         </div>
         <div class="dc-info">
           <div class="dc-name">{{ user.firstName | titlecase }} {{ user.lastName | titlecase }}</div>
-          <div class="dc-role">{{ user.software || 'CAD Designer' }}</div>
-        </div>
-        <div class="dc-status">
-          <span class="online-dot" [class.online]="user.isAvailable" [class.offline]="!user.isAvailable"></span>
-          <span class="status-text">{{ user.isAvailable ? 'Online' : 'Offline' }}</span>
+          <div class="dc-role">{{ user.software || user.primarySkill || 'CAD Designer' }}</div>
+          <div class="dc-country">{{ user.country }}</div>
         </div>
       </div>
-
-      <!-- Rating -->
       <div class="dc-rating">
         <div class="stars">
-          <span *ngFor="let s of [1,2,3,4,5]" class="star" [class.filled]="s <= (user.rating || 0)">★</span>
+          <span *ngFor="let s of [1,2,3,4,5]" class="star" [class.filled]="s <= (user.userRating || 0)">★</span>
         </div>
-        <span class="rating-val">{{ user.rating?.toFixed(1) || '–' }}</span>
-        <span class="rating-count">({{ user.reviewCount || 0 }} Bewertungen)</span>
+        <span class="rating-val">{{ user.userRating || '–' }}</span>
       </div>
-
-      <!-- Stats -->
       <div class="dc-stats">
-        <div class="dc-stat">
-          <div class="dc-stat-val">{{ user.completedOrders || 0 }}</div>
-          <div class="dc-stat-lbl">Aufträge</div>
-        </div>
-        <div class="dc-stat">
-          <div class="dc-stat-val">{{ user.experience || '–' }}</div>
-          <div class="dc-stat-lbl">Jahre Erf.</div>
-        </div>
-        <div class="dc-stat">
-          <div class="dc-stat-val">{{ user.avgDelivery || '–' }}h</div>
-          <div class="dc-stat-lbl">Ø Lieferung</div>
-        </div>
+        <div class="dc-stat"><div class="dc-stat-val">{{ user.experience || '–' }}</div><div class="dc-stat-lbl">Jahre Erf.</div></div>
+        <div class="dc-stat"><div class="dc-stat-val">{{ user.tier || '–' }}</div><div class="dc-stat-lbl">Paket</div></div>
+        <div class="dc-stat"><div class="dc-stat-val">{{ user.followers || 0 }}</div><div class="dc-stat-lbl">Follower</div></div>
       </div>
-
-      <!-- Skills -->
-      <div class="dc-skills" *ngIf="user.skills?.length">
-        <span class="skill-tag" *ngFor="let skill of user.skills?.slice(0,4)">{{ skill }}</span>
+      <div class="dc-skills" *ngIf="user.primarySkill">
+        <span class="skill-tag">{{ user.primarySkill }}</span>
+        <span class="skill-tag" *ngIf="user.otherSoftware">{{ user.otherSoftware }}</span>
       </div>
-
-      <!-- Actions -->
       <div class="dc-actions">
-        <button class="dc-btn-fav" (click)="showFavouriteuse ? unFollowDesigner(user) : followDesigner(user)">
+        <button class="dc-btn-fav" (click)="showFavouriteuse ? unFollowDesigner(user.userId) : followDesigner(user.userId)">
           {{ showFavouriteuse ? '♥ Entfernen' : '♡ Favorit' }}
         </button>
-        <button class="dc-btn-primary" (click)="selectDesigner(user)">
-          Auftrag senden →
-        </button>
+        <button class="dc-btn-primary" routerLink="/create-task-demo">Auftrag senden →</button>
       </div>
-
     </div>
   </div>
-
 </div>

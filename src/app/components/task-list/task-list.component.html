@@ -1,46 +1,26 @@
 <div class="orders-page">
-
-  <!-- Page Header -->
   <div class="page-header">
     <div>
       <h1 class="page-title">Aufträge</h1>
       <p class="page-sub">{{ filteredTaskData.length }} Aufträge gefunden</p>
     </div>
-    <button class="primary-btn" routerLink="/create-task-demo" *ngIf="dataService.role === 'doctor'">
-      + Neuer Auftrag
-    </button>
+    <button class="primary-btn" routerLink="/create-task-demo" *ngIf="dataService.role === 'doctor'">+ Neuer Auftrag</button>
   </div>
-
-  <!-- Filters Bar -->
   <div class="filters-bar">
-    <!-- Search -->
     <div class="search-box">
-      <span class="search-ico">🔍</span>
+      <span>🔍</span>
       <input type="text" placeholder="Auftrag suchen..." (keyup)="applyFilter($event)" class="search-input">
     </div>
-
-    <!-- Status pills -->
     <div class="status-pills" *ngIf="status !== 'pending-payment'">
-      <button *ngFor="let s of statusOptions"
-              class="status-pill"
-              [class.active]="selectedStatuses.includes(s.value)"
-              (click)="toggleStatus(s.value)">
-        {{ s.label }}
-      </button>
+      <button *ngFor="let s of statusOptions" class="status-pill" [class.active]="selectedStatuses.includes(s.value)" (click)="toggleStatus(s.value)">{{ s.label }}</button>
     </div>
-
-    <!-- Designer/Doctor filter -->
-    <div class="filter-dropdown" *ngIf="status !== 'pending-payment'" ngbDropdown>
-      <button class="filter-btn" ngbDropdownToggle>
-        {{ dataService.role === 'doctor' ? 'Designer' : 'Zahnarzt' }}
-        <span>▾</span>
-      </button>
+    <div ngbDropdown *ngIf="status !== 'pending-payment'">
+      <button class="filter-btn" ngbDropdownToggle>{{ dataService.role === 'doctor' ? 'Designer' : 'Zahnarzt' }} ▾</button>
       <div ngbDropdownMenu class="filter-menu">
-        <div class="filter-menu-header">{{ dataService.role === 'doctor' ? 'Designer' : 'Zahnarzt' }} filtern</div>
+        <div class="filter-menu-header">Filtern</div>
         <div class="filter-item" *ngFor="let person of (dataService.role === 'doctor' ? designerList : doctorList)">
           <label class="filter-check">
-            <input type="checkbox" [checked]="selectedOptions.includes(person.id)"
-                   (change)="toggleOption(person.id)">
+            <input type="checkbox" [checked]="selectedOptions.includes(person.id)" (change)="toggleOption(person.id)">
             <span>{{ person.firstName + ' ' + person.lastName | titlecase }}</span>
             <span class="filter-count">{{ person.count }}</span>
           </label>
@@ -52,119 +32,52 @@
       </div>
     </div>
   </div>
-
-  <!-- Payment bar -->
-  <div class="payment-bar" *ngIf="status === 'pending-payment' && selectedTaskIds.length > 0">
-    <span>{{ selectedTaskIds.length }} Auftrag/Aufträge ausgewählt</span>
-    <button class="pay-btn" (click)="paySelectedTasks()">
-      Jetzt bezahlen – {{ getTotalAmount().toFixed(2) }}€
-    </button>
-  </div>
-
-  <!-- Empty state -->
   <div class="empty-state" *ngIf="filteredTaskData.length === 0">
-    <div class="empty-icon">📋</div>
+    <div style="font-size:48px">📋</div>
     <h3>Keine Aufträge gefunden</h3>
     <p>Erstelle deinen ersten Auftrag oder passe die Filter an</p>
-    <button class="primary-btn" routerLink="/create-task-demo" *ngIf="dataService.role === 'doctor'">
-      + Neuer Auftrag
-    </button>
   </div>
-
-  <!-- Orders Table -->
   <div class="orders-table-wrap" *ngIf="filteredTaskData.length > 0">
     <table class="orders-table">
       <thead>
         <tr>
           <th *ngIf="status === 'pending-payment'">
-            <mat-checkbox color="primary"
-                          (change)="toggleAllSelections($event.checked)"
-                          [checked]="areAllSelected()"
-                          [indeterminate]="someSelected() && !areAllSelected()">
-            </mat-checkbox>
+            <mat-checkbox color="primary" (change)="toggleAllSelections($event.checked)" [checked]="areAllSelected()" [indeterminate]="someSelected() && !areAllSelected()"></mat-checkbox>
           </th>
-          <th>Auftrag</th>
-          <th>Patient / Ref</th>
+          <th>Auftrag</th><th>Patient</th>
           <th *ngIf="status !== 'pending-payment'">Status</th>
           <th *ngIf="status === 'pending-payment'">Erstellt</th>
           <th *ngIf="status !== 'pending-payment' && dataService.role === 'doctor'">Designer</th>
-          <th>Einheiten</th>
-          <th>Paket</th>
-          <th>Lieferzeit</th>
-          <th>Betrag</th>
-          <th>Verbleibend</th>
-          <th>Aktionen</th>
+          <th>Einheiten</th><th>Paket</th><th>Lieferzeit</th><th>Betrag</th><th>Verbleibend</th><th>Aktionen</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let task of paginatedData" class="order-row">
           <td *ngIf="status === 'pending-payment'">
-            <mat-checkbox
-              (change)="selectTask(task.taskId, $event.checked)"
-              [checked]="selectedTaskIds.includes(task.taskId)"
-              [disabled]="!fileCountsTotal[task.taskId] || fileCountsTotal[task.taskId] == 0"
-              color="primary">
-            </mat-checkbox>
+            <mat-checkbox (change)="selectTask(task.taskId, $event.checked)" [checked]="selectedTaskIds.includes(task.taskId)" [disabled]="!fileCountsTotal[task.taskId] || fileCountsTotal[task.taskId] == 0" color="primary"></mat-checkbox>
           </td>
-          <td>
-            <a class="order-id" (click)="navigateToOrderDetails(task.taskId)">
-              #{{ task.taskId }}
-            </a>
-          </td>
-          <td>
-            <span class="ref-tag">{{ task.refNum }}</span>
-          </td>
-          <td *ngIf="status === 'pending-payment'" class="date-cell">
-            {{ task.createTime | date:'dd.MM.yy HH:mm' }}
-          </td>
-          <td *ngIf="status !== 'pending-payment'">
-            <span class="status-badge" [ngStyle]="getStatusBadgeStyle(task.status)">
-              {{ statusMap.get(task.status) }}
-            </span>
-          </td>
+          <td><a class="order-id" (click)="navigateToOrderDetails(task.taskId)">#{{ task.taskId }}</a></td>
+          <td><span class="ref-tag">{{ task.refNum }}</span></td>
+          <td *ngIf="status === 'pending-payment'" class="date-cell">{{ task.createTime | date:'dd.MM.yy HH:mm' }}</td>
+          <td *ngIf="status !== 'pending-payment'"><span class="status-badge" [ngStyle]="getStatusBadgeStyle(task.status)">{{ statusMap.get(task.status) }}</span></td>
           <td *ngIf="status !== 'pending-payment' && dataService.role === 'doctor'">
             <span class="designer-tag" *ngIf="task.assignTo">{{ task.assignTo }}</span>
             <span class="unassigned" *ngIf="!task.assignTo">–</span>
           </td>
           <td class="center-cell">{{ task.units }}</td>
-          <td>
-            <span class="tier-badge" [class]="'tier-' + task.tier?.toLowerCase()">{{ task.tier }}</span>
-          </td>
+          <td><span class="tier-badge" [class]="'tier-' + (task.tier || '').toLowerCase()">{{ task.tier }}</span></td>
           <td class="center-cell">{{ task.deliveryTime }}h</td>
           <td class="amount-cell">{{ task.amount.toFixed(2).replace('.', ',') }}€</td>
-          <td>
-            <span class="time-left" [class.urgent]="task.timeLeftStr === '0h 0m'" [class.ok]="task.timeLeftStr !== '0h 0m'">
-              {{ task.timeLeftStr || '–' }}
-            </span>
-          </td>
+          <td><span class="time-left" [class.urgent]="task.timeLeftStr === '0h 0m'" [class.ok]="task.timeLeftStr !== '0h 0m'">{{ task.timeLeftStr || '–' }}</span></td>
           <td>
             <div class="action-group">
-              <button class="action-btn" (click)="navigateToOrderDetails(task.taskId)" title="Details">
-                👁
-              </button>
-              <ng-container *ngIf="dataService.role === 'designer'">
-                <button class="action-btn green" *ngIf="task.status === 'pending_designer'"
-                        (click)="updateTask(task.taskId, 'accept')" title="Annehmen">✓</button>
-                <button class="action-btn red" *ngIf="task.status === 'pending_designer'"
-                        (click)="updateTask(task.taskId, 'decline')" title="Ablehnen">✗</button>
-                <button class="action-btn blue" *ngIf="task.status === 'in_progress'"
-                        (click)="navigateToOrderDetails(task.taskId)" title="Abliefern">📤</button>
-              </ng-container>
-              <button class="action-btn" *ngIf="status === 'pending-payment'"
-                      [disabled]="!fileCountsTotal[task.taskId]"
-                      (click)="addTaskToCart(task.taskId)" title="Bezahlen">💳</button>
+              <button class="action-btn" (click)="navigateToOrderDetails(task.taskId)" title="Details">👁</button>
+              <button class="action-btn" (click)="downloadOrder(task.taskId)" title="PDF">📄</button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-
-  <!-- Pagination -->
-  <div class="pagination-bar" *ngIf="filteredTaskData.length > pageSize">
-    <button class="page-btn" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">← Zurück</button>
-    <span class="page-info">Seite {{ currentPage }} von {{ totalPages }}</span>
-    <button class="page-btn" [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">Weiter →</button>
-  </div>
-
+  <mat-paginator *ngIf="filteredTaskData.length > pageSize" [length]="filteredTaskData.length" [pageSize]="pageSize" [pageSizeOptions]="[10, 25, 50]" (page)="onPageChange($event)" class="modern-paginator"></mat-paginator>
 </div>
