@@ -1,7 +1,7 @@
 <div class="detail-page" *ngIf="orderDetailsNew" #pdfContent id="pdfContent">
   <div class="detail-header">
     <div class="detail-header-left">
-      <button class="back-btn" (click)="router.navigate(['task-list/all-tasks'])">← Zurück</button>
+      <a class="back-btn" routerLink="/task-list/all-tasks">← Zurück</a>
       <div>
         <div class="detail-id">Auftrag #{{ orderDetailsNew.taskId || taskId }}</div>
         <span class="detail-status">{{ statusMap.get(taskDetails?.status) || 'Entwurf' }}</span>
