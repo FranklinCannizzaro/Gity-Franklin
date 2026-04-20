@@ -1,93 +1,96 @@
-<div class="d-flex vh-100 vw-100 d-flex flex-column align-items-center justify-content-start">
-    <div class="w-100 h-100 d-flex justify-content-around align-items-center">
-        <div *ngIf="displayLogin" class="text-dark d-none d-flex flex-column d-xl-flex justify-content-center w-100 h-100 position-relative"
-            style="background: #ade3d0;overflow: hidden;">
-            <img src="./images/uiConcept/Logos/Dark/Logo_V1_Dark.png" alt="" class="h-100"
-                style="max-height: 50px;position: absolute; z-index:7;top:20px;left:20px;">
+<div class="login-page">
 
-            <img src="./images/loginComp3.png" alt=""
-                style="max-width:481px;z-index:1; left:50%;top:10%; transform: translateX(-50%);"
-                class="position-absolute">
-            <img src="./images/loginComp2.png" alt=""
-                style="left:5%;bottom:5%;height: 500px; aspect-ratio: 16/7; z-index:2;" class="position-absolute">
-            <div class="w-100" style="position: absolute;max-width:394px; z-index:3; left:50%;top:25%;">
-                <img src="./images/loginComp1.png" alt="" style="position: absolute;top:0;left: 0px; z-index:4;"
-                    class="position-absolute w-100">
-                <img src="./images/startMarks.png"
-                    style="height: 15px; position: absolute; z-index: 5;right:25px;top:30px;" alt="">
-                <img src="./images/loginCom2BTN1.png"
-                    style="height: 30px; position: absolute; z-index: 5;left:295px;bottom:-225px;" alt="">
-                <img src="./images/loginComp2BTN2.png"
-                    style="height: 35px; position: absolute; z-index: 6;left:295px;bottom:-270px;" alt="">
-            </div>
+  <!-- Left panel -->
+  <div class="login-left">
+    <div class="login-left-inner">
+      <div class="brand">
+        <div class="brand-mark">D</div>
+        <span class="brand-name">DentalHub</span>
+      </div>
 
+      <div class="hero-text">
+        <h1>Die digitale Plattform<br>für moderne Zahntechnik</h1>
+        <p>Verbinde Zahnarztpraxen mit Top-Zahntechnikern weltweit. CAD-Designs in wenigen Stunden.</p>
+      </div>
 
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon">👑</div>
+          <div>
+            <div class="feature-title">Alle Restaurationstypen</div>
+            <div class="feature-sub">Krone, Brücke, Implantat, Modellguss, Schienen</div>
+          </div>
         </div>
-
-        <div class="w-100 d-flex justify-content-center" style="background: #FAF9F9;max-width: 800px;">
-            <div style="max-width: 440px;" class="loginFormMain w-100 px-5 py-3" *ngIf="displayLogin">
-                <div class="d-flex d-xl-none justify-content-center w-100 mb-5">
-                    <img src="./images/uiConcept/Logos/Dark/Logo_V2_Dark.png" alt="" class="w-100"
-                        style="max-width: 130px;">
-                </div>
-                <div class="d-flex align-items-start justify-content-center flex-column" style="gap:8px;">
-                    <h1 class="m-0" style="font-weight: 600;font-size: 32px;color: #000000;">Welcome Back!</h1>
-                    <p style="font-size: 400;font-weight: 16px;color: #707070;">Login to your Gity Account</p>
-                </div>
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-100 d-flex gap-5 justify-content-around"
-                    style="max-width: 1200px;">
-                    <div class="d-flex flex-column gap-4 align-items-center w-100">
-                        <!-- <label for="" class="display-5">Login</label> -->
-                        <label class="d-flex flex-column w-100 gap-1" for="username">
-                            <span class="inputLabels">Username</span>
-                            <input class="customInputFields" type="text" id="username" formControlName="username"
-                                placeholder="" autofocus>
-                        </label>
-
-                        <label class="d-flex flex-column w-100 gap-1" for="password">
-                            <span class="inputLabels">Password</span>
-                            <input class="customInputFields" type="password" id="password" formControlName="password"
-                                placeholder="">
-                        </label>
-                        <button class="loginButton" type="submit">Login</button>
-                    </div>
-                </form>
-
-                <div class="w-100 text-center">
-                    <a class="text-decoration-none"
-                        style="font-size: 16px;letter-spacing: 0%; color: #707070; font-weight: 500;"
-                        href="javascript:void(0)" (click)="reset()">Forgot password</a>
-                </div>
-
-                <div class="d-flex flex-nowrap align-items-center gap-2">
-                    <hr class="w-100" style="color:#c9c9c9;height: 1px;">
-                    <p class="w-100 text-center m-0 text-nowrap"
-                        style="font-size: 16px;letter-spacing: 0%; color: #707070; font-weight: 500;">Or continue with
-                    </p>
-                    <hr class="w-100" style="color:#c9c9c9;height: 1px;">
-                </div>
-
-                <div class="d-flex justify-content-center py-2 w-100">
-                    <button (click)="loginWithGoogle()" class="w-100 d-flex gap-2 justify-content-center gap-2"
-                        style="color: #FFFFFF;border:1.5px solid #E4E4E4;border-radius: 8px;background: white; padding: 12px 16px;">
-                        <img src="./images/GoogleLogo.png" alt="" class="w-100" style="max-width: 24px;">
-                        <span class="text-nowrap" style="font-weight: 400;font-size: 16px; color:#000000; ">Sign in with
-                            Google</span>
-                    </button>
-                </div>
-
-                <div class="d-flex justify-content-center gap-1">
-                    Don't have an account?
-                    <a class=" text-decoration-none" style="color:#5ECDA7;font-weight: 500;font-size: 16px;"
-                        href="javascript:void(0)" (click)="navigateToSignup()">Register</a>
-
-                </div>
-
-            </div>
+        <div class="feature-item">
+          <div class="feature-icon">⚡</div>
+          <div>
+            <div class="feature-title">Express-Lieferung</div>
+            <div class="feature-sub">Same-Day bis 5-Tage-Lieferung wählbar</div>
+          </div>
         </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔒</div>
+          <div>
+            <div class="feature-title">DSGVO-konform</div>
+            <div class="feature-sub">Patientendaten sicher verschlüsselt</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-bar">
+        <span class="trust-stat"><strong>500+</strong> Praxen</span>
+        <span class="trust-dot">·</span>
+        <span class="trust-stat"><strong>120+</strong> Designer</span>
+        <span class="trust-dot">·</span>
+        <span class="trust-stat"><strong>4.9 ★</strong> Bewertung</span>
+      </div>
     </div>
+  </div>
+
+  <!-- Right panel -->
+  <div class="login-right">
+    <div class="login-form-card" *ngIf="displayLogin">
+
+      <div class="form-header">
+        <h2>Willkommen zurück</h2>
+        <p>Melde dich bei deinem DentalHub-Konto an</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-body">
+        <div class="form-field">
+          <label class="field-label" for="username">Benutzername</label>
+          <input class="field-input" type="text" id="username"
+                 formControlName="username" placeholder="dein.name@praxis.de" autofocus>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label" for="password">Passwort</label>
+          <input class="field-input" type="password" id="password"
+                 formControlName="password" placeholder="••••••••">
+          <a class="forgot-link" href="javascript:void(0)" (click)="reset()">Passwort vergessen?</a>
+        </div>
+
+        <button class="submit-btn" type="submit">Anmelden</button>
+      </form>
+
+      <div class="divider">
+        <span>oder weiter mit</span>
+      </div>
+
+      <button class="google-btn" (click)="loginWithGoogle()">
+        <img src="./images/GoogleLogo.png" alt="Google" width="20">
+        Mit Google anmelden
+      </button>
+
+      <p class="register-link">
+        Noch kein Konto?
+        <a href="javascript:void(0)" (click)="navigateToSignup()">Jetzt registrieren</a>
+      </p>
+    </div>
+  </div>
+
 </div>
 
 <div class="spinner-overlay" *ngIf="dataService.progressBarActive">
-    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
 </div>

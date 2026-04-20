@@ -12,17 +12,13 @@ import { BarChartComponent } from '../bar-chart/bar-chart.component';
   styleUrl: './dash-board.component.css'
 })
 export class DashBoardComponent implements OnInit {
-
   dashBoardDataComplete: any;
   dashBoardDataInComplete: any;
   dashBoardDataDelivered: any;
   role: any;
   firstName: any;
 
-  constructor(
-    public dataService: DataService,
-    public router: Router
-  ) {}
+  constructor(public dataService: DataService, public router: Router) {}
 
   ngOnInit() {
     this.role = this.dataService.role;
@@ -30,9 +26,7 @@ export class DashBoardComponent implements OnInit {
     this.dataService.updateTitle('Dashboard');
     this.getInProgressTasks();
     this.getCompletedTasks();
-    if (this.role === 'doctor') {
-      this.getDelivered();
-    }
+    if (this.role === 'doctor') this.getDelivered();
   }
 
   getGreeting(): string {
@@ -44,22 +38,17 @@ export class DashBoardComponent implements OnInit {
 
   getDelivered() {
     this.dataService.getDataAsList('/tasks/delivered').subscribe({
-      next: (response) => { this.dashBoardDataDelivered = response.length; },
-      error: () => {}
+      next: (r) => { this.dashBoardDataDelivered = r.length; }, error: () => {}
     });
   }
-
   getInProgressTasks() {
     this.dataService.getDataAsList('/tasks/in-progress').subscribe({
-      next: (response) => { this.dashBoardDataInComplete = response.length; },
-      error: () => {}
+      next: (r) => { this.dashBoardDataInComplete = r.length; }, error: () => {}
     });
   }
-
   getCompletedTasks() {
     this.dataService.getDataAsList('/tasks/completed').subscribe({
-      next: (response) => { this.dashBoardDataComplete = response.length; },
-      error: () => {}
+      next: (r) => { this.dashBoardDataComplete = r.length; }, error: () => {}
     });
   }
 }

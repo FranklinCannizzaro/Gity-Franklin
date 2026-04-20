@@ -1,83 +1,96 @@
-<div class="dh-wrap">
+<div class="dash">
 
-  <!-- Header -->
-  <div class="dh-header">
+  <!-- Page header -->
+  <div class="dash-header">
     <div>
-      <h1 class="dh-greeting">{{ getGreeting() }}, {{ firstName || 'Willkommen' }} 👋</h1>
-      <p class="dh-sub">Übersicht deiner aktuellen Aufträge</p>
+      <h1 class="dash-title">{{ getGreeting() }}, {{ firstName || 'Willkommen' }} 👋</h1>
+      <p class="dash-sub">Hier ist deine Übersicht für heute</p>
     </div>
-    <button class="dh-btn-primary" (click)="router.navigate(['/create-task-demo'])">
-      + Neuer Auftrag
+    <button class="primary-btn" (click)="router.navigate(['/create-task-demo'])">
+      <span>+</span> Neuer Auftrag
     </button>
   </div>
 
   <!-- Stats -->
-  <div class="dh-stats">
-    <div class="dh-stat" (click)="router.navigate(['/task-list','in-progress'])">
-      <div class="dh-stat-icon" style="background:#E6F1FB">⚡</div>
-      <div>
-        <div class="dh-stat-val">{{ dashBoardDataInComplete || 0 }}</div>
-        <div class="dh-stat-lbl">In Bearbeitung</div>
+  <div class="stat-grid">
+    <div class="stat-card" (click)="router.navigate(['/task-list','in-progress'])">
+      <div class="stat-icon blue">⚡</div>
+      <div class="stat-body">
+        <div class="stat-val">{{ dashBoardDataInComplete || 0 }}</div>
+        <div class="stat-lbl">In Bearbeitung</div>
       </div>
+      <span class="stat-arrow">→</span>
     </div>
-    <div class="dh-stat" (click)="router.navigate(['/task-list','completed'])">
-      <div class="dh-stat-icon" style="background:#EAF3DE">✅</div>
-      <div>
-        <div class="dh-stat-val">{{ dashBoardDataComplete || 0 }}</div>
-        <div class="dh-stat-lbl">Abgeschlossen</div>
+    <div class="stat-card" (click)="router.navigate(['/task-list','complete'])">
+      <div class="stat-icon green">✅</div>
+      <div class="stat-body">
+        <div class="stat-val">{{ dashBoardDataComplete || 0 }}</div>
+        <div class="stat-lbl">Abgeschlossen</div>
       </div>
+      <span class="stat-arrow">→</span>
     </div>
-    <div class="dh-stat" *ngIf="role === 'doctor'" (click)="router.navigate(['/task-list','delivered'])">
-      <div class="dh-stat-icon" style="background:#E1F5EE">📦</div>
-      <div>
-        <div class="dh-stat-val">{{ dashBoardDataDelivered || 0 }}</div>
-        <div class="dh-stat-lbl">Geliefert</div>
+    <div class="stat-card" *ngIf="role === 'doctor'" (click)="router.navigate(['/task-list','delivered'])">
+      <div class="stat-icon teal">📦</div>
+      <div class="stat-body">
+        <div class="stat-val">{{ dashBoardDataDelivered || 0 }}</div>
+        <div class="stat-lbl">Geliefert</div>
       </div>
+      <span class="stat-arrow">→</span>
     </div>
-    <div class="dh-stat">
-      <div class="dh-stat-icon" style="background:#EEEDFE">📋</div>
-      <div>
-        <div class="dh-stat-val">{{ (dashBoardDataInComplete || 0) + (dashBoardDataComplete || 0) }}</div>
-        <div class="dh-stat-lbl">Gesamt</div>
+    <div class="stat-card">
+      <div class="stat-icon purple">📋</div>
+      <div class="stat-body">
+        <div class="stat-val">{{ (dashBoardDataInComplete || 0) + (dashBoardDataComplete || 0) }}</div>
+        <div class="stat-lbl">Gesamt</div>
       </div>
     </div>
   </div>
 
-  <!-- Chart -->
-  <div class="dh-chart-card">
-    <div class="dh-chart-header">
-      <span class="dh-section-title">Auftragsübersicht</span>
+  <!-- Chart + Quick actions -->
+  <div class="dash-cols">
+    <div class="chart-card">
+      <div class="card-header">
+        <span class="card-title">Auftragsübersicht</span>
+      </div>
+      <app-bar-chart></app-bar-chart>
     </div>
-    <app-bar-chart></app-bar-chart>
-  </div>
 
-  <!-- Quick actions -->
-  <div class="dh-quick-title">Schnellauftrag</div>
-  <div class="dh-quick-grid">
-    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
-      <span class="dh-quick-icon">👑</span>
-      <span class="dh-quick-lbl">Krone</span>
-    </div>
-    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
-      <span class="dh-quick-icon">🌉</span>
-      <span class="dh-quick-lbl">Brücke</span>
-    </div>
-    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
-      <span class="dh-quick-icon">🔩</span>
-      <span class="dh-quick-lbl">Implantat</span>
-    </div>
-    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
-      <span class="dh-quick-icon">✨</span>
-      <span class="dh-quick-lbl">Veneer</span>
-    </div>
-    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
-      <span class="dh-quick-icon">⚙️</span>
-      <span class="dh-quick-lbl">Modellguss</span>
-    </div>
-    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
-      <span class="dh-quick-icon">🦷</span>
-      <span class="dh-quick-lbl">Schiene</span>
+    <div class="side-col">
+      <!-- Quick order -->
+      <div class="quick-card">
+        <div class="card-header">
+          <span class="card-title">Schnellauftrag</span>
+        </div>
+        <div class="quick-grid">
+          <div class="quick-item" (click)="router.navigate(['/create-task-demo'])">
+            <span class="quick-ico">👑</span><span>Krone</span>
+          </div>
+          <div class="quick-item" (click)="router.navigate(['/create-task-demo'])">
+            <span class="quick-ico">🌉</span><span>Brücke</span>
+          </div>
+          <div class="quick-item" (click)="router.navigate(['/create-task-demo'])">
+            <span class="quick-ico">🔩</span><span>Implantat</span>
+          </div>
+          <div class="quick-item" (click)="router.navigate(['/create-task-demo'])">
+            <span class="quick-ico">✨</span><span>Veneer</span>
+          </div>
+          <div class="quick-item" (click)="router.navigate(['/create-task-demo'])">
+            <span class="quick-ico">⚙️</span><span>Modellguss</span>
+          </div>
+          <div class="quick-item" (click)="router.navigate(['/create-task-demo'])">
+            <span class="quick-ico">🦷</span><span>Schiene</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="tip-card">
+        <div class="tip-icon">💡</div>
+        <div>
+          <div class="tip-title">Tipp des Tages</div>
+          <div class="tip-text">Bei Modellguss-Aufträgen immer Kennedy-Klassifikation angeben für schnellere Zuweisung.</div>
+        </div>
+      </div>
     </div>
   </div>
-
 </div>
