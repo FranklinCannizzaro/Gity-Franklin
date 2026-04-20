@@ -233,3 +233,139 @@
     color: #ffffff; /* Explicitly set SVG color to white */
     stroke: #ffffff; /* Ensure stroke also turns white if used */
 }
+
+/* ── Override: Premium Design Level Cards ─────────────────── */
+.tier-cards-container {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 14px !important;
+  margin-top: 8px !important;
+}
+
+.tier-card-label {
+  position: relative !important;
+  background: #FFFFFF !important;
+  border: 2px solid #E4E7EC !important;
+  border-radius: 14px !important;
+  padding: 20px !important;
+  cursor: pointer !important;
+  transition: all 150ms ease !important;
+  overflow: hidden !important;
+}
+
+.tier-card-label:hover {
+  border-color: #6EE7B7 !important;
+  box-shadow: 0 4px 16px rgba(13,158,110,.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+.tier-card-label:has(input[type="radio"]:checked),
+.tier-card-label.selected-tier {
+  border-color: #0D9E6E !important;
+  background: linear-gradient(160deg, #F0FDF9 0%, #ECFDF5 100%) !important;
+  box-shadow: 0 4px 16px rgba(13,158,110,.15) !important;
+}
+
+.tier-radio-indicator {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  border: 2px solid #D0D5DD !important;
+  background: #fff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.tier-card-label:has(input:checked) .tier-radio-indicator,
+.tier-card-label.selected-tier .tier-radio-indicator {
+  border-color: #0D9E6E !important;
+  background: #0D9E6E !important;
+}
+
+.tier-radio-dot {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+}
+
+.tier-card-label:not(.selected-tier):not(:has(input:checked)) .tier-radio-dot {
+  display: none !important;
+}
+
+.tier-icon {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 12px !important;
+}
+
+.tier-icon-silver { background: #F2F4F7 !important; }
+.tier-icon-gold { background: #FEF3C7 !important; }
+.tier-icon-platinum { background: #F5F3FF !important; }
+
+.tier-card-title {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 2px !important;
+}
+
+.tier-card-subtitle {
+  font-size: 12px !important;
+  color: #667085 !important;
+  margin-bottom: 14px !important;
+}
+
+.tier-card-features {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  margin-bottom: 16px !important;
+}
+
+.tier-card-feature {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 12px !important;
+  color: #475467 !important;
+}
+
+.tier-card-price-block {
+  margin-top: auto !important;
+  padding-top: 14px !important;
+  border-top: 1px solid #E4E7EC !important;
+}
+
+.tier-card-label:has(input:checked) .tier-card-price-block,
+.tier-card-label.selected-tier .tier-card-price-block {
+  border-top-color: #A7F3D0 !important;
+}
+
+.tier-card-price {
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  color: #101828 !important;
+  letter-spacing: -0.03em !important;
+  display: inline !important;
+}
+
+.tier-card-price-unit {
+  font-size: 12px !important;
+  color: #667085 !important;
+}
+
+.tier-card-footnote {
+  font-size: 11px !important;
+  color: #98A2B3 !important;
+  margin-top: 6px !important;
+  font-style: italic !important;
+}

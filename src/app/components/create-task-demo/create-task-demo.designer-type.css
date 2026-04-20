@@ -346,3 +346,81 @@
   color: #ffffff;
   /* White color */
 }
+/* ── Override: Radio Card Visual Improvements ─────────────── */
+.radio-cards-container {
+  display: flex !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+}
+
+.radio-card-label {
+  position: relative !important;
+  width: 160px !important;
+  height: 130px !important;
+  background: #FFFFFF !important;
+  border: 2px solid #E4E7EC !important;
+  border-radius: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  cursor: pointer !important;
+  transition: all 150ms ease !important;
+  padding: 16px !important;
+}
+
+.radio-card-label:hover {
+  border-color: #6EE7B7 !important;
+  box-shadow: 0 4px 16px rgba(13,158,110,.12) !important;
+}
+
+.radio-card-label:has(.hidden-radio-input:checked) {
+  border-color: #0D9E6E !important;
+  background: #ECFDF5 !important;
+}
+
+.custom-radio-indicator {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  border: 2px solid #D0D5DD !important;
+  background: #fff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.radio-card-label:has(.hidden-radio-input:checked) .custom-radio-indicator {
+  border-color: #0D9E6E !important;
+  background: #0D9E6E !important;
+}
+
+.card-icon {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  background: #F2F4F7 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.radio-card-label:has(.hidden-radio-input:checked) .card-icon {
+  background: rgba(13,158,110,.15) !important;
+}
+
+.card-text {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #344054 !important;
+}
+
+.radio-card-label:has(.hidden-radio-input:checked) .card-text {
+  color: #0A8560 !important;
+}
+
+.radio-card-overlay { display: none !important; }

@@ -2339,7 +2339,7 @@
 
                   <!-- <div class="col" *ngFor="let type of types"> -->
                     <div *ngFor="let type of types"
-                      class="product-card"
+                      class="product-card" [attr.data-type]="type.name"
                       [class.selected]="isTypeSelected(type.name) || checkToothSelectedIsBridge"
                       [class.unavailable]="!availableTypes.includes(type.name)"
                       (click)="changeVIewType('other')"
@@ -2371,7 +2371,7 @@
               <div *ngIf="currentViewPage != 'first'" class="row mt-3">
                 <div class="col-12 d-flex flex-wrap gap-3">
                   <div *ngFor="let type of types"
-                    class="d-flex flex-wrap product-card-mini"
+                    class="d-flex flex-wrap product-card-mini" [attr.data-type]="type.name"
                     [class.selected]="isTypeSelected(type.name) || checkToothSelectedIsBridge"
                     [class.unavailable]="!availableTypes.includes(type.name)"
                     (click)="onTypeChange(type.name)"
