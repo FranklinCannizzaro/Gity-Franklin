@@ -1,88 +1,411 @@
-.orders-page { padding:28px 32px; display:flex; flex-direction:column; gap:20px; }
-@media(max-width:768px){.orders-page{padding:16px;gap:14px}}
+/* ═══════════════════════════════════════════════════════
+   TASK LIST  –  Premium, arbeitet mit original HTML
+   ═══════════════════════════════════════════════════════ */
 
-/* Header */
-.page-header{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.page-title{font-size:22px;font-weight:700;color:#111827;margin:0 0 4px}
-.page-sub{font-size:13px;color:#6B7280;margin:0}
-.primary-btn{background:#1D9E75;color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;text-decoration:none;white-space:nowrap;font-family:'Inter',sans-serif}
-.primary-btn:hover{background:#0F6E56}
+/* Page wrapper */
+.h-100.px-0.px-lg-2.px-xl-5.py-2.step-body-scroll,
+.step-body-scroll {
+  padding: 28px 32px !important;
+  background: #F7F8FA !important;
+  min-height: calc(100vh - 58px) !important;
+}
 
-/* Filters */
-.filters-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.search-box{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #E5E7EB;border-radius:10px;padding:8px 14px;min-width:240px;transition:border-color .15s}
-.search-box:focus-within{border-color:#1D9E75}
-.search-ico{font-size:14px}
-.search-input{border:none!important;outline:none!important;font-size:14px!important;padding:0!important;background:transparent!important;box-shadow:none!important;width:100%}
+/* ── Page Header ─────────────────────────────────────── */
+.page-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  margin-bottom: 24px !important;
+}
 
-.status-pills{display:flex;gap:6px;flex-wrap:wrap}
-.status-pill{background:#F3F4F6;border:1.5px solid #E5E7EB;border-radius:20px;padding:6px 14px;font-size:13px;font-weight:500;color:#6B7280;cursor:pointer;transition:all .15s}
-.status-pill.active{background:#E1F5EE;border-color:#1D9E75;color:#0F6E56}
-.status-pill:hover{border-color:#9CA3AF}
+/* Page title (added dynamically by Angular) */
+h1, h2.page-title {
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #101828 !important;
+  letter-spacing: -0.02em !important;
+}
 
-.filter-btn{background:#fff;border:1.5px solid #E5E7EB;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:500;color:#374151;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s}
-.filter-btn:hover{border-color:#9CA3AF}
-.filter-menu{width:260px;border:1px solid #F0F0F0!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(0,0,0,.1)!important;background:#fff!important;padding:12px!important}
-.filter-menu-header{font-size:12px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;padding:0 4px}
-.filter-item{padding:4px 0}
-.filter-check{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#374151}
-.filter-check input{accent-color:#1D9E75}
-.filter-count{margin-left:auto;font-size:11px;color:#9CA3AF;background:#F3F4F6;border-radius:10px;padding:1px 6px}
-.filter-actions{display:flex;gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid #F0F0F0}
-.btn-clear{flex:1;background:transparent;border:none;font-size:13px;color:#6B7280;cursor:pointer;padding:6px}
-.btn-apply{flex:1;background:#111827;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;padding:8px;cursor:pointer}
+/* ── Status Filter Pills ─────────────────────────────── */
+.status-filter-btn,
+button.btn.status-filter-btn {
+  border-radius: 20px !important;
+  padding: 6px 16px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border: 1.5px solid #E4E7EC !important;
+  background: #FFFFFF !important;
+  color: #475467 !important;
+  cursor: pointer !important;
+  transition: all 150ms ease !important;
+  font-family: 'Inter', sans-serif !important;
+}
 
-/* Payment bar */
-.payment-bar{background:#FEF3C7;border:1px solid #FDE68A;border-radius:12px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.pay-btn{background:#1D9E75;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer}
+.status-filter-btn:hover {
+  border-color: #0D9E6E !important;
+  color: #0A8560 !important;
+}
 
-/* Empty */
-.empty-state{text-align:center;padding:64px 24px;display:flex;flex-direction:column;align-items:center;gap:12px}
-.empty-icon{font-size:48px}
-.empty-state h3{font-size:18px;font-weight:600;color:#111827;margin:0}
-.empty-state p{font-size:14px;color:#6B7280;margin:0}
+.active-status,
+.status-filter-btn.active-status {
+  background: #ECFDF5 !important;
+  border-color: #0D9E6E !important;
+  color: #0A8560 !important;
+}
 
-/* Table */
-.orders-table-wrap{background:#fff;border-radius:16px;border:1px solid #F0F0F0;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);overflow-x:auto}
-.orders-table{width:100%;border-collapse:collapse}
-.orders-table thead tr{background:#F9FAFB;border-bottom:1px solid #E5E7EB}
-.orders-table th{padding:11px 14px;font-size:11px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;text-align:left}
-.order-row{border-bottom:1px solid #F3F4F6;transition:background .1s}
-.order-row:hover{background:#FAFAFA}
-.order-row td{padding:13px 14px;font-size:13px;color:#374151;vertical-align:middle}
+.inactive-status { /* already handled by default */ }
 
-.order-id{color:#1D9E75;font-weight:600;cursor:pointer;text-decoration:none;font-size:13px}
-.order-id:hover{color:#0F6E56}
-.ref-tag{background:#F3F4F6;border-radius:6px;padding:3px 8px;font-size:12px;font-family:monospace;color:#374151}
-.date-cell{color:#6B7280;font-size:12px}
-.center-cell{text-align:center}
-.designer-tag{background:#E1F5EE;color:#0F6E56;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:500}
-.unassigned{color:#D1D5DB}
-.amount-cell{font-weight:600;color:#111827}
-.time-left{font-size:12px;font-weight:500;padding:3px 8px;border-radius:6px}
-.time-left.ok{background:#ECFDF5;color:#0F6E56}
-.time-left.urgent{background:#FEF2F2;color:#E24B4A}
+/* ── Search Box ──────────────────────────────────────── */
+.search-container {
+  position: relative !important;
+  min-width: 280px !important;
+}
 
-.tier-badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;text-transform:uppercase}
-.tier-silver{background:#F3F4F6;color:#6B7280}
-.tier-gold{background:#FEF3C7;color:#D97706}
-.tier-platinum{background:#EDE9FE;color:#7C3AED}
+.search-icon {
+  position: absolute !important;
+  left: 14px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #98A2B3 !important;
+  font-size: 14px !important;
+  z-index: 1 !important;
+}
 
-.status-badge{display:inline-flex;align-items:center;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.search-input,
+input.form-control.search-input {
+  width: 100% !important;
+  padding: 10px 14px 10px 38px !important;
+  border: 1.5px solid #D0D5DD !important;
+  border-radius: 10px !important;
+  font-size: 14px !important;
+  font-family: 'Inter', sans-serif !important;
+  color: #101828 !important;
+  background: #FFFFFF !important;
+  box-shadow: 0 1px 2px rgba(16,24,40,.05) !important;
+  transition: all 150ms ease !important;
+  outline: none !important;
+}
 
-.action-group{display:flex;gap:6px;align-items:center}
-.action-btn{width:30px;height:30px;border-radius:8px;border:none;background:#F3F4F6;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s}
-.action-btn:hover{background:#E5E7EB;transform:scale(1.05)}
-.action-btn.green{background:#ECFDF5;color:#0F6E56}
-.action-btn.green:hover{background:#D1FAE5}
-.action-btn.red{background:#FEF2F2;color:#E24B4A}
-.action-btn.red:hover{background:#FEE2E2}
-.action-btn.blue{background:#EFF6FF;color:#1D4ED8}
-.action-btn:disabled{opacity:.4;cursor:not-allowed}
+.search-input:focus {
+  border-color: #0D9E6E !important;
+  box-shadow: 0 0 0 4px rgba(13,158,110,.1) !important;
+}
 
-/* Pagination */
-.pagination-bar{display:flex;align-items:center;justify-content:center;gap:12px}
-.page-btn{background:#fff;border:1.5px solid #E5E7EB;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s}
-.page-btn:hover:not(:disabled){border-color:#1D9E75;color:#1D9E75}
-.page-btn:disabled{opacity:.4;cursor:not-allowed}
-.page-info{font-size:13px;color:#6B7280}
+.search-input::placeholder { color: #98A2B3 !important; }
+
+/* ── Designer/Doctor Filter Dropdown ────────────────── */
+.btn-outline-secondary.dropdown-toggle,
+button.btn.btn-outline-secondary.dropdown-toggle {
+  background: #FFFFFF !important;
+  border: 1.5px solid #D0D5DD !important;
+  border-radius: 10px !important;
+  padding: 9px 16px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #344054 !important;
+  transition: all 150ms ease !important;
+  height: 42px !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.btn-outline-secondary.dropdown-toggle:hover {
+  background: #F9FAFB !important;
+  border-color: #98A2B3 !important;
+  color: #101828 !important;
+}
+
+/* Dropdown menu */
+.dropdown-menu.p-0.step-body-scroll.shadow,
+ul.dropdown-menu.p-0 {
+  border: 1px solid #E4E7EC !important;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 32px rgba(16,24,40,.1) !important;
+  background: #FFFFFF !important;
+  overflow: hidden !important;
+  padding: 12px 0 !important;
+  min-width: 260px !important;
+  height: auto !important;
+  max-height: 420px !important;
+}
+
+/* Dropdown header */
+ul.dropdown-menu li:first-child:not(:has(input)) {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #98A2B3 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .06em !important;
+  padding: 8px 16px !important;
+  border-bottom: 1px solid #F2F4F7 !important;
+  margin-bottom: 4px !important;
+}
+
+/* Scrollable filter list */
+ul.dropdown-menu {
+  overflow-y: auto !important;
+}
+
+/* Filter items */
+ul.dropdown-menu li.px-3.py-1 {
+  padding: 3px 12px !important;
+}
+
+.form-check {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 7px 4px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: background 150ms ease !important;
+}
+
+.form-check:hover { background: #F9FAFB !important; }
+
+.form-check-input {
+  width: 16px !important;
+  height: 16px !important;
+  border: 1.5px solid #D0D5DD !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  accent-color: #0D9E6E !important;
+}
+
+/* ── THIS IS THE FIX: Make designer names visible ─────── */
+.form-check-label {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #344054 !important;
+  cursor: pointer !important;
+  flex: 1 !important;
+  margin: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Count badge next to name */
+ul.dropdown-menu label[style*="color: #707070"] {
+  font-size: 11px !important;
+  color: #98A2B3 !important;
+  background: #F2F4F7 !important;
+  border-radius: 10px !important;
+  padding: 1px 7px !important;
+  margin-left: auto !important;
+  flex-shrink: 0 !important;
+}
+
+/* Dropdown footer */
+.dropdown-divider { border-color: #E4E7EC !important; margin: 8px 0 !important; }
+
+ul.dropdown-menu li.d-flex.justify-content-between {
+  padding: 8px 12px !important;
+  border-top: 1px solid #F2F4F7 !important;
+}
+
+/* Clear all */
+.btn.btn-link.p-0 {
+  font-size: 13px !important;
+  color: #475467 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+.btn.btn-link.p-0:hover { color: #101828 !important; }
+
+/* Apply button */
+button[style*="background-color: #000000"].btn-primary.btn-sm,
+.btn.btn-primary.btn-sm[style*="#000000"] {
+  background: #101828 !important;
+  border-color: #101828 !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  padding: 7px 16px !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* ── Empty State ─────────────────────────────────────── */
+.alert.alert-light {
+  background: #FFFFFF !important;
+  border: 1px solid #E4E7EC !important;
+  border-radius: 14px !important;
+  padding: 64px 24px !important;
+  text-align: center !important;
+  color: #475467 !important;
+  font-size: 15px !important;
+  box-shadow: 0 1px 3px rgba(16,24,40,.05) !important;
+}
+
+/* ── Table Container ─────────────────────────────────── */
+.table-container {
+  background: #FFFFFF !important;
+  border-radius: 14px !important;
+  border: 1px solid #E4E7EC !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 4px rgba(16,24,40,.06) !important;
+  overflow-x: auto !important;
+}
+
+/* ── Table ───────────────────────────────────────────── */
+.task-table,
+table.task-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.task-table thead tr {
+  background: #F9FAFB !important;
+  border-bottom: 1px solid #E4E7EC !important;
+}
+
+.task-table th {
+  padding: 11px 16px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #98A2B3 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .06em !important;
+  white-space: nowrap !important;
+  text-align: left !important;
+}
+
+.task-table tbody tr {
+  border-bottom: 1px solid #F2F4F7 !important;
+  transition: background 100ms ease !important;
+}
+
+.task-table tbody tr:hover { background: #FAFBFF !important; }
+.task-table tbody tr:last-child { border-bottom: none !important; }
+
+.task-table td {
+  padding: 13px 16px !important;
+  font-size: 13px !important;
+  color: #344054 !important;
+  vertical-align: middle !important;
+}
+
+/* Task ID link */
+.task-table td a[style*="color:#205567"],
+.task-table td a[href="javascript:void(0)"] {
+  color: #0D9E6E !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  font-family: 'SF Mono', 'Fira Code', monospace !important;
+}
+
+.task-table td a:hover { color: #0A8560 !important; text-decoration: underline !important; }
+
+/* Status badges */
+[style*="background-color"][style*="border-radius"][style*="padding"],
+.status-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 3px 10px !important;
+  border-radius: 20px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .04em !important;
+}
+
+/* Tier/package labels */
+.task-table td span[style*="background"][style*="color"] {
+  display: inline-block !important;
+  padding: 3px 10px !important;
+  border-radius: 20px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .04em !important;
+}
+
+/* Designer chip */
+.task-table td span[style*="background-color: #C5E2DA"],
+.task-table td span[style*="background: #C5E2DA"] {
+  background: #ECFDF5 !important;
+  color: #0A8560 !important;
+  border-radius: 6px !important;
+  padding: 3px 9px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+/* Time left cell */
+.task-table td[style*="red"],
+.task-table td span[style*="red"] {
+  background: #FEF2F2 !important;
+  color: #DC2626 !important;
+  border-radius: 6px !important;
+  padding: 3px 8px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+/* ── Action buttons ──────────────────────────────────── */
+.task-table td button,
+.task-table td a.btn {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  background: #F2F4F7 !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 14px !important;
+  color: #475467 !important;
+  transition: all 150ms ease !important;
+  margin-right: 4px !important;
+}
+
+.task-table td button:hover {
+  background: #E4E7EC !important;
+  color: #101828 !important;
+  transform: scale(1.05) !important;
+}
+
+/* Material icons in buttons */
+.task-table td button mat-icon,
+.task-table td button .material-symbols-outlined {
+  font-size: 16px !important;
+}
+
+/* ── Paginator ───────────────────────────────────────── */
+mat-paginator, .mat-mdc-paginator {
+  background: transparent !important;
+  border: none !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 13px !important;
+  color: #475467 !important;
+  margin-top: 8px !important;
+}
+
+/* ── "New Design" button (top right) ──────────────────── */
+a[routerLink="/create-task-demo"].btn,
+button.btn[routerLink="/create-task-demo"] {
+  background: #0D9E6E !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 10px 18px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  font-family: 'Inter', sans-serif !important;
+  box-shadow: 0 1px 3px rgba(13,158,110,.25) !important;
+  transition: all 150ms ease !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+a[routerLink="/create-task-demo"].btn:hover {
+  background: #0A8560 !important;
+  box-shadow: 0 4px 12px rgba(13,158,110,.3) !important;
+}
+
+@media (max-width: 768px) {
+  .step-body-scroll { padding: 16px !important; }
+  .search-container { min-width: 200px !important; }
+}
