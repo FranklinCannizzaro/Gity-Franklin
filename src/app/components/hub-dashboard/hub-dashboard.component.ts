@@ -30,7 +30,7 @@ export class HubDashboardComponent implements OnInit {
   role = '';
   userName = '';
   stats: DashboardStats = {
-    aktiveAufträge: 0, inBearbeitung: 0, zurPrüfung: 0,
+    aktiveAuftraege: 0, inBearbeitung: 0, zurPruefung: 0,
     freigegeben: 0, diesenMonat: 0, umsatzMonat: 0,
     avgLieferzeit: 0, bewertungDurchschnitt: 0
   };
@@ -41,7 +41,7 @@ export class HubDashboardComponent implements OnInit {
 
   // Mock data until API endpoints are updated
   mockStats: DashboardStats = {
-    aktiveAufträge: 12, inBearbeitung: 7, zurPrüfung: 2,
+    aktiveAuftraege: 12, inBearbeitung: 7, zurPruefung: 2,
     freigegeben: 3, diesenMonat: 48, umsatzMonat: 5840,
     avgLieferzeit: 2.4, bewertungDurchschnitt: 4.9
   };
@@ -55,9 +55,9 @@ export class HubDashboardComponent implements OnInit {
   ];
 
   mockDesigners = [
-    { name:'Jonas Klein', initials:'JK', color:'#1D9E75', spezialisierung:'Kronen & Brücken', bewertung:4.97, aufträge:247, online:true, preis:95 },
-    { name:'Sara Meier',  initials:'SM', color:'#534AB7', spezialisierung:'Ästhetik & Veneers',bewertung:4.99, aufträge:189, online:true, preis:110 },
-    { name:'Thomas Roth', initials:'TR', color:'#D85A30', spezialisierung:'Implantologie',     bewertung:4.82, aufträge:312, online:false,preis:80 },
+    { name:'Jonas Klein', initials:'JK', color:'#1D9E75', spezialisierung:'Kronen & Brücken', bewertung:4.97, auftraege:247, online:true, preis:95 },
+    { name:'Sara Meier',  initials:'SM', color:'#534AB7', spezialisierung:'Ästhetik & Veneers',bewertung:4.99, auftraege:189, online:true, preis:110 },
+    { name:'Thomas Roth', initials:'TR', color:'#D85A30', spezialisierung:'Implantologie',     bewertung:4.82, auftraege:312, online:false,preis:80 },
   ];
 
   constructor(private dataService: DataService, private router: Router) {}

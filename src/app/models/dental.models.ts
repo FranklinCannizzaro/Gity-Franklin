@@ -387,9 +387,9 @@ export interface Designer {
 
 // ─── DASHBOARD DATA ──────────────────────────────────────────
 export interface DashboardStats {
-  aktiveAufträge: number;
+  aktiveAuftraege: number;
   inBearbeitung: number;
-  zurPrüfung: number;
+  zurPruefung: number;
   freigegeben: number;
   diesenMonat: number;
   umsatzMonat: number;

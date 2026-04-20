@@ -16,7 +16,7 @@
     <div class="stat-card" (click)="navigateOrders('all')" style="cursor:pointer">
       <div class="stat-icon" style="background:#E1F5EE; color:#0F6E56">📋</div>
       <div class="stat-body">
-        <div class="stat-value">{{ stats.aktiveAufträge }}</div>
+        <div class="stat-value">{{ stats.aktiveAuftraege }}</div>
         <div class="stat-label">Aktive Aufträge</div>
       </div>
     </div>
@@ -30,7 +30,7 @@
     <div class="stat-card" (click)="navigateOrders('review')" style="cursor:pointer">
       <div class="stat-icon" style="background:#FAEEDA; color:#854F0B">👁</div>
       <div class="stat-body">
-        <div class="stat-value">{{ stats.zurPrüfung }}</div>
+        <div class="stat-value">{{ stats.zurPruefung }}</div>
         <div class="stat-label">Zur Prüfung</div>
       </div>
     </div>
@@ -117,7 +117,7 @@
             <div class="designer-info">
               <div class="designer-name">{{ d.name }}</div>
               <div class="designer-spec">{{ d.spezialisierung }}</div>
-              <div class="designer-rating">★ {{ d.bewertung }} · {{ d.aufträge }} Aufträge</div>
+              <div class="designer-rating">★ {{ d.bewertung }} · {{ d.auftraege }} Auftraege</div>
             </div>
             <div class="designer-right">
               <span class="online-dot" [class.offline]="!d.online"></span>

@@ -13,7 +13,7 @@
     <!-- Online toggle -->
     <button class="online-toggle" [class.is-online]="isOnline" (click)="toggleOnline()">
       <span class="toggle-dot"></span>
-      {{ isOnline ? 'Online – Aufträge annehmen' : 'Offline' }}
+      {{ isOnline ? 'Online - Auftraege annehmen' : 'Offline' }}
     </button>
   </div>
 
@@ -31,7 +31,7 @@
     <div class="earn-divider"></div>
     <div class="earn-item">
       <span class="earn-label">Aktive Aufträge</span>
-      <span class="earn-val">{{ stats.aktiveAufträge }}</span>
+      <span class="earn-val">{{ stats.aktiveAuftraege }}</span>
     </div>
     <div class="earn-divider"></div>
     <div class="earn-item">
@@ -109,7 +109,7 @@
           <div class="job-details">
             <div class="detail-row">
               <span class="detail-label">Zähne</span>
-              <span class="detail-val">{{ job.zähne }}</span>
+              <span class="detail-val">{{ job.zaehne }}</span>
             </div>
             <div class="detail-row">
               <span class="detail-label">Material</span>
@@ -139,11 +139,11 @@
           </div>
 
           <!-- Timer -->
-          <div class="job-timer" [class.timer-urgent]="job.annahmeDeadlineMin < 10">
+          <div class="job-timer" [class.timer-urgent]="job.deadlineMin < 10">
             <span>⏱</span>
-            <span>Noch {{ job.annahmeDeadlineMin }} Min. zum Annehmen</span>
+            <span>Noch {{ job.deadlineMin }} Min. zum Annehmen</span>
             <div class="timer-bar">
-              <div class="timer-fill" [style.width.%]="(job.annahmeDeadlineMin / 60) * 100"></div>
+              <div class="timer-fill" [style.width.%]="(job.deadlineMin / 60) * 100"></div>
             </div>
           </div>
 

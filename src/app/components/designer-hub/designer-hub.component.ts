@@ -11,7 +11,7 @@ interface AvailableJob {
   icon: string;
   kategorie: 'festsitzend' | 'herausnehmbar' | 'schiene';
   material: string;
-  zähne: string;
+  zaehne: string;
   dringlichkeit: 'standard' | 'express' | 'same_day';
   dringlichkeitLabel: string;
   preis: number;
@@ -21,7 +21,7 @@ interface AvailableJob {
   praxisOrt: string;
   distanzKm: number;
   ausgestelltVorMin: number;
-  annahmeDeadlineMin: number;
+  deadlineMin: number;
   anmerkungen: string;
   scanCount: number;
   fotoCount: number;
@@ -36,7 +36,7 @@ interface ActiveJob {
   praxisName: string;
   deadline: string;
   deadlineH: number;
-  status: 'in_bearbeitung' | 'zur_prüfung' | 'korrektur';
+  status: 'in_bearbeitung' | 'zur_pruefung' | 'korrektur';
   statusLabel: string;
   fortschritt: number;
   preis: number;
@@ -62,7 +62,7 @@ export class DesignerHubComponent implements OnInit, OnDestroy {
   stats = {
     heuteVerdient: 340,
     dieseWocheVerdient: 1240,
-    aktiveAufträge: 3,
+    aktiveAuftraege: 3,
     bewertung: 4.97,
     fertiggestellt: 247,
     responseRate: 96
@@ -71,37 +71,37 @@ export class DesignerHubComponent implements OnInit, OnDestroy {
   availableJobs: AvailableJob[] = [
     {
       id: '1', refNummer: 'GF-2025-04852', restauration: 'Krone 14 – Zirkon monolithisch', icon: '👑',
-      kategorie: 'festsitzend', material: 'Zirkonoxid (HTZ)', zähne: 'Zahn 14',
+      kategorie: 'festsitzend', material: 'Zirkonoxid (HTZ)', zaehne: 'Zahn 14',
       dringlichkeit: 'express', dringlichkeitLabel: 'Express', preis: 145,
       lieferdatum: 'Morgen 12:00', lieferzeitH: 20, praxisName: 'Zahnarztpraxis Weber',
-      praxisOrt: 'München', distanzKm: 3.2, ausgestelltVorMin: 8, annahmeDeadlineMin: 7,
+      praxisOrt: 'München', distanzKm: 3.2, ausgestelltVorMin: 8, deadlineMin: 7,
       anmerkungen: 'Okklusionskontakte gleichmäßig verteilen. Bukkale Höcker anatomisch gestalten.',
       scanCount: 3, fotoCount: 2, isUrgent: true
     },
     {
       id: '2', refNummer: 'GF-2025-04851', restauration: 'Michigan-Schiene OK – Hartacryl', icon: '🦷',
-      kategorie: 'schiene', material: 'Hartacryl (PMMA)', zähne: 'Oberkiefer komplett',
+      kategorie: 'schiene', material: 'Hartacryl (PMMA)', zaehne: 'Oberkiefer komplett',
       dringlichkeit: 'standard', dringlichkeitLabel: 'Standard', preis: 120,
       lieferdatum: 'Übermorgen', lieferzeitH: 48, praxisName: 'CMD-Zentrum Müller',
-      praxisOrt: 'München', distanzKm: 5.1, ausgestelltVorMin: 25, annahmeDeadlineMin: 35,
+      praxisOrt: 'München', distanzKm: 5.1, ausgestelltVorMin: 25, deadlineMin: 35,
       anmerkungen: 'Michigan-Schiene mit Eckzahnführung. Bisshöhe +1.5mm. Frontrampe 30°.',
       scanCount: 2, fotoCount: 1, isUrgent: false
     },
     {
       id: '3', refNummer: 'GF-2025-04850', restauration: 'Modellguss UK – Kennedy Kl. II', icon: '⚙️',
-      kategorie: 'herausnehmbar', material: 'Kobalt-Chrom (Co-Cr)', zähne: '36, 37 fehlend',
+      kategorie: 'herausnehmbar', material: 'Kobalt-Chrom (Co-Cr)', zaehne: '36, 37 fehlend',
       dringlichkeit: 'standard', dringlichkeitLabel: 'Standard', preis: 280,
       lieferdatum: 'In 5 Tagen', lieferzeitH: 120, praxisName: 'Prothetik-Praxis Schmidt',
-      praxisOrt: 'Augsburg', distanzKm: 12.4, ausgestelltVorMin: 45, annahmeDeadlineMin: 55,
+      praxisOrt: 'Augsburg', distanzKm: 12.4, ausgestelltVorMin: 45, deadlineMin: 55,
       anmerkungen: 'Freiendsattel distal. Akers-Klammer 34, 35. Lingualbügel UK. Satteldesign mit Zahnaufstellung.',
       scanCount: 4, fotoCount: 3, isUrgent: false
     },
     {
       id: '4', refNummer: 'GF-2025-04849', restauration: 'Veneer 11–21 – e.max', icon: '✨',
-      kategorie: 'festsitzend', material: 'Lithiumdisilikat (e.max)', zähne: '11, 21',
+      kategorie: 'festsitzend', material: 'Lithiumdisilikat (e.max)', zaehne: '11, 21',
       dringlichkeit: 'standard', dringlichkeitLabel: 'Standard', preis: 190,
       lieferdatum: 'In 4 Tagen', lieferzeitH: 96, praxisName: 'Ästhetik Praxis Braun',
-      praxisOrt: 'München', distanzKm: 2.8, ausgestelltVorMin: 62, annahmeDeadlineMin: 118,
+      praxisOrt: 'München', distanzKm: 2.8, ausgestelltVorMin: 62, deadlineMin: 118,
       anmerkungen: 'VITA 1M1. Konservative Präparation. Mock-up liegt vor. Sehr ästhetischer Patient.',
       scanCount: 3, fotoCount: 5, isUrgent: false
     },
@@ -117,7 +117,7 @@ export class DesignerHubComponent implements OnInit, OnDestroy {
     {
       id: 'a2', refNummer: 'GF-2025-04841', restauration: 'Abutment 36 – Titan', icon: '🔩',
       praxisName: 'Implantologiezentrum Bauer', deadline: 'Morgen 09:00', deadlineH: 18,
-      status: 'zur_prüfung', statusLabel: 'Zur Prüfung', fortschritt: 100, preis: 165,
+      status: 'zur_pruefung', statusLabel: 'Zur Prüfung', fortschritt: 100, preis: 165,
       ungeleseneNachrichten: 0
     },
   ];
@@ -141,7 +141,7 @@ export class DesignerHubComponent implements OnInit, OnDestroy {
       this.availableJobs = this.availableJobs.map(j => ({
         ...j,
         ausgestelltVorMin: j.ausgestelltVorMin + 1,
-        annahmeDeadlineMin: Math.max(0, j.annahmeDeadlineMin - 1)
+        deadlineMin: Math.max(0, j.deadlineMin - 1)
       }));
     }, 60000);
   }
@@ -175,7 +175,7 @@ export class DesignerHubComponent implements OnInit, OnDestroy {
       status: 'in_bearbeitung', statusLabel: 'In Bearbeitung', fortschritt: 0,
       preis: job.preis, ungeleseneNachrichten: 0
     });
-    this.stats.aktiveAufträge++;
+    this.stats.aktiveAuftraege++;
   }
 
   cancelAccept() {
