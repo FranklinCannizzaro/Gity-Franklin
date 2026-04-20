@@ -53,7 +53,7 @@
       <!-- Rating -->
       <div class="dc-rating">
         <div class="stars">
-          <span *ngFor="let s of [1,2,3,4,5]" class="star" [class.filled]="s <= Math.round(user.rating || 0)">★</span>
+          <span *ngFor="let s of [1,2,3,4,5]" class="star" [class.filled]="s <= (user.rating || 0)">★</span>
         </div>
         <span class="rating-val">{{ user.rating?.toFixed(1) || '–' }}</span>
         <span class="rating-count">({{ user.reviewCount || 0 }} Bewertungen)</span>

@@ -12,8 +12,7 @@
       </div>
     </div>
     <div class="detail-header-actions">
-      <button class="outline-btn" (click)="exportPdf()">📄 PDF Export</button>
-      <button class="outline-btn" *ngIf="orderDetailsNew.showHuman" (click)="openDesignerSearch()">👤 Designer wählen</button>
+      <button class="outline-btn" (click)="location.back()">← Zurück</button>
     </div>
   </div>
 
@@ -69,24 +68,10 @@
     <!-- Left: Order info + Files -->
     <div class="detail-main">
 
-      <!-- Tooth chart -->
-      <div class="section-card">
-        <h3 class="section-title">Zahnschema & Restauration</h3>
-        <div class="tooth-chart-embed">
-          <app-tooth [orderDetailsNew]="orderDetailsNew" [fromSummary]="true"></app-tooth>
-        </div>
-      </div>
-
       <!-- Files section -->
       <div class="section-card">
         <h3 class="section-title">Scans & Dateien</h3>
-        <app-files [taskId]="orderDetailsNew.taskId" [status]="taskDetails?.status"></app-files>
-      </div>
-
-      <!-- 3D Viewer -->
-      <div class="section-card" *ngIf="has3DFiles">
-        <h3 class="section-title">3D Vorschau</h3>
-        <app-threed [taskId]="orderDetailsNew.taskId"></app-threed>
+        <app-files></app-files>
       </div>
     </div>
 
@@ -133,24 +118,15 @@
       <!-- Comments -->
       <div class="section-card comments-card">
         <h3 class="section-title">Nachrichten</h3>
-        <app-comments [taskId]="orderDetailsNew.taskId" [status]="taskDetails?.status"></app-comments>
+        <app-comments></app-comments>
       </div>
 
-      <!-- Actions -->
-      <div class="section-card" *ngIf="showActions()">
+      <!-- Actions placeholder -->
+      <div class="section-card" *ngIf="taskDetails?.status">
         <h3 class="section-title">Aktionen</h3>
         <div class="action-list">
-          <button class="action-full green" *ngIf="canDeliver()" (click)="deliverTask()">
-            📤 Design abliefern
-          </button>
-          <button class="action-full" *ngIf="canRequestCorrection()" (click)="requestCorrection()">
-            🔄 Korrektur anfordern
-          </button>
-          <button class="action-full green" *ngIf="canApprove()" (click)="approveTask()">
-            ✅ Design freigeben
-          </button>
-          <button class="action-full red" *ngIf="canReject()" (click)="rejectTask()">
-            ✗ Auftrag ablehnen
+          <button class="action-full" (click)="location.back()">
+            ← Zurück zur Liste
           </button>
         </div>
       </div>
