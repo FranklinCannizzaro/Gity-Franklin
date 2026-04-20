@@ -1,0 +1,156 @@
+<div class="dashboard-wrap">
+
+  <!-- Header -->
+  <div class="dash-header">
+    <div>
+      <h1 class="dash-greeting">{{ getGreeting() }}, {{ userName || 'Willkommen' }} 👋</h1>
+      <p class="dash-sub">Hier ist die Übersicht deiner Aufträge</p>
+    </div>
+    <button class="btn-primary" (click)="navigateNewOrder()">
+      <span class="btn-icon">+</span> Neuer Auftrag
+    </button>
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-grid">
+    <div class="stat-card" (click)="navigateOrders('all')" style="cursor:pointer">
+      <div class="stat-icon" style="background:#E1F5EE; color:#0F6E56">📋</div>
+      <div class="stat-body">
+        <div class="stat-value">{{ stats.aktiveAuftraege }}</div>
+        <div class="stat-label">Aktive Aufträge</div>
+      </div>
+    </div>
+    <div class="stat-card" (click)="navigateOrders('in-progress')" style="cursor:pointer">
+      <div class="stat-icon" style="background:#E6F1FB; color:#185FA5">⚡</div>
+      <div class="stat-body">
+        <div class="stat-value">{{ stats.inBearbeitung }}</div>
+        <div class="stat-label">In Bearbeitung</div>
+      </div>
+    </div>
+    <div class="stat-card" (click)="navigateOrders('review')" style="cursor:pointer">
+      <div class="stat-icon" style="background:#FAEEDA; color:#854F0B">👁</div>
+      <div class="stat-body">
+        <div class="stat-value">{{ stats.zurPruefung }}</div>
+        <div class="stat-label">Zur Prüfung</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:#EAF3DE; color:#3B6D11">📦</div>
+      <div class="stat-body">
+        <div class="stat-value">{{ stats.diesenMonat }}</div>
+        <div class="stat-label">Diesen Monat</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:#EEEDFE; color:#534AB7">💶</div>
+      <div class="stat-body">
+        <div class="stat-value">€ {{ stats.umsatzMonat | number:'1.0-0' }}</div>
+        <div class="stat-label">Umsatz Monat</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:#FAEEDA; color:#854F0B">⭐</div>
+      <div class="stat-body">
+        <div class="stat-value">{{ stats.bewertungDurchschnitt }}</div>
+        <div class="stat-label">Ø Bewertung</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main two column -->
+  <div class="main-cols">
+
+    <!-- Left: Orders -->
+    <div class="col-main">
+      <div class="section-header">
+        <h2 class="section-title">Aktuelle Aufträge</h2>
+        <button class="btn-link" (click)="navigateOrders('all')">Alle anzeigen →</button>
+      </div>
+
+      <div class="order-list" *ngIf="!isLoading">
+        <div class="order-card" *ngFor="let o of recentOrders" (click)="navigateOrderDetail(o.id)">
+          <div class="order-icon" [style.background]="o.previewColor">
+            <span style="font-size:18px">{{ o.icon }}</span>
+          </div>
+          <div class="order-info">
+            <div class="order-title">{{ o.restauration }}</div>
+            <div class="order-meta">
+              <span class="order-ref">{{ o.refNummer }}</span>
+              <span class="order-dot">·</span>
+              <span>Pat: {{ o.patientRef }}</span>
+              <ng-container *ngIf="o.designer">
+                <span class="order-dot">·</span>
+                <span>{{ o.designer }}</span>
+              </ng-container>
+            </div>
+          </div>
+          <div class="order-right">
+            <span class="status-badge" [class]="o.statusClass">{{ o.statusLabel }}</span>
+            <span class="order-time">{{ formatTime(o.updatedMinutesAgo) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading skeleton -->
+      <div class="skeleton-list" *ngIf="isLoading">
+        <div class="skeleton-item" *ngFor="let i of [1,2,3,4]"></div>
+      </div>
+
+      <!-- Quick action -->
+      <button class="btn-outline full-width" (click)="navigateNewOrder()" style="margin-top:12px">
+        + Neuen Auftrag anlegen
+      </button>
+    </div>
+
+    <!-- Right: Quick panels -->
+    <div class="col-side">
+
+      <!-- Available designers -->
+      <div class="panel">
+        <div class="section-header">
+          <h2 class="section-title">Designer verfügbar</h2>
+          <button class="btn-link" (click)="navigateDesigner()">Alle →</button>
+        </div>
+        <div class="designer-list">
+          <div class="designer-row" *ngFor="let d of mockDesigners">
+            <div class="designer-avatar" [style.background]="d.color">{{ d.initials }}</div>
+            <div class="designer-info">
+              <div class="designer-name">{{ d.name }}</div>
+              <div class="designer-spec">{{ d.spezialisierung }}</div>
+              <div class="designer-rating">★ {{ d.bewertung }} · {{ d.auftraege }} Auftraege</div>
+            </div>
+            <div class="designer-right">
+              <span class="online-dot" [class.offline]="!d.online"></span>
+              <span class="designer-price">ab €{{ d.preis }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Schnell-Auftrag -->
+      <div class="panel quick-panel">
+        <h2 class="section-title" style="margin-bottom:12px">Schnellauftrag</h2>
+        <div class="quick-types">
+          <div class="quick-type" (click)="navigateNewOrder()">
+            <span>👑</span><span>Krone</span>
+          </div>
+          <div class="quick-type" (click)="navigateNewOrder()">
+            <span>🌉</span><span>Brücke</span>
+          </div>
+          <div class="quick-type" (click)="navigateNewOrder()">
+            <span>⚙️</span><span>Modellguss</span>
+          </div>
+          <div class="quick-type" (click)="navigateNewOrder()">
+            <span>🦷</span><span>Schiene</span>
+          </div>
+          <div class="quick-type" (click)="navigateNewOrder()">
+            <span>🔩</span><span>Implantat</span>
+          </div>
+          <div class="quick-type" (click)="navigateNewOrder()">
+            <span>✨</span><span>Veneer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+.orders-page { padding:28px 32px; display:flex; flex-direction:column; gap:20px; }
+@media(max-width:768px){.orders-page{padding:16px;gap:14px}}
+
+/* Header */
+.page-header{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.page-title{font-size:22px;font-weight:700;color:#111827;margin:0 0 4px}
+.page-sub{font-size:13px;color:#6B7280;margin:0}
+.primary-btn{background:#1D9E75;color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;text-decoration:none;white-space:nowrap;font-family:'Inter',sans-serif}
+.primary-btn:hover{background:#0F6E56}
+
+/* Filters */
+.filters-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.search-box{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #E5E7EB;border-radius:10px;padding:8px 14px;min-width:240px;transition:border-color .15s}
+.search-box:focus-within{border-color:#1D9E75}
+.search-ico{font-size:14px}
+.search-input{border:none!important;outline:none!important;font-size:14px!important;padding:0!important;background:transparent!important;box-shadow:none!important;width:100%}
+
+.status-pills{display:flex;gap:6px;flex-wrap:wrap}
+.status-pill{background:#F3F4F6;border:1.5px solid #E5E7EB;border-radius:20px;padding:6px 14px;font-size:13px;font-weight:500;color:#6B7280;cursor:pointer;transition:all .15s}
+.status-pill.active{background:#E1F5EE;border-color:#1D9E75;color:#0F6E56}
+.status-pill:hover{border-color:#9CA3AF}
+
+.filter-btn{background:#fff;border:1.5px solid #E5E7EB;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:500;color:#374151;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s}
+.filter-btn:hover{border-color:#9CA3AF}
+.filter-menu{width:260px;border:1px solid #F0F0F0!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(0,0,0,.1)!important;background:#fff!important;padding:12px!important}
+.filter-menu-header{font-size:12px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;padding:0 4px}
+.filter-item{padding:4px 0}
+.filter-check{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#374151}
+.filter-check input{accent-color:#1D9E75}
+.filter-count{margin-left:auto;font-size:11px;color:#9CA3AF;background:#F3F4F6;border-radius:10px;padding:1px 6px}
+.filter-actions{display:flex;gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid #F0F0F0}
+.btn-clear{flex:1;background:transparent;border:none;font-size:13px;color:#6B7280;cursor:pointer;padding:6px}
+.btn-apply{flex:1;background:#111827;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;padding:8px;cursor:pointer}
+
+/* Payment bar */
+.payment-bar{background:#FEF3C7;border:1px solid #FDE68A;border-radius:12px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pay-btn{background:#1D9E75;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer}
+
+/* Empty */
+.empty-state{text-align:center;padding:64px 24px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.empty-icon{font-size:48px}
+.empty-state h3{font-size:18px;font-weight:600;color:#111827;margin:0}
+.empty-state p{font-size:14px;color:#6B7280;margin:0}
+
+/* Table */
+.orders-table-wrap{background:#fff;border-radius:16px;border:1px solid #F0F0F0;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);overflow-x:auto}
+.orders-table{width:100%;border-collapse:collapse}
+.orders-table thead tr{background:#F9FAFB;border-bottom:1px solid #E5E7EB}
+.orders-table th{padding:11px 14px;font-size:11px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;text-align:left}
+.order-row{border-bottom:1px solid #F3F4F6;transition:background .1s}
+.order-row:hover{background:#FAFAFA}
+.order-row td{padding:13px 14px;font-size:13px;color:#374151;vertical-align:middle}
+
+.order-id{color:#1D9E75;font-weight:600;cursor:pointer;text-decoration:none;font-size:13px}
+.order-id:hover{color:#0F6E56}
+.ref-tag{background:#F3F4F6;border-radius:6px;padding:3px 8px;font-size:12px;font-family:monospace;color:#374151}
+.date-cell{color:#6B7280;font-size:12px}
+.center-cell{text-align:center}
+.designer-tag{background:#E1F5EE;color:#0F6E56;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:500}
+.unassigned{color:#D1D5DB}
+.amount-cell{font-weight:600;color:#111827}
+.time-left{font-size:12px;font-weight:500;padding:3px 8px;border-radius:6px}
+.time-left.ok{background:#ECFDF5;color:#0F6E56}
+.time-left.urgent{background:#FEF2F2;color:#E24B4A}
+
+.tier-badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;text-transform:uppercase}
+.tier-silver{background:#F3F4F6;color:#6B7280}
+.tier-gold{background:#FEF3C7;color:#D97706}
+.tier-platinum{background:#EDE9FE;color:#7C3AED}
+
+.status-badge{display:inline-flex;align-items:center;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+
+.action-group{display:flex;gap:6px;align-items:center}
+.action-btn{width:30px;height:30px;border-radius:8px;border:none;background:#F3F4F6;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s}
+.action-btn:hover{background:#E5E7EB;transform:scale(1.05)}
+.action-btn.green{background:#ECFDF5;color:#0F6E56}
+.action-btn.green:hover{background:#D1FAE5}
+.action-btn.red{background:#FEF2F2;color:#E24B4A}
+.action-btn.red:hover{background:#FEE2E2}
+.action-btn.blue{background:#EFF6FF;color:#1D4ED8}
+.action-btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* Pagination */
+.pagination-bar{display:flex;align-items:center;justify-content:center;gap:12px}
+.page-btn{background:#fff;border:1.5px solid #E5E7EB;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s}
+.page-btn:hover:not(:disabled){border-color:#1D9E75;color:#1D9E75}
+.page-btn:disabled{opacity:.4;cursor:not-allowed}
+.page-info{font-size:13px;color:#6B7280}

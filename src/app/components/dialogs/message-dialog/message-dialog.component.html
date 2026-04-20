@@ -1,0 +1,8 @@
+<h5 mat-dialog-title class="pb-0">{{data.header}}</h5>
+<hr class="p-0 m-0">
+<mat-dialog-content class="mat-typography">
+    <div class="m-2 p-2" [innerHTML]="data.content"></div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Close</button>
+</mat-dialog-actions>

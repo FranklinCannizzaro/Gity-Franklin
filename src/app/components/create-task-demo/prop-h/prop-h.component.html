@@ -1,0 +1,29 @@
+<div class="accordion-item" [class]="readonly ? 'info-card m-0 p-0' : ''">
+    <h2 class="accordion-header m-0">
+        <button [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''" class="accordion-button collapsed p-0 p-3" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#oc-' + readonly">
+            Occlusion contact &nbsp;&nbsp; <span style="font-size: small; color: #707070;">(for tooth {{dataService.rearrangedTeethOrderByOrderDetails(orderDetailsNew)}})</span>
+        </button>
+    </h2>
+
+     <div id="oc-{{readonly}}" [class]="!readonly ? 'accordion-collapse collapse' : 'accordion'" >
+        <div class="accordion-body container text-center px-3 py-2 d-flex align-items-center justify-content-between">
+            
+             <div class="col-2">
+                <img width="75" height="auto" src="occlusion-contact.svg" />
+            </div>
+                
+            <div *ngIf="readonly">
+                {{orderDetailsNew.props['h-Occlusion contact']}}
+            </div>
+
+            <div class="col-10" style="text-align: left;" *ngIf="!readonly">
+                <p class="ms-2 mb-0">Contact Strength (mm)</p>
+                <p class="ms-2 mb-4" style="font-size: small;">{{getContactDescription}}</p>
+                <mat-slider [min]="-0.10" [max]="0.20" [step]=".01" [discrete]="true" style="width: 100%;" [disabled]="readonly">
+                    <input matSliderThumb [(ngModel)]="orderDetailsNew.props['h-Occlusion contact']" #slider>
+                </mat-slider>
+            </div>
+           
+        </div>
+    </div>
+</div>

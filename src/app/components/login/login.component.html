@@ -1,0 +1,96 @@
+<div class="login-page">
+
+  <!-- Left panel -->
+  <div class="login-left">
+    <div class="login-left-inner">
+      <div class="brand">
+        <div class="brand-mark">D</div>
+        <span class="brand-name">DentalHub</span>
+      </div>
+
+      <div class="hero-text">
+        <h1>Die digitale Plattform<br>für moderne Zahntechnik</h1>
+        <p>Verbinde Zahnarztpraxen mit Top-Zahntechnikern weltweit. CAD-Designs in wenigen Stunden.</p>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon">👑</div>
+          <div>
+            <div class="feature-title">Alle Restaurationstypen</div>
+            <div class="feature-sub">Krone, Brücke, Implantat, Modellguss, Schienen</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⚡</div>
+          <div>
+            <div class="feature-title">Express-Lieferung</div>
+            <div class="feature-sub">Same-Day bis 5-Tage-Lieferung wählbar</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🔒</div>
+          <div>
+            <div class="feature-title">DSGVO-konform</div>
+            <div class="feature-sub">Patientendaten sicher verschlüsselt</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-bar">
+        <span class="trust-stat"><strong>500+</strong> Praxen</span>
+        <span class="trust-dot">·</span>
+        <span class="trust-stat"><strong>120+</strong> Designer</span>
+        <span class="trust-dot">·</span>
+        <span class="trust-stat"><strong>4.9 ★</strong> Bewertung</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right panel -->
+  <div class="login-right">
+    <div class="login-form-card" *ngIf="displayLogin">
+
+      <div class="form-header">
+        <h2>Willkommen zurück</h2>
+        <p>Melde dich bei deinem DentalHub-Konto an</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-body">
+        <div class="form-field">
+          <label class="field-label" for="username">Benutzername</label>
+          <input class="field-input" type="text" id="username"
+                 formControlName="username" placeholder="dein.name@praxis.de" autofocus>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label" for="password">Passwort</label>
+          <input class="field-input" type="password" id="password"
+                 formControlName="password" placeholder="••••••••">
+          <a class="forgot-link" href="javascript:void(0)" (click)="reset()">Passwort vergessen?</a>
+        </div>
+
+        <button class="submit-btn" type="submit">Anmelden</button>
+      </form>
+
+      <div class="divider">
+        <span>oder weiter mit</span>
+      </div>
+
+      <button class="google-btn" (click)="loginWithGoogle()">
+        <img src="./images/GoogleLogo.png" alt="Google" width="20">
+        Mit Google anmelden
+      </button>
+
+      <p class="register-link">
+        Noch kein Konto?
+        <a href="javascript:void(0)" (click)="navigateToSignup()">Jetzt registrieren</a>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<div class="spinner-overlay" *ngIf="dataService.progressBarActive">
+  <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
+</div>

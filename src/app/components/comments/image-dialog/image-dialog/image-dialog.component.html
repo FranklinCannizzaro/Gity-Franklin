@@ -1,0 +1,42 @@
+<div class="slider1" style="border-start-start-radius: 10px; border-bottom-left-radius: 10px;">
+    <div class="slider1-content">
+        <div>
+            <div mat-dialog-title class="d-flex justify-content-between" *ngIf="!data.preview">
+                <div style="color: #205567;">Preview Image</div>
+                <div><button class="customPreActivatedButtons p-2" (click)="close()"><mat-icon>close</mat-icon></button></div>
+            </div>
+            
+            <button *ngIf="data.preview" mat-icon-button (click)="close()" style="position: absolute; z-index: 10; right: 4%; top: 4%"><mat-icon>close</mat-icon></button>
+            
+            <hr class="p-0 m-0" *ngIf="!data.preview">
+        </div>
+        
+        <mat-dialog-content class="mat-typography p-0 chat-container mb-4 h-100" #chatContainer>
+            <mat-card-content>
+                <img [src]="imageSrc" />
+            </mat-card-content>
+        </mat-dialog-content>
+        
+        <mat-dialog-actions class="pt-0" align="start" *ngIf="!data.preview">
+            <!-- <div class="d-flex" style="width: -webkit-fill-available;">
+                <mat-form-field class="w-100">
+                    <textarea style="height: 75px;" matInput [(ngModel)]="comment"></textarea>
+                </mat-form-field>
+                <div class=" w-100 d-flex align-items-center justify-content-end">
+                    <button focus class="customPreActivatedButtons" (click)="postImageAndComment()">Send</button>
+                </div>
+            </div> -->
+
+            <div class="w-100 d-flex align-items-center border shadow-sm rounded-4">
+                <div class="d-flex align-items-center justify-content-center w-100 px-3">
+                    <textarea class="border-0" rows="1" placeholder="Enter your comment here..." matInput [(ngModel)]="comment" style="width: 100%;max-height: 200px; overflow: hidden; resize: none;outline: none; background: none;color: #205567;"></textarea>
+                </div>
+                <div class="d-flex align-items-center justify-content-center">
+                    <button class="customPreActivatedButtons d-flex align-items-center" matTooltipPosition="above" matTooltip="Send Comment" mat-icon-button (click)="postImageAndComment()">
+                        <mat-icon style="color: #f9f9f9;">send</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-dialog-actions>
+    </div>
+</div>

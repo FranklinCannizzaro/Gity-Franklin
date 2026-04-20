@@ -1,0 +1,66 @@
+<div class="accordion-item" [class]="readonly ? 'info-card m-0 p-0' : ''">
+    <h2 class="accordion-header m-0">
+        <button [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''" class="accordion-button collapsed p-0 p-3" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#mdcp-' + anterior + readonly">
+            Mesial and distal contact point &nbsp;&nbsp; <span style="font-size: small; color: #707070;">(for tooth {{rearrangedTeethOrderIgnoringBridgedTeeth(teeth)}})</span>
+        </button>
+    </h2>
+
+     <div id="mdcp-{{anterior}}{{readonly}}" [class]="!readonly ? 'accordion-collapse collapse' : 'accordion'" >
+        <div class="accordion-body container text-center px-3 pt-2">
+            <div class="radio-cards-container" style="max-width: 51rem; max-height: 9rem;" [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''">
+                                    
+                <label [style]="readonly ? 'width: 100%' : ''" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['a-Mesial and distal contact point-'+anterior] == 'entire surface'">
+                    <input [disabled]="readonly" type="radio" name="mdcp-{{anterior}}" [(ngModel)]="orderDetailsNew.props['a-Mesial and distal contact point-'+anterior]" value="entire surface" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml1"></app-magnifier>
+                        <ng-template #apppropahtml1>
+                            <img width="auto" class="p-3" height="80" [src]="anterior ? 'a.1.1-anterior.svg' : 'a.1.1.svg'" />
+                        </ng-template>
+                    </div>
+                    <div class="card-text">Entire Surface</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label [style]="readonly ? 'width: 100%' : ''" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['a-Mesial and distal contact point-'+anterior] == '1/3 of the surface'">
+                    <input [disabled]="readonly" type="radio" name="mdcp-{{anterior}}" [(ngModel)]="orderDetailsNew.props['a-Mesial and distal contact point-'+anterior]" value="1/3 of the surface" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml2"></app-magnifier>
+                        <ng-template #apppropahtml2>
+                            <img width="auto" class="p-3" height="80" [src]="anterior ? 'a.1.2-anterior.svg' : 'a.1.2.svg'" />
+                        </ng-template>
+                    </div>
+                    <div class="card-text">1/3 of the Surface</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label [style]="readonly ? 'width: 100%' : ''" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['a-Mesial and distal contact point-'+anterior] == 'point of contact'">
+                    <input [disabled]="readonly" type="radio" name="mdcp-{{anterior}}" [(ngModel)]="orderDetailsNew.props['a-Mesial and distal contact point-'+anterior]" value="point of contact" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml3"></app-magnifier>
+                        <ng-template #apppropahtml3>
+                            <img width="auto" class="p-3" height="80" [src]="anterior ? 'a.1.3-anterior.svg' : 'a.1.3.svg'" />
+                        </ng-template>
+                    </div>
+                    <div class="card-text">Point of Contact</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+
+            </div>
+
+            <div class="info-divider mt-4" *ngIf="readonly"></div>
+
+            <div class="info-row" *ngIf="readonly">
+                <div class="info-label">Contact Strength</div><div class="info-value">{{orderDetailsNew.props['a-Occlusal contact-'+anterior]}}</div>
+            </div>
+
+            <div class="col text-start mt-4" *ngIf="!readonly">
+                <p class="ms-1" style="color: #205567;">Contact Strength (mm)</p>
+                <mat-slider [min]="-.60" [max]="5" [step]=".01" [discrete]="true" style="width: 100%;" [disabled]="readonly">
+                <input matSliderThumb [(ngModel)]="orderDetailsNew.props['a-Occlusal contact-'+anterior]" #slider>
+                </mat-slider>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,227 @@
+<div class="designer-hub-wrap">
+
+  <!-- Top bar -->
+  <div class="hub-topbar">
+    <div class="hub-identity">
+      <div class="hub-avatar">JK</div>
+      <div>
+        <div class="hub-name">Jonas Klein</div>
+        <div class="hub-spec">Kronen · Brücken · Implantologie</div>
+      </div>
+    </div>
+
+    <!-- Online toggle -->
+    <button class="online-toggle" [class.is-online]="isOnline" (click)="toggleOnline()">
+      <span class="toggle-dot"></span>
+      {{ isOnline ? 'Online - Auftraege annehmen' : 'Offline' }}
+    </button>
+  </div>
+
+  <!-- Earnings stats -->
+  <div class="earnings-bar">
+    <div class="earn-item">
+      <span class="earn-label">Heute</span>
+      <span class="earn-val">€ {{ stats.heuteVerdient }}</span>
+    </div>
+    <div class="earn-divider"></div>
+    <div class="earn-item">
+      <span class="earn-label">Diese Woche</span>
+      <span class="earn-val">€ {{ stats.dieseWocheVerdient }}</span>
+    </div>
+    <div class="earn-divider"></div>
+    <div class="earn-item">
+      <span class="earn-label">Aktive Aufträge</span>
+      <span class="earn-val">{{ stats.aktiveAuftraege }}</span>
+    </div>
+    <div class="earn-divider"></div>
+    <div class="earn-item">
+      <span class="earn-label">Bewertung</span>
+      <span class="earn-val">★ {{ stats.bewertung }}</span>
+    </div>
+    <div class="earn-divider"></div>
+    <div class="earn-item">
+      <span class="earn-label">Aufträge gesamt</span>
+      <span class="earn-val">{{ stats.fertiggestellt }}</span>
+    </div>
+    <div class="earn-divider"></div>
+    <div class="earn-item">
+      <span class="earn-label">Annahmerate</span>
+      <span class="earn-val">{{ stats.responseRate }}%</span>
+    </div>
+  </div>
+
+  <div class="hub-cols">
+
+    <!-- LEFT: Available jobs -->
+    <div class="jobs-col">
+      <div class="col-header">
+        <h2 class="col-title">
+          Verfügbare Aufträge
+          <span class="job-count">{{ filteredJobs.length }}</span>
+        </h2>
+        <div class="filter-row">
+          <select [(ngModel)]="filterKategorie" class="filter-select">
+            <option value="alle">Alle</option>
+            <option value="festsitzend">Festsitzend</option>
+            <option value="herausnehmbar">Herausnehmbar</option>
+            <option value="schiene">Schienen</option>
+          </select>
+          <select [(ngModel)]="filterDringlichkeit" class="filter-select">
+            <option value="alle">Alle Prioritäten</option>
+            <option value="express">Express</option>
+            <option value="same_day">Same Day</option>
+            <option value="standard">Standard</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Accept confirmation overlay -->
+      <div class="accept-overlay" *ngIf="acceptingJobId">
+        <div class="accept-card">
+          <div class="accept-countdown">{{ acceptCountdown }}</div>
+          <p style="font-size:14px;font-weight:500;margin:8px 0 4px">Auftrag annehmen?</p>
+          <p style="font-size:12px;color:#6b7280;margin-bottom:16px">Automatisch in {{ acceptCountdown }}s</p>
+          <div style="display:flex;gap:8px">
+            <button class="btn-accept" (click)="confirmAccept(availableJobs[0])">Ja, annehmen</button>
+            <button class="btn-decline" (click)="cancelAccept()">Abbrechen</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Job cards -->
+      <div class="jobs-list" *ngIf="isOnline">
+        <div class="job-card" *ngFor="let job of filteredJobs" [class.job-urgent]="job.isUrgent">
+
+          <!-- Urgent ribbon -->
+          <div class="urgent-ribbon" *ngIf="job.isUrgent">⚡ Dringend</div>
+
+          <div class="job-card-header">
+            <div class="job-icon-wrap" [style.background]="job.isUrgent ? '#FCEBEB' : '#E1F5EE'">
+              <span style="font-size:22px">{{ job.icon }}</span>
+            </div>
+            <div class="job-header-info">
+              <div class="job-title">{{ job.restauration }}</div>
+              <div class="job-ref">{{ job.refNummer }}</div>
+            </div>
+            <div class="job-price">€ {{ job.preis }}</div>
+          </div>
+
+          <div class="job-details">
+            <div class="detail-row">
+              <span class="detail-label">Zähne</span>
+              <span class="detail-val">{{ job.zaehne }}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Material</span>
+              <span class="detail-val">{{ job.material }}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Lieferung</span>
+              <span class="detail-val" [class]="getDeadlineClass(job.lieferzeitH)">{{ job.lieferdatum }}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Praxis</span>
+              <span class="detail-val">{{ job.praxisName }}, {{ job.praxisOrt }}</span>
+            </div>
+          </div>
+
+          <!-- Anmerkungen -->
+          <div class="job-note" *ngIf="job.anmerkungen">
+            <span class="note-label">📝</span>
+            <span class="note-text">{{ job.anmerkungen }}</span>
+          </div>
+
+          <!-- File count -->
+          <div class="job-files">
+            <span class="file-chip">📐 {{ job.scanCount }} Scans</span>
+            <span class="file-chip" *ngIf="job.fotoCount">📷 {{ job.fotoCount }} Fotos</span>
+            <span class="badge-dringlichkeit" [class]="getDringlichkeitClass(job.dringlichkeit)">{{ job.dringlichkeitLabel }}</span>
+          </div>
+
+          <!-- Timer -->
+          <div class="job-timer" [class.timer-urgent]="job.deadlineMin < 10">
+            <span>⏱</span>
+            <span>Noch {{ job.deadlineMin }} Min. zum Annehmen</span>
+            <div class="timer-bar">
+              <div class="timer-fill" [style.width.%]="(job.deadlineMin / 60) * 100"></div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="job-actions">
+            <button class="btn-decline" (click)="declineJob(job)">Ablehnen</button>
+            <button class="btn-accept" (click)="startAccept(job)">Annehmen ✓</button>
+          </div>
+        </div>
+
+        <!-- Empty state -->
+        <div class="empty-state" *ngIf="filteredJobs.length === 0">
+          <div style="font-size:40px;margin-bottom:12px">🎯</div>
+          <div style="font-size:15px;font-weight:500;color:#374151;margin-bottom:6px">Keine Aufträge verfügbar</div>
+          <div style="font-size:13px;color:#6b7280">Neue Aufträge erscheinen automatisch</div>
+        </div>
+      </div>
+
+      <!-- Offline state -->
+      <div class="offline-state" *ngIf="!isOnline">
+        <div style="font-size:40px;margin-bottom:12px">😴</div>
+        <div style="font-size:15px;font-weight:500;color:#374151;margin-bottom:6px">Du bist offline</div>
+        <div style="font-size:13px;color:#6b7280;margin-bottom:16px">Aktiviere deinen Online-Status um Aufträge anzunehmen</div>
+        <button class="btn-accept" (click)="toggleOnline()">Online gehen</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: Active jobs -->
+    <div class="active-col">
+      <div class="col-header">
+        <h2 class="col-title">
+          Meine Aufträge
+          <span class="job-count">{{ activeJobs.length }}</span>
+        </h2>
+      </div>
+
+      <div class="active-list">
+        <div class="active-card" *ngFor="let job of activeJobs" (click)="navigateToJob(job.id)">
+          <div class="active-header">
+            <span style="font-size:22px">{{ job.icon }}</span>
+            <div class="active-info">
+              <div class="active-title">{{ job.restauration }}</div>
+              <div class="active-praxis">{{ job.praxisName }}</div>
+            </div>
+            <div class="active-right">
+              <span class="active-price">€ {{ job.preis }}</span>
+              <div class="msg-badge" *ngIf="job.ungeleseneNachrichten > 0">{{ job.ungeleseneNachrichten }}</div>
+            </div>
+          </div>
+
+          <!-- Progress -->
+          <div class="progress-wrap">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span class="progress-label">{{ job.statusLabel }}</span>
+              <span class="progress-label">{{ job.fortschritt }}%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" [style.width.%]="job.fortschritt"
+                   [style.background]="job.fortschritt === 100 ? '#1D9E75' : '#185FA5'"></div>
+            </div>
+          </div>
+
+          <!-- Deadline -->
+          <div class="active-deadline" [class]="getDeadlineClass(job.deadlineH)">
+            ⏰ {{ job.deadline }}
+          </div>
+
+          <div class="active-actions">
+            <button class="btn-sm-outline">Nachricht</button>
+            <button class="btn-sm-primary">Design öffnen →</button>
+          </div>
+        </div>
+
+        <div class="empty-state" *ngIf="activeJobs.length === 0">
+          <div style="font-size:32px;margin-bottom:8px">✅</div>
+          <div style="font-size:13px;color:#6b7280">Keine aktiven Aufträge</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="d-flex flex-column w-100 h-100" style="max-height: 80vh; overflow: hidden;">
+    <!-- Close Button -->
+    <div class="w-100 d-flex justify-content-end p-2 sticky-top">
+      <button class="customPreActivatedButtons p-1" (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  
+    <!-- Chat Container -->
+    <div class="w-100 h-100">
+      <mat-dialog-content class="mat-typography p-4 chat-container text-start" style="width: 40vw;" #chatContainer>
+        @for (comment of comments; track comment.comment) {
+          <!-- Date Separator -->
+          <div class="d-flex align-items-center my-4" *ngIf="isNewDate(comment.createTime)">
+            <hr class="chatDateSaperator">
+            <span class="chatDateText">{{ comment.createTime | date: 'EEE, dd MMM yyyy' }}</span>
+            <hr class="chatDateSaperator">
+          </div>
+  
+          <!-- Comment Card -->
+          <mat-card-content [ngStyle]="{ 'justify-items': comment.alignment }">
+            <mat-card appearance="outlined" class="mb-2 shadow-sm"
+                      style="border-radius: 8px; border: 1px solid #63D3B6;"
+                      [ngStyle]="{ 'width': getWidth(comment.imageContents), 'background-color': getColorByUser(comment.userId) }">
+          
+              <div class="ps-2 pt-1" style="font-size: small; line-height: 12px; color: #008A70; font-weight: 500;"
+                   *ngIf="dataService.userId != comment.userId">
+                {{ comment.userId }}
+              </div>
+          
+              <img class="p-2" style="cursor: pointer; width: 300px; height: auto;" *ngIf="comment.imageContents != ''"
+                   src="data:image/*;base64,{{comment.imageContents}}" (click)="previewImage(comment.imageContents)" />
+          
+              <div class="container p-1 px-2">
+                <div class="row lh-sm">
+                  <div class="col" style="font-size: medium; white-space: pre-wrap;">
+                    <p class="m-0" style="color: #205567;">{{ comment.comment }}</p>
+                  </div>
+                </div>
+                <div class="row text-end lh-sm pt-1">
+                  <div class="col" style="font-size: x-small; color: #205567;">
+                    <p class="m-0">{{ comment.createTime | date: 'shortTime' }}</p>
+                  </div>
+                </div>
+              </div>
+            </mat-card>
+          
+            <!-- Translate button below with spacing -->
+            <div class="d-flex justify-content-end mt-2 mb-4">
+                <button
+                  mat-icon-button
+                  matTooltip="{{ comment.source === 'translated' ? 'Show Original' : 'Translate' }}"
+                  matTooltipPosition="above"
+                  (click)="translateComment(comment)"
+                >
+                  <mat-icon>{{ comment.source === 'translated' ? 'visibility' : 'translate' }}</mat-icon>
+                </button>
+              </div>
+            
+            {{scrollToBottom()}}
+          </mat-card-content>
+          
+        }
+      </mat-dialog-content>
+    </div>
+  
+    <!-- Message Input -->
+    <div class="w-100">
+      <mat-dialog-actions class="pt-0" align="start">
+        <div class="w-100 d-flex align-items-end">
+          <div class="d-flex align-items-end justify-content-center w-100 rounded-5 gap-2 shadow-sm" style="background: #f9f9f9;">
+            <button class="customPreActivatedButtons p-2" (click)="customFile.click()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <input hidden (change)="addFileDetails($event)" #customFile type="file" id="customFile">
+            <textarea class="border-0 align-self-center" rows="1" placeholder="Type your message..." [(ngModel)]="comment"
+                      (input)="autoGrowTextArea($event)"
+                      style="width: 100%; max-height: 200px; overflow: hidden; resize: none; outline: none; background: none; color: #205567;"></textarea>
+            <div class="d-flex align-items-center justify-content-center">
+              <button class="customPreActivatedButtons d-flex align-items-center p-2"
+                      matTooltipPosition="above" matTooltip="Send Comment" (click)="postComment($event)">
+                <mat-icon style="color: #f9f9f9;">send</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-dialog-actions>
+    </div>
+  </div>
+  
+  <!-- Spinner -->
+  <div class="spinner-overlay" *ngIf="dataService.progressBarActiveForSlider">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  
