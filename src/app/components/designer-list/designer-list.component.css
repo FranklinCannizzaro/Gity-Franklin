@@ -1,268 +1,57 @@
-.star-wrapper {
-    display: flex;
-    gap: 4px;
-  }
-  
-  .star-container {
-    position: relative;
-    width: 24px; /* Make sure each star has a fixed width */
-    height: 24px;
-  }
-  
-  .star {
-    font-size: 24px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    white-space: nowrap;
-    line-height: 1;
-  }
-  
-  .star.filled {
-    color: #63D3B6;
-    overflow: hidden;
-    z-index: 2;
-  }
-  
-  .star.empty {
-    color: #dcdcdc;
-    z-index: 1;
-  }
-  
-  .dialog-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-  
-  .dialog-inner {
-    text-align: center;
-  }
-  .mat-dialog-container {
-    max-width: 90vw !important;
-    max-height: 90vh !important;
-    overflow: auto;
-    border-radius: 16px;
-  }
-  
-  .progress-bar {
-    background-color: #008A70;
-    text-align: right;
-    color: white;
-    padding-right: 8px;
-  }
-  /* @media (min-width: 140px) {
-    .custom-dialog-container {
-      width: 20% !important;
-    }
-  } */
-  /* .custom-dialog-container {
-    border-radius: 16px;
-    padding: 1rem;
-    overflow: hidden;
-  }   */
+.designers-page{padding:28px 32px;display:flex;flex-direction:column;gap:20px}
+@media(max-width:768px){.designers-page{padding:16px}}
 
-  /* ::ng-deep .mat-primary  {
-    border-radius: 16px;
-    padding: 1rem;
-    overflow: hidden;
-  } */
+.page-header{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.page-title{font-size:22px;font-weight:700;color:#111827;margin:0 0 4px}
+.page-sub{font-size:13px;color:#6B7280;margin:0}
 
-   ::ng-deep .custom-black-toggle .mdc-switch__track {
-    height: 30px !important;
-  }
+.search-wrap{max-width:400px}
+.search-box{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #E5E7EB;border-radius:10px;padding:10px 14px;transition:border-color .15s}
+.search-box:focus-within{border-color:#1D9E75}
+.search-ico{font-size:14px}
+.search-input{border:none!important;outline:none!important;font-size:14px!important;padding:0!important;background:transparent!important;box-shadow:none!important;width:100%}
 
-  /*
-  ::ng-deep .custom-black-toggle.mdc-switch--selected .mdc-switch__track {
-    background-color: rgba(0, 0, 0, 0.7) !important;
-  }
-  
-  ::ng-deep .custom-black-toggle .mdc-switch__handle {
-    background-color: black !important;
-  }
-  
-  ::ng-deep .custom-black-toggle.mdc-switch--selected .mdc-switch__handle {
-    background-color: black !important;
-  } */
+.empty-state{text-align:center;padding:64px 24px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.empty-icon{font-size:48px}
+.empty-state h3{font-size:18px;font-weight:600;color:#111827;margin:0}
+.empty-state p{font-size:14px;color:#6B7280;margin:0}
 
-  
-  ::ng-deep .custom-black-toggle.mat-mdc-slide-toggle {
-    --mat-switch-track-outline-color: #e4e4e4;
+/* Grid */
+.designer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 
-    /* Track colors */
-    --mdc-switch-selected-track-color: black;
-    --mdc-switch-unselected-track-color: #e4e4e4;
-  
-    /* Thumb (handle) colors */
-    /* --mdc-switch-selected-handle-color: white; */
-    /* --mdc-switch-unselected-handle-color: white; */
-  
-    /* Tick icon */
-    --mdc-switch-selected-icon-color: black;
-    --mdc-switch-unselected-icon-color: transparent;
-  
-    /* Optional: extra hover/press/focus customizations */
-    --mdc-switch-selected-hover-track-color: black;
-    /* --mdc-switch-selected-hover-handle-color: white; */
-    --mdc-switch-selected-focus-track-color: black;
-    /* --mdc-switch-selected-focus-handle-color: white; */
-    --mdc-switch-selected-pressed-track-color: black;
-    /* --mdc-switch-selected-pressed-handle-color: white; */
-  }
-  
-  ::ng-deep .custom-black-toggle .mdc-label {
-    color: black;
-    font-weight: 500;
-  }
-  
-  ::ng-deep .btn-dark {
-    background-color: #000 !important;
-    color: #fff !important;
-    border: none;
-  }
-  .diamond-circle {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    font-size: 18px; /* controls mat-icon size inside */
-  }
-  
-  .diamond-circle.active {
-    background-color: #3DD9C9; /* green background */
-    color: white;
-    border: none;
-  }
-  
-  .diamond-circle.inactive {
-    background-color: white;
-    color: black;
-    border: 1.5px solid #999;
-  }
-  .heart-wrapper {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1.5px solid #e0e0e0; /* soft gray border */
-  }
-  
-  .heart-wrapper mat-icon {
-    font-size: 20px;
-    transition: color 0.2s ease;
-  }
-  
-  .heart-wrapper mat-icon {
-    color: #3DD9C9;; /* default (not favorited) */
-  }
-  
-  /* Override color if favorited */
-  .heart-wrapper mat-icon:has-text("favorite") {
-    color: #3DD9C9; /* filled heart in mint green */
-  }
-  .heart-wrapper mat-icon {
-    text-decoration: none !important;
-    outline: none !important;
-  }
-  button.btn-link {
-    text-decoration: none !important;
-  }
- 
-  
-  .heart-circle.active {
-    background-color: white;
-    color: #3DD9C9; /* filled heart */
-  }
-  
-  .heart-circle.inactive {
-    background-color: #FFFFFF99; /* soft gray background */
-    color: black;
-  }
-  .heart-circle {
-    height: 35px;
-    width: 35px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+/* Card */
+.designer-card{background:#fff;border:1px solid #F0F0F0;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:14px;transition:all .15s;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.designer-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.1);transform:translateY(-2px);border-color:#E1F5EE}
 
-  .rounded-4 {
-    overflow: hidden;
-  }
-  
-  .card img,
-  .card > div {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  
+.dc-header{display:flex;align-items:center;gap:12px}
+.dc-avatar{width:48px;height:48px;border-radius:50%;background:#1D9E75;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0;overflow:hidden}
+.dc-img{width:100%;height:100%;object-fit:cover}
+.dc-info{flex:1}
+.dc-name{font-size:15px;font-weight:600;color:#111827}
+.dc-role{font-size:12px;color:#6B7280;margin-top:2px}
+.dc-status{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
+.online-dot{width:10px;height:10px;border-radius:50%}
+.online-dot.online{background:#1D9E75}
+.online-dot.offline{background:#D1D5DB}
+.status-text{font-size:10px;color:#9CA3AF}
 
+.dc-rating{display:flex;align-items:center;gap:6px}
+.stars{display:flex;gap:1px}
+.star{font-size:14px;color:#D1D5DB}
+.star.filled{color:#F59E0B}
+.rating-val{font-size:13px;font-weight:600;color:#111827}
+.rating-count{font-size:12px;color:#9CA3AF}
 
+.dc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#F9FAFB;border-radius:10px;padding:12px}
+.dc-stat{text-align:center}
+.dc-stat-val{font-size:16px;font-weight:700;color:#111827}
+.dc-stat-lbl{font-size:11px;color:#9CA3AF;margin-top:2px}
 
+.dc-skills{display:flex;gap:6px;flex-wrap:wrap}
+.skill-tag{background:#E1F5EE;color:#0F6E56;border-radius:20px;padding:4px 10px;font-size:11px;font-weight:500}
 
-  /* designer search in new design input icon formatting - start */
-
-.search-container {
-    width: 100%;
-    max-width: 600px; /* Adjust max-width as needed */
-    position: relative;
-    display: flex;
-    align-items: baseline;
-    padding: 0.6rem 0.9rem; /* Reduced padding for more compact look */
-    border: 1px solid #e0e0e0; /* Light border */
-    border-radius: 0.5rem; /* Rounded corners */
-    background-color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow */
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    cursor: pointer; /* Indicate it's clickable */
-}
-
-/* On focus/click, only change border and shadow, no direct input changes */
-.search-container:focus-within {
-    border-color: #a0a0a0; /* Darker border on interaction */
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Slightly more prominent shadow on interaction */
-}
-
-.search-icon {
-    margin-right: 0.6rem; /* Reduced space between icon and input */
-    color: #888; /* Gray icon color */
-    width: 18px; /* Slightly smaller icon */
-    height: 18px;
-    display: block;
-    flex-shrink: 0; /* Prevent icon from shrinking */
-}
-
-.search-input {
-    flex-grow: 1; /* Allows input to take up remaining space */
-    border: none; /* Remove default input border */
-    outline: none; /* Remove focus outline */
-    font-size: 0.95rem; /* Slightly smaller font size for compactness */
-    padding: 0; /* Remove default input padding */
-    color: #333; /* Darker text color */
-    cursor: pointer; /* Ensure the cursor indicates clickability over the input part too */
-    background-color: transparent; /* Ensure background is transparent even if readonly */
-}
-
-/* Style for readonly input placeholder */
-.search-input::placeholder {
-    color: #a0a0a0; /* Placeholder text color */
-}
-
-/* Ensure no text selection on readonly input */
-.search-input[readonly] {
-    -webkit-user-select: none;  /* Safari */
-    -moz-user-select: none;     /* Firefox */
-    -ms-user-select: none;      /* IE 10+ */
-    user-select: none;          /* Standard */
-}
-
-/* designer search in new design input icon formatting - end */
+.dc-actions{display:flex;gap:8px;margin-top:4px}
+.dc-btn-fav{flex:0 0 auto;background:#fff;border:1.5px solid #E5E7EB;border-radius:8px;padding:8px 12px;font-size:13px;cursor:pointer;transition:all .15s;color:#6B7280}
+.dc-btn-fav:hover{border-color:#E24B4A;color:#E24B4A}
+.dc-btn-primary{flex:1;background:#1D9E75;color:#fff;border:none;border-radius:8px;padding:9px;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s}
+.dc-btn-primary:hover{background:#0F6E56}
