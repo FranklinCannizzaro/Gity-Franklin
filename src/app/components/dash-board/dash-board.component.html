@@ -1,47 +1,83 @@
-<div class="w-100 h-100 d-flex flex-column gap-5 px-0 px-md-4 px-lg-5 py-2">
-    <!-- <div class="d-flex gap-3 flex-wrap">
-        <label for="" class="d-flex align-items-center justify-content-start gap-2">
-            <span class="fadedTextChart">From</span>
-            <input type="date" class="customInputFields" style="max-width: max-content" name="" id="">
-        </label>
-        <label for="" class="d-flex align-items-center justify-content-start gap-2">
-            <span class="fadedTextChart">To</span>
-            <input type="date" class="customInputFields" style="max-width: max-content" name="" id="">
-        </label>
-    </div> -->
-    <div class="d-flex justify-content-around gap-3 flex-wrap">
-        <div style="max-width: 250px;"
-            class="alert alert-light w-100 shadow rounded-4 d-flex align-items center flex-column justify-content-center text-center">
-            <span class="insightDahsboardCardValue">{{dashBoardDataInComplete + dashBoardDataComplete}}</span>
-            <span class="insightDahsboardCardTitle">TOTAL JOBS</span>
-        </div>
+<div class="dh-wrap">
 
-        <div style="max-width: 250px;"
-            class="alert alert-light w-100 shadow rounded-4 d-flex align-items center flex-column justify-content-center text-center">
-            <span class="insightDahsboardCardValue">{{dashBoardDataInComplete}}</span>
-            <span class="insightDahsboardCardTitle">JOBS IN PROCESS</span>
-        </div>
-
-        <div style="max-width: 250px;" *ngIf="role == 'doctor'"
-        class="alert alert-light w-100 shadow rounded-4 d-flex align-items center flex-column justify-content-center text-center">
-        <span class="insightDahsboardCardValue">{{dashBoardDataDelivered}}</span>
-        <span class="insightDahsboardCardTitle">JOBS DELIVERED</span>
+  <!-- Header -->
+  <div class="dh-header">
+    <div>
+      <h1 class="dh-greeting">{{ getGreeting() }}, {{ firstName || 'Willkommen' }} 👋</h1>
+      <p class="dh-sub">Übersicht deiner aktuellen Aufträge</p>
     </div>
+    <button class="dh-btn-primary" (click)="router.navigate(['/create-task-demo'])">
+      + Neuer Auftrag
+    </button>
+  </div>
 
-        <div style="max-width: 250px;"
-            class="alert alert-light w-100 shadow rounded-4 d-flex align-items center flex-column justify-content-center text-center">
-            <span class="insightDahsboardCardValue">{{dashBoardDataComplete}}</span>
-            <span class="insightDahsboardCardTitle">JOBS COMPLETED</span>
-        </div>
+  <!-- Stats -->
+  <div class="dh-stats">
+    <div class="dh-stat" (click)="router.navigate(['/task-list','in-progress'])">
+      <div class="dh-stat-icon" style="background:#E6F1FB">⚡</div>
+      <div>
+        <div class="dh-stat-val">{{ dashBoardDataInComplete || 0 }}</div>
+        <div class="dh-stat-lbl">In Bearbeitung</div>
+      </div>
     </div>
-    <div class="w-100 d-flex flex-column gap-1">
-        <!-- <span class="fadedTextChart">Date Chart</span> -->
-        <div class="p-2 p-md-4 p-lg-5 flex-column gap-3 rounded-4 shadow" 
-            style="backdrop-filter: blur(10px);background: rgba(255,255,255,0.8);">          
-            <app-bar-chart></app-bar-chart>
+    <div class="dh-stat" (click)="router.navigate(['/task-list','completed'])">
+      <div class="dh-stat-icon" style="background:#EAF3DE">✅</div>
+      <div>
+        <div class="dh-stat-val">{{ dashBoardDataComplete || 0 }}</div>
+        <div class="dh-stat-lbl">Abgeschlossen</div>
+      </div>
+    </div>
+    <div class="dh-stat" *ngIf="role === 'doctor'" (click)="router.navigate(['/task-list','delivered'])">
+      <div class="dh-stat-icon" style="background:#E1F5EE">📦</div>
+      <div>
+        <div class="dh-stat-val">{{ dashBoardDataDelivered || 0 }}</div>
+        <div class="dh-stat-lbl">Geliefert</div>
+      </div>
+    </div>
+    <div class="dh-stat">
+      <div class="dh-stat-icon" style="background:#EEEDFE">📋</div>
+      <div>
+        <div class="dh-stat-val">{{ (dashBoardDataInComplete || 0) + (dashBoardDataComplete || 0) }}</div>
+        <div class="dh-stat-lbl">Gesamt</div>
+      </div>
+    </div>
+  </div>
 
-        </div>
-        <div class="w-100 mb-4">
-        </div>
+  <!-- Chart -->
+  <div class="dh-chart-card">
+    <div class="dh-chart-header">
+      <span class="dh-section-title">Auftragsübersicht</span>
     </div>
+    <app-bar-chart></app-bar-chart>
+  </div>
+
+  <!-- Quick actions -->
+  <div class="dh-quick-title">Schnellauftrag</div>
+  <div class="dh-quick-grid">
+    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
+      <span class="dh-quick-icon">👑</span>
+      <span class="dh-quick-lbl">Krone</span>
+    </div>
+    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
+      <span class="dh-quick-icon">🌉</span>
+      <span class="dh-quick-lbl">Brücke</span>
+    </div>
+    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
+      <span class="dh-quick-icon">🔩</span>
+      <span class="dh-quick-lbl">Implantat</span>
+    </div>
+    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
+      <span class="dh-quick-icon">✨</span>
+      <span class="dh-quick-lbl">Veneer</span>
+    </div>
+    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
+      <span class="dh-quick-icon">⚙️</span>
+      <span class="dh-quick-lbl">Modellguss</span>
+    </div>
+    <div class="dh-quick-card" (click)="router.navigate(['/create-task-demo'])">
+      <span class="dh-quick-icon">🦷</span>
+      <span class="dh-quick-lbl">Schiene</span>
+    </div>
+  </div>
+
 </div>

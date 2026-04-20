@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import { DataService } from '../../Services/data.service';
-import { DialogService } from '../../Services/dialog.service';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { DataService } from '../../Services/data.service';
 import { BarChartComponent } from '../bar-chart/bar-chart.component';
 
 @Component({
@@ -12,20 +11,23 @@ import { BarChartComponent } from '../bar-chart/bar-chart.component';
   templateUrl: './dash-board.component.html',
   styleUrl: './dash-board.component.css'
 })
-export class DashBoardComponent {
+export class DashBoardComponent implements OnInit {
 
   dashBoardDataComplete: any;
   dashBoardDataInComplete: any;
   dashBoardDataDelivered: any;
-  role:any;
+  role: any;
+  firstName: any;
 
-  constructor(private dataService: DataService, private dialogService: DialogService, private router: Router) { }
+  constructor(
+    public dataService: DataService,
+    public router: Router
+  ) {}
 
   ngOnInit() {
-   
     this.role = this.dataService.role;
-    this.dataService.updateTitle("Dashboard");
-   
+    this.firstName = this.dataService.firstName;
+    this.dataService.updateTitle('Dashboard');
     this.getInProgressTasks();
     this.getCompletedTasks();
     if (this.role === 'doctor') {
@@ -33,40 +35,31 @@ export class DashBoardComponent {
     }
   }
 
-  getDelivered() {
-    this.dataService.getDataAsList('/tasks/delivered').subscribe({
-      next: (response) => {
-        this.dashBoardDataDelivered = response.length;
-      },
-      error: (err) => {
-        this.dialogService.handleError(err, 'Failed to get In Progress Tasks, Please try again.');
-      }
-    });
+  getGreeting(): string {
+    const h = new Date().getHours();
+    if (h < 12) return 'Guten Morgen';
+    if (h < 18) return 'Guten Tag';
+    return 'Guten Abend';
   }
 
-
-
+  getDelivered() {
+    this.dataService.getDataAsList('/tasks/delivered').subscribe({
+      next: (response) => { this.dashBoardDataDelivered = response.length; },
+      error: () => {}
+    });
+  }
 
   getInProgressTasks() {
     this.dataService.getDataAsList('/tasks/in-progress').subscribe({
-      next: (response) => {       
-        this.dashBoardDataInComplete = response.length;
-      },
-      error: (err) => {
-        this.dialogService.handleError(err, 'Failed to get In Progress Tasks, Please try again.');
-      }
+      next: (response) => { this.dashBoardDataInComplete = response.length; },
+      error: () => {}
     });
   }
+
   getCompletedTasks() {
-    this.dataService.getDataAsList('/tasks/complete').subscribe({
-      next: (response) => {     
-        this.dashBoardDataComplete = response.length;
-      },
-      error: (err) => {
-        this.dialogService.handleError(err, 'Failed to get In Progress Tasks, Please try again.');
-      }
+    this.dataService.getDataAsList('/tasks/completed').subscribe({
+      next: (response) => { this.dashBoardDataComplete = response.length; },
+      error: () => {}
     });
   }
-
-
 }
