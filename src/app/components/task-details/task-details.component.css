@@ -1,0 +1,64 @@
+.selected-chip {
+  background-image: linear-gradient(to bottom, #00DFAF, #008A70) !important;
+  color: white !important;
+}
+
+.notificationButtonDecline {
+  background: none;
+  border-radius: 4px;
+  border: none;
+  padding: 3px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+}
+
+.notificationButtonDecline:hover {
+  background: rgb(235, 235, 235);
+  border: 1px solid #919191;
+}
+
+.notificationButtonAccept {
+  background: #5fcca7;
+  border: 1px solid #10b981;
+  border-radius: 4px;
+  padding: 5px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+}
+.separator{
+  display: block;
+  width: 1px;
+    height: 42px;
+    background: #e6e6e6;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.download-svg{
+    width:20px;
+    height:20px;
+    display:block;
+    fill:none;
+    stroke:#111827;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    opacity:0.95;
+  }
+  .order-details{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color: #000000;
+    padding: 0px;
+  }
+  .orderDetails-svg{
+    padding-bottom:5px !important;
+  }
+  .fileDownload-card{
+    background-color: #FAF9F9;
+    border-radius: 8px;
+    max-width: 400px;
+  }

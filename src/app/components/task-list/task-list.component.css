@@ -1,0 +1,222 @@
+::ng-deep .mdc-checkbox__background {
+    border: 1px solid #E4E4E4 !important;
+     
+}
+
+
+/* table layout changes start */
+.table-container {
+  font-family: 'Inter', sans-serif; /* Assuming Inter font as per guidelines */
+  max-width: 100%;
+  overflow-x: auto; /* Ensures table is scrollable on smaller screens if content overflows */
+  margin: 20px auto;
+  border-radius: 8px; /* Rounded corners for the entire table container */
+  border: 1px solid #e0e0e0; /* Subtle border around the table */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Soft shadow */
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse; /* Removes spacing between table cells */
+  background-color: #ffffff; /* White background for the table */
+  border-radius: 8px; /* Apply to table itself for inner corners */
+  overflow: hidden; /* Important for rounded corners to clip content */
+}
+
+/* Table Header Styles */
+.task-table thead th {
+  background-color: #f8f8f8; /* Light grey background for header */
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 500; /* Semi-bold */
+  color: #333; /* Darker text */
+  font-size: 14px;
+  text-transform: uppercase; /* Uppercase text */
+  border-bottom: 1px solid #e0e0e0; /* Separator below header */
+  position: sticky; /* Sticky header for scrolling */
+  top: 0;
+  z-index: 1; /* Ensure header stays above scrolling content */
+}
+
+.task-table thead th:first-child {
+  border-top-left-radius: 8px; /* Top-left corner */
+}
+
+.task-table thead th:last-child {
+  border-top-right-radius: 8px; /* Top-right corner */
+}
+
+.task-table thead th .header-checkbox {
+  margin-right: 8px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.task-table thead th .header-text {
+  vertical-align: middle;
+}
+
+.task-table thead th .dropdown-icon {
+  font-size: 10px;
+  margin-left: 5px;
+  vertical-align: middle;
+  color: #777;
+}
+
+.task-table tbody, td, tfoot, th, thead, tr {
+  border: 1px solid #f1f1f1;
+}
+
+/* Table Body Row Styles */
+.task-table tbody td {
+  padding: 12px 15px;
+  font-size: 14px;
+  color: #555;
+  border-bottom: 1px solid #e0e0e0; /* Horizontal line between rows */
+  vertical-align: middle;
+}
+
+/* Alternating row background color */
+.task-table tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* White for odd rows */
+}
+
+.task-table tbody tr:nth-child(even) {
+  background-color: #fdfdfd; /* Slightly off-white for even rows */
+}
+
+/* Remove bottom border from the last row */
+.task-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Checkbox in body cells */
+.task-table tbody td input[type="checkbox"] {
+  margin-right: 8px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+/* table layout changes end */
+
+
+
+
+/* Status Filter Buttons */
+.status-filter-btn {
+  height: 42px;
+  padding: 6px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.active-status {
+  background: linear-gradient(180.15deg, #FFE9FF -21.72%, #ADE3D0 113.39%);
+  color: #111;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 2px 4px rgba(160, 160, 160, 0.2);
+}
+
+.inactive-status {
+  background-color: white;
+  color: #111;
+  border: 1px solid #d0d0d0;
+}
+.inactive-status:hover {
+  background-color: #f5f5f5;
+}
+
+/* Search Box */
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  padding: 0 12px;
+  height: 42px;
+  background: white;
+  min-width: 260px;
+  margin-left: auto;
+}
+
+.search-container .search-icon {
+  color: #888;
+  margin-right: 8px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  font-size: 14px;
+  flex: 1;
+  background: transparent;
+}
+
+/* Dropdown */
+.role-dropdown {
+  height: 42px;
+  border-radius: 10px;
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+/* Table Styling */
+.table-wrapper {
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  margin-top: 1rem;
+}
+
+/* Badge (Optional if you're using [ngStyle]) */
+.badge {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.download-button {
+  background: linear-gradient(90deg, #5ecda7, #a6e3d1);
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  font-size: 15px;
+  border-radius: 25px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s ease;
+}
+
+.download-scan-btn {
+  background-color: #e6e6e6;
+  color: #4b4b4b;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.download-scan-btn:hover {
+  background-color: #d9d9d9;
+}
+
+
+
+.form-check-input:checked{
+  background-color: #5ecda7 !important;
+  border-color: #5ecda7 !important;
+}

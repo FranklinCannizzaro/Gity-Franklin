@@ -1,0 +1,141 @@
+
+
+<div class="accordion-item" *ngIf="anterior" [class]="readonly ? 'info-card m-0 p-0' : ''">
+    <h2 class="accordion-header m-0">
+        <button [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''" class="accordion-button collapsed p-0 p-3" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#pdf-' + readonly">
+            Pontic design &nbsp;&nbsp; <span style="font-size: small; color: #707070;">(for front tooth {{dataService.rearrangedTeethOrder(teeth)}})</span>
+        </button>
+    </h2>
+
+     <div id="pdf-{{readonly}}" [class]="!readonly ? 'accordion-collapse collapse' : 'accordion'" >
+        <div class="accordion-body container text-center px-3 pt-2">
+            <div class="radio-cards-container" style="max-width: 51rem; max-height: 10rem; background-color: #FAF9F9;">
+       
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['pontic-Pontic design-front'] == 'tangential'">
+                    <input [disabled]="readonly" type="radio" name="pdf-{{readonly}}" [(ngModel)]="orderDetailsNew.props['pontic-Pontic design-front']" value="tangential" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon"><img width="50" height="auto" src="pontic-tangential.svg" /></div>
+                    <div class="card-text" style="width: 5rem;">1. Tangential</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['pontic-Pontic design-front'] == 'sattel-a'">
+                    <input [disabled]="readonly" type="radio" name="pdf-{{readonly}}" [(ngModel)]="orderDetailsNew.props['pontic-Pontic design-front']" value="sattel-a" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon"><img width="50" height="auto" src="pontic-sattel-a.svg" /></div>
+                    <div class="card-text" style="width: 5rem;">2. Sattel a)</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['pontic-Pontic design-front'] == 'sattel-b'">
+                    <input [disabled]="readonly" type="radio" name="pdf-{{readonly}}" [(ngModel)]="orderDetailsNew.props['pontic-Pontic design-front']" value="sattel-b" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon"><img width="50" height="auto" src="pontic-sattel-b.svg" /></div>
+                    <div class="card-text" style="width: 5rem;">3. Sattel b)</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['pontic-Pontic design-front'] == 'pontic-a'">
+                    <input [disabled]="readonly" type="radio" name="pdf-{{readonly}}" [(ngModel)]="orderDetailsNew.props['pontic-Pontic design-front']" value="pontic-a" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon"><img width="50" height="auto" src="pontic-pontic-a.svg" /></div>
+                    <div class="card-text" style="width: 5rem;">4. Pontic a)</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['pontic-Pontic design-front'] == 'pontic-b'">
+                    <input [disabled]="readonly" type="radio" name="pdf-{{readonly}}" [(ngModel)]="orderDetailsNew.props['pontic-Pontic design-front']" value="pontic-b" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon"><img width="50" height="auto" src="pontic-pontic-b.svg" /></div>
+                    <div class="card-text" style="width: 5rem;">5. Pontic b)</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+
+            </div>
+           
+            <div class="info-divider mt-4" *ngIf="readonly"></div>
+
+            <div class="info-row" *ngIf="readonly">
+                <div class="info-label">Contact Strength</div><div class="info-value">{{orderDetailsNew.props['pontic-Contact Strength-front']}}</div>
+            </div>
+
+            <div class="row mt-2" *ngIf="!readonly">
+                <div class="col" style="color: #205567;">
+                    <p class="ms-1 text-start">Contact Strength (mm)</p>
+                    <mat-slider [min]="-.60" [max]="5" [step]=".01" [discrete]="true" style="width: 100%;" [disabled]="readonly">
+                    <input matSliderThumb [(ngModel)]="orderDetailsNew.props['pontic-Contact Strength-front']" #slider>
+                    </mat-slider>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="accordion-item" *ngIf="!anterior" [class]="readonly ? 'info-card m-0 p-0' : ''">
+    <h2 class="accordion-header m-0">
+        <button [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''" class="accordion-button collapsed p-0 p-3" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#pds-' + readonly">
+            Pontic design &nbsp;&nbsp; <span style="font-size: small; color: #707070;">(for side tooth {{dataService.rearrangedTeethOrder(teeth)}})</span>
+        </button>
+    </h2>
+
+
+     <div id="pds-{{readonly}}" [class]="!readonly ? 'accordion-collapse collapse' : 'accordion'" >
+        <div class="accordion-body container text-center px-3 pt-2">
+            <div class="radio-cards-container" style="max-width: 51rem; max-height: 10rem; background-color: #FAF9F9;">
+       
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['pontic-Pontic design-side'] == 'Tangential'">
+                    <input [disabled]="readonly" type="radio" name="pds-{{readonly}}" [(ngModel)]="orderDetailsNew.props['pontic-Pontic design-side']" value="Tangential" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon"><img width="50" height="auto" src="pontic.2.1.svg" /></div>
+                    <div class="card-text" style="width: 5rem;">Tangential (Standard)</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['pontic-Pontic design-side'] == 'saddle shape'">
+                    <input [disabled]="readonly" type="radio" name="pds-{{readonly}}" [(ngModel)]="orderDetailsNew.props['pontic-Pontic design-side']" value="saddle shape" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon"><img width="50" height="auto" src="pontic.2.2.svg" /></div>
+                    <div class="card-text" style="width: 5rem;">Saddle shape</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['pontic-Pontic design-side'] == 'saddle shape 2'">
+                    <input [disabled]="readonly" type="radio" name="pds-{{readonly}}" [(ngModel)]="orderDetailsNew.props['pontic-Pontic design-side']" value="saddle shape 2" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon"><img width="50" height="auto" src="pontic.2.3.svg" /></div>
+                    <div class="card-text" style="width: 5rem;">Saddle shape 2</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['pontic-Pontic design-side'] == 'floating element'">
+                    <input [disabled]="readonly" type="radio" name="pds-{{readonly}}" [(ngModel)]="orderDetailsNew.props['pontic-Pontic design-side']" value="floating element" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon"><img width="50" height="auto" src="pontic.2.4.svg" /></div>
+                    <div class="card-text" style="width: 5rem;">Floating element</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['pontic-Pontic design-side'] == 'root pontic'">
+                    <input [disabled]="readonly" type="radio" name="pds-{{readonly}}" [(ngModel)]="orderDetailsNew.props['pontic-Pontic design-side']" value="root pontic" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon"><img width="50" height="auto" src="pontic.2.5.svg" /></div>
+                    <div class="card-text" style="width: 5rem;">Root pontic</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+
+            </div>
+           
+            <div class="info-divider mt-4" *ngIf="readonly"></div>
+
+            <div class="info-row" *ngIf="readonly">
+                <div class="info-label">Contact Strength</div><div class="info-value">{{orderDetailsNew.props['pontic-Contact Strength-side']}}</div>
+            </div>
+
+            <div class="row mt-2" *ngIf="!readonly">
+                <div class="col" style="color: #205567;">
+                    <p class="ms-1 text-start">Contact Strength (mm)</p>
+                    <mat-slider [min]="-.60" [max]="5" [step]=".01" [discrete]="true" style="width: 100%;" [disabled]="readonly">
+                    <input matSliderThumb [(ngModel)]="orderDetailsNew.props['pontic-Contact Strength-side']" #slider>
+                    </mat-slider>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

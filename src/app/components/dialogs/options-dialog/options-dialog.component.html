@@ -1,0 +1,13 @@
+<h5 mat-dialog-title class="pb-0">{{data.title}}</h5>
+<hr class="p-0 m-0">
+<mat-dialog-content class="mat-typography">
+    <div class="m-2 p-2">
+        <mat-radio-group [(ngModel)]="selectedOption" *ngFor="let option of data.options | keyvalue">
+            <mat-radio-button value="{{ option.key }}">{{ option.value }}</mat-radio-button>
+        </mat-radio-group>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [disabled]="!selectedOption" (click)="confirm()">OK</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+</mat-dialog-actions>

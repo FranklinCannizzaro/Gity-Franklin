@@ -1,0 +1,112 @@
+
+<div class="accordion-item" *ngIf="anterior" [class]="readonly ? 'info-card m-0 p-0' : ''">
+    <h2 class="accordion-header m-0">
+        <button [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''" class="accordion-button collapsed p-0 p-3" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#ipf-' + readonly">
+            Frame Interdental papilla &nbsp;&nbsp; <span style="font-size: small; color: #707070;">(for front tooth {{dataService.rearrangedTeethOrder(teeth)}})</span>
+        </button>
+    </h2>
+
+     <div id="ipf-{{readonly}}" [class]="!readonly ? 'accordion-collapse collapse' : 'accordion'" >
+        <div class="accordion-body container text-center px-3 pt-2">
+            <div class="radio-cards-container" style="max-width: 51rem; max-height: 10rem;" [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''">
+       
+               <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['p-Interdental papilla-front'] == 'Papilla-Free Design'">
+                    <input [disabled]="readonly" type="radio" name="ipf-{{readonly}}" [(ngModel)]="orderDetailsNew.props['p-Interdental papilla-front']" value="Papilla-Free Design" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropphtml1"></app-magnifier>
+                        <ng-template #apppropphtml1>
+                            <img class="p-3" width="auto" height="80" src="frame-papilla-free-anterior.png" />
+                        </ng-template>
+                    </div>
+                    <div class="card-text">Papilla-Free Design</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['p-Interdental papilla-front'] == 'Partially Open Papilla'">
+                    <input [disabled]="readonly" type="radio" name="ipf-{{readonly}}" [(ngModel)]="orderDetailsNew.props['p-Interdental papilla-front']" value="Partially Open Papilla" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropphtml2"></app-magnifier>
+                        <ng-template #apppropphtml2>
+                            <img class="p-3" width="auto" height="80" src="frame-papilla-open-anterior.png" />
+                        </ng-template>
+                    </div>
+                    <div class="card-text">Partially Open Papilla</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['p-Interdental papilla-front'] == 'Closed Papilla Design'">
+                    <input [disabled]="readonly" type="radio" name="ipf-{{readonly}}" [(ngModel)]="orderDetailsNew.props['p-Interdental papilla-front']" value="Closed Papilla Design" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropphtml3"></app-magnifier>
+                        <ng-template #apppropphtml3>
+                            <img class="p-3" width="auto" height="80" src="frame-papilla-closed-anterior.png" />
+                        </ng-template>
+                    </div>
+                    <div class="card-text">Closed Papilla Design</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="accordion-item" *ngIf="!anterior" [class]="readonly ? 'info-card m-0 p-0' : ''">
+    <h2 class="accordion-header m-0">
+        <button [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''" class="accordion-button collapsed p-0 p-3" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#ips-' + readonly">
+            Frame Interdental papilla &nbsp;&nbsp; <span style="font-size: small; color: #707070;">(for side tooth {{dataService.rearrangedTeethOrder(teeth)}})</span>
+        </button>
+    </h2>
+
+
+     <div id="ips-{{readonly}}" [class]="!readonly ? 'accordion-collapse collapse' : 'accordion'" >
+        <div class="accordion-body container text-center px-3 pt-2">
+            <div class="radio-cards-container" style="max-width: 51rem; max-height: 10rem;" [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''">
+       
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['p-Interdental papilla-side'] == 'Papilla-Free Design'">
+                    <input [disabled]="readonly" type="radio" name="ips-{{readonly}}" [(ngModel)]="orderDetailsNew.props['p-Interdental papilla-side']" value="Papilla-Free Design" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropphtml11"></app-magnifier>
+                        <ng-template #apppropphtml11>
+                            <img class="p-3" width="auto" height="80" src="frame-papilla-free-posterior.png" />
+                        </ng-template>
+                    </div>
+                    <div class="card-text">Papilla-Free Design</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['p-Interdental papilla-side'] == 'Partially Open Papilla'">
+                    <input [disabled]="readonly" type="radio" name="ips-{{readonly}}" [(ngModel)]="orderDetailsNew.props['p-Interdental papilla-side']" value="Partially Open Papilla" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropphtml22"></app-magnifier>
+                        <ng-template #apppropphtml22>
+                            <img class="p-3" width="auto" height="80" src="frame-papilla-open-posterior.png" />
+                        </ng-template>
+                    </div>
+                    <div class="card-text">Partially Open Papilla</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label style="width: 100%;" class="radio-card-label mb-4" *ngIf="!readonly || orderDetailsNew.props['p-Interdental papilla-side'] == 'Closed Papilla Design'">
+                    <input [disabled]="readonly" type="radio" name="ips-{{readonly}}" [(ngModel)]="orderDetailsNew.props['p-Interdental papilla-side']" value="Closed Papilla Design" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropphtml33"></app-magnifier>
+                        <ng-template #apppropphtml33>
+                            <img class="p-3" width="auto" height="80" src="frame-papilla-closed-posterior.png" />
+                        </ng-template>
+                    </div>
+                    <div class="card-text">Closed Papilla Design</div>
+                    <div class="radio-card-overlay"></div>
+                </label>
+
+            </div>
+           
+        </div>
+    </div>
+</div>

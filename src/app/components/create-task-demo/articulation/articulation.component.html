@@ -1,0 +1,61 @@
+<h5 mat-dialog-title class="pb-0">Articulation</h5>
+<hr class="p-0 m-0">
+<mat-dialog-content class="mat-typography p-1">
+    <div class="m-2  text-start">
+
+        <div class="align-content-end" style="width: 100%;">
+            Articulator &nbsp;&nbsp;&nbsp;&nbsp;
+            <select [(ngModel)]="orderDetailsNew.articulationDetails.articulator" class="customInputFields">
+                <option value="Artex von Amann Girrbach">Artex von Amann Girrbach</option>
+                <option value="SAM">SAM</option>
+                <option value="KaVo PROTAR evo">KaVo PROTAR evo</option>
+                <option value="Whip Mix DENAR Mark 330">Whip Mix DENAR Mark 330</option>
+            </select>
+        </div>
+        <div class="align-content-end mt-1" style="width: 100%;">
+            Protrusion Angle &nbsp;&nbsp;&nbsp;&nbsp;
+            <select [(ngModel)]="protrusionAngleDefault" class="customInputFields">
+                <option *ngFor="let option of protrusionAngleRange[orderDetailsNew.articulationDetails.articulator]" value="{{option}}">{{option}}°</option>
+            </select>
+        </div>
+        <div class="align-content-end mt-1" style="width: 100%;">
+            Bennett Angle &nbsp;&nbsp;&nbsp;&nbsp;
+            <select [(ngModel)]="bennettAngleDefault" class="customInputFields">
+                <option *ngFor="let option of bennettAngleRange[orderDetailsNew.articulationDetails.articulator]" value="{{option}}">{{option}}°</option>
+            </select>
+        </div>
+        <div class="align-content-end mt-1" style="width: 100%;">
+            Immediate Side Shift (ISS) &nbsp;&nbsp;&nbsp;&nbsp;
+            <select [(ngModel)]="issDefault" class="customInputFields">
+                <option *ngFor="let option of issRange[orderDetailsNew.articulationDetails.articulator]" value="{{option}}">{{option}}°</option>
+            </select>
+        </div>
+        <div class="align-content-end mt-1" style="width: 100%;">
+            Incisal Guidance &nbsp;&nbsp;&nbsp;&nbsp;
+            <select [(ngModel)]="incisalGuidanceDefault" class="customInputFields">
+                <option *ngFor="let option of incisalGuidanceRange[orderDetailsNew.articulationDetails.articulator]" value="{{option}}">{{option}}°</option>
+            </select>
+        </div>
+        <hr>
+        <div class="d-flex align-items-center justify-content-between" style="width: 100%;">
+            <div>Raising or lowering the articulator (in mm)&nbsp;</div>
+            <div>
+                <input type="number" [(ngModel)]="q2ValueDefault" class="customInputFields" style="width: 100px;" />
+            </div>
+            <div><small style="color: red;">{{errMsg}}</small></div>
+        </div>
+        <div>
+            <mat-slider class="m-0" [min]="-50" [max]="50" [step]=".1" [discrete]="true" style="width: 100%;" >
+                <input matSliderThumb [(ngModel)]="q2ValueDefault" #slider>
+            </mat-slider>
+
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <div class="w-100 d-flex justify-content-center gap-3">
+        <button class="customPreActivatedButtons w-100" [disabled]="errMsg" (click)="confirm()">OK</button>
+        &nbsp;&nbsp;
+        <button class="customPreActivatedButtons w-100" (click)="cancel()">Cancel</button>
+    </div>
+</mat-dialog-actions>

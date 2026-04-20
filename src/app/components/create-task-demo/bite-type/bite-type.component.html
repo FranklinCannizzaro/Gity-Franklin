@@ -1,0 +1,25 @@
+<h5 mat-dialog-title class="pb-0" style="color: #205567;font-family:'maven pro';font-weight:500;">Bite Type Selection</h5>
+<hr class="p-0 m-0">
+<mat-dialog-content class="mat-typography p-1">
+    <div class="m-2 p-2">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-6 mb-3" *ngFor="let biteType of biteTypes">
+                    <div [ngClass]="{'hovered': biteTypeHoveredMap.get(biteType)}" (mouseover)="onMouseOver(biteType)" (mouseout)="onMouseOut(biteType)" (click)="changeBiteType(biteType)"
+                        class="text-center d-flex justify-content-center align-items-center bg-light py-3 rounded-3 h-100 flex-column w-100">
+                        <img width="100" height="70" src="{{biteType}}.svg" />
+                        <span class="d-flex justify-content-center w-100" style="color: #205567;font-family:'maven pro';font-weight:500;">
+                            {{biteType.replace('-', ' ') | titlecase}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<br>
+<mat-dialog-actions align="end">
+    <div class="w-100 d-flex justify-content-start gap-3">
+        <button class="w-100 customPreActivatedButtons" (click)="cancel()">Cancel</button>
+    </div>
+</mat-dialog-actions>

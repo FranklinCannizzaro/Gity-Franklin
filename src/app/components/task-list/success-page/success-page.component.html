@@ -1,0 +1,28 @@
+<div class="vh-100 vw-100 d-flex align-items-start justify-content-center">
+    <div class="container-fluid mt-5">
+        <div style="text-align: center;">
+            <h6 class="m-0 successfulMessage">Payment Successful !</h6>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12" style="text-align: -webkit-center;">
+                <div class="card m-4 p-4 align-items-left" style="max-width: 400px;">
+                    <div class="row">
+                        <div class="col-auto text-start"><b>Payment type:</b></div>
+                        <div class="col-auto">PayPal</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-auto text-start"><b>Transaction Id:</b></div>
+                        <div class="col-auto">{{id}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 d-flex flex-wrap gap-3 align-items-center justify-content-center">
+                <button class="notificationButtonAccept" routerLink="/create-task-demo">New Design</button>
+                <button class="notificationButtonAccept" routerLink="/task-list/all-tasks">View Orders</button>
+                <button class="notificationButtonDecline" routerLink="/create-task-demo">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

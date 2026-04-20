@@ -1,0 +1,196 @@
+<div class="h-100 px-0 px-lg-2 px-xl-5 py-2 step-body-scroll">
+
+  <!-- Filter + Search + Dropdown -->
+  <div class="d-flex align-items-center flex-wrap gap-2 mb-3">
+
+    <!-- Status Filter Buttons -->
+    <div *ngIf="status !== 'pending-payment'" class="gap-3 d-flex mt-4">
+      <button *ngFor="let s of statusOptions"
+              class="btn status-filter-btn"
+              [ngClass]="selectedStatuses.includes(s.value) ? 'active-status' : 'inactive-status'"
+              (click)="toggleStatus(s.value)">
+        {{ s.label }}
+      </button>
+    </div>
+
+    <!-- Search Box -->
+    <div class="search-container mt-4" [style]="status === 'pending-payment' ? 'margin-left: 0;' : ''" style="min-width: 25%;">
+      <i class="fa fa-search search-icon"></i>
+      <input type="text" class="form-control search-input" placeholder="Search a task..." (keyup)="applyFilter($event)" />
+    </div>
+
+   <!-- role based dropdown filter -->
+    <div *ngIf="status != 'pending-payment'" class="dropdown mt-4">
+      <button style="color: black; border-color: #E4E4E4; height: 42px; width: 150px;" class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ dataService.role === 'doctor' ? 'Designer' : 'Doctor' }}
+        <i class="fa fa-angle-down ms-3"></i>
+      </button>
+      <ul class="dropdown-menu p-0 step-body-scroll shadow" style="height: 410px; width: 275px; inset: 0; right: -50px; border: none;">
+        <li class="p-3">{{ dataService.role === 'doctor' ? 'Designer' : 'Doctor' }}</li>
+        <li *ngFor="let person of (dataService.role === 'doctor' ? designerList : doctorList)" class="px-3 py-1">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [id]="person.id" [checked]="selectedOptions.includes(person.id)" (change)="toggleOption(person.id)">
+            <label class="form-check-label mx-1" [for]="person">{{ person.firstName + " " + person.lastName | titlecase }}</label>
+            <label style="color: #707070;">({{ person.count }})</label>
+          </div>
+        </li>
+        <li><hr class="dropdown-divider my-3"></li>
+        <li class="d-flex justify-content-between p-3 pt-0">
+          <button style="color: #707070" class="btn btn-link p-0" (click)="clearAll(); $event.stopPropagation();">Clear all</button>
+          <button style="background-color: #000000; border-color: #000000; border-radius: 7px;" class="btn btn-primary btn-sm" (click)="applyFilters()">Apply filters</button>
+        </li>
+      </ul>
+    </div>
+  
+
+  </div>
+
+  <!-- No Tasks -->
+  <div *ngIf="filteredTaskData.length === 0" class="alert alert-light text-center mt-4">
+    No Tasks Found.
+  </div>
+
+  <!-- Task Table -->
+  <div class="table-container mt-4" *ngIf="filteredTaskData.length > 0">
+    <table class="task-table">
+      <thead>
+        <tr class="text-uppercase small text-muted">
+          <th>
+            <mat-checkbox *ngIf="status === 'pending-payment'" color="red" (change)="toggleAllSelections($event.checked)" [checked]="areAllSelected()" [indeterminate]="someSelected() && !areAllSelected()"></mat-checkbox>
+            TASK ID
+          </th>
+          <th>CASE/PATIENT</th>
+          <th *ngIf="status !== 'pending-payment'">STATUS</th>
+          <!-- <th>CREATE BY</th> -->
+          <th *ngIf="status === 'pending-payment'">CREATE AT</th>
+          <th *ngIf="status !== 'pending-payment' && dataService.role === 'doctor'">DESIGNER</th>
+          <th>UNITS</th>
+          <th>DESIGN LEVEL</th>
+          <th>DELIVERY TIME</th>
+          <th>AMOUNT</th>
+          <th>TIme Left</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of paginatedData">
+          <td>
+            <mat-checkbox *ngIf="status === 'pending-payment'" (change)="selectTask(task.taskId, $event.checked)" [checked]="selectedTaskIds.includes(task.taskId)" [disabled]="!fileCountsTotal[task.taskId] || fileCountsTotal[task.taskId] == 0"></mat-checkbox>
+            <!-- {{ task.taskId }} -->
+            <a href="javascript:void(0)" (click)="navigateToOrderDetails(task.taskId)" class="text-decoration-none" style="color:#205567;font-weight: 500;">{{task.taskId}}</a>
+          </td>
+          <td>{{ task.refNum }}</td>
+          <!-- <td>{{ task.createBy }}</td> -->
+          <td *ngIf="status === 'pending-payment'">{{ task.createTime | date:'dd/MM/yy, HH:mm' }}</td>
+          <td *ngIf="status !== 'pending-payment'">
+            <span style="border-radius: 4px; height: 34px; align-content: center;" class="badge text-uppercase px-3 py-1" [ngStyle]="getStatusBadgeStyle(task.status)">{{ statusMap.get(task.status) }}</span>
+          </td>
+          <td *ngIf="status !== 'pending-payment' && dataService.role === 'doctor'">{{ task.assignTo }}</td>
+          <td>{{ task.units }}</td>
+          <td>{{ task.tier }}</td>
+          <td>{{ task.deliveryTime }}</td>
+          <td>{{ task.amount.toFixed(2).replace('.', ',') }}€</td>
+          <td [ngClass]="{ 
+            'text-success': task.timeLeftStr !== '0h 0m', 
+            'text-danger': task.timeLeftStr === '0h 0m' 
+          }">           
+        {{ task.timeLeftStr }}
+      </td>
+      
+          <td style="width: 200px; text-align: center;">
+            <div class="d-flex justify-content-center gap-2">
+              <!-- Review button -->
+              <div class="d-flex flex-column gap-3">
+                <!-- Review Order button -->
+                <button
+    *ngIf="status !== 'pending-payment'"
+    type="button"
+    class="btn btn-sm px-3"
+    style="background-color:#5ECDA7; color:#000; border-color:#5ECDA7;"
+    (click)="navigateToOrderDetails(task.taskId)">
+    REVIEW ORDER
+  </button>
+                <!-- Download Order button -->
+                <button
+                *ngIf="status !== 'pending-payment'"
+                  type="button"
+                  class="btn btn-sm px-3"
+                  style="background-color:#5ECDA7; color:#000; border-color:#5ECDA7;"
+                  (click)="downloadOrder(task.taskId)">
+                  Order Form
+                </button>
+              </div>
+              
+            </div>
+            <div *ngIf="status === 'pending-payment'" class="d-flex justify-content-center gap-4">
+              <span>
+                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="edit(task.taskId)" style="cursor: pointer;">
+                  <g clip-path="url(#clip0_678_1253)">
+                  <path d="M15.5465 1.27501L5.38652 11.435C4.99847 11.821 4.69084 12.2801 4.48142 12.7857C4.27201 13.2914 4.16498 13.8335 4.16652 14.3808V15.5C4.16652 15.721 4.25432 15.933 4.4106 16.0893C4.56688 16.2455 4.77884 16.3333 4.99985 16.3333H6.11902C6.66632 16.3349 7.2085 16.2279 7.71415 16.0184C8.21981 15.809 8.6789 15.5014 9.06485 15.1133L19.2249 4.95334C19.7118 4.46515 19.9853 3.80374 19.9853 3.11418C19.9853 2.42461 19.7118 1.7632 19.2249 1.27501C18.7296 0.801587 18.0708 0.537384 17.3857 0.537384C16.7005 0.537384 16.0418 0.801587 15.5465 1.27501ZM18.0465 3.77501L7.88652 13.935C7.41662 14.402 6.78153 14.6649 6.11902 14.6667H5.83319V14.3808C5.83492 13.7183 6.09783 13.0832 6.56485 12.6133L16.7249 2.45334C16.9028 2.28331 17.1395 2.18842 17.3857 2.18842C17.6318 2.18842 17.8685 2.28331 18.0465 2.45334C18.2215 2.62877 18.3197 2.86642 18.3197 3.11418C18.3197 3.36193 18.2215 3.59958 18.0465 3.77501Z" fill="black"/>
+                  <path d="M19.1667 7.9825C18.9457 7.9825 18.7337 8.0703 18.5774 8.22658C18.4211 8.38286 18.3333 8.59482 18.3333 8.81583V13H15C14.337 13 13.7011 13.2634 13.2322 13.7322C12.7634 14.2011 12.5 14.837 12.5 15.5V18.8333H4.16667C3.50363 18.8333 2.86774 18.5699 2.3989 18.1011C1.93006 17.6323 1.66667 16.9964 1.66667 16.3333V4.66667C1.66667 4.00363 1.93006 3.36774 2.3989 2.8989C2.86774 2.43006 3.50363 2.16667 4.16667 2.16667H11.7017C11.9227 2.16667 12.1346 2.07887 12.2909 1.92259C12.4472 1.76631 12.535 1.55435 12.535 1.33333C12.535 1.11232 12.4472 0.900358 12.2909 0.744078C12.1346 0.587797 11.9227 0.5 11.7017 0.5H4.16667C3.062 0.501323 2.00297 0.940735 1.22185 1.72185C0.440735 2.50296 0.00132321 3.562 0 4.66667L0 16.3333C0.00132321 17.438 0.440735 18.497 1.22185 19.2782C2.00297 20.0593 3.062 20.4987 4.16667 20.5H13.6192C14.1666 20.5016 14.7089 20.3945 15.2147 20.1851C15.7205 19.9757 16.1797 19.6681 16.5658 19.28L18.7792 17.065C19.1673 16.6791 19.475 16.22 19.6846 15.7143C19.8941 15.2087 20.0013 14.6665 20 14.1192V8.81583C20 8.59482 19.9122 8.38286 19.7559 8.22658C19.5996 8.0703 19.3877 7.9825 19.1667 7.9825ZM15.3875 18.1017C15.0525 18.4358 14.6289 18.6672 14.1667 18.7683V15.5C14.1667 15.279 14.2545 15.067 14.4107 14.9107C14.567 14.7545 14.779 14.6667 15 14.6667H18.2708C18.1677 15.1279 17.9367 15.5508 17.6042 15.8867L15.3875 18.1017Z" fill="black"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_678_1253">
+                  <rect width="20" height="20" fill="white" transform="translate(0 0.5)"/>
+                  </clipPath>
+                  </defs>
+                </svg>
+              </span>
+
+              <span>
+                <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="deleteTask(task.taskId)" style="cursor: pointer;">
+                  <g clip-path="url(#clip0_678_1256)">
+                  <path d="M17.4998 3.83333H14.9165C14.7231 2.89284 14.2114 2.04779 13.4675 1.4406C12.7237 0.833408 11.7933 0.501212 10.8332 0.5L9.1665 0.5C8.20633 0.501212 7.27594 0.833408 6.53213 1.4406C5.78832 2.04779 5.27658 2.89284 5.08317 3.83333H2.49984C2.27882 3.83333 2.06686 3.92113 1.91058 4.07741C1.7543 4.23369 1.6665 4.44565 1.6665 4.66667C1.6665 4.88768 1.7543 5.09964 1.91058 5.25592C2.06686 5.4122 2.27882 5.5 2.49984 5.5H3.33317V16.3333C3.33449 17.438 3.77391 18.497 4.55502 19.2782C5.33614 20.0593 6.39517 20.4987 7.49984 20.5H12.4998C13.6045 20.4987 14.6635 20.0593 15.4447 19.2782C16.2258 18.497 16.6652 17.438 16.6665 16.3333V5.5H17.4998C17.7208 5.5 17.9328 5.4122 18.0891 5.25592C18.2454 5.09964 18.3332 4.88768 18.3332 4.66667C18.3332 4.44565 18.2454 4.23369 18.0891 4.07741C17.9328 3.92113 17.7208 3.83333 17.4998 3.83333ZM9.1665 2.16667H10.8332C11.3501 2.1673 11.8541 2.32781 12.2762 2.6262C12.6983 2.92459 13.0177 3.34624 13.1907 3.83333H6.809C6.98199 3.34624 7.30142 2.92459 7.72349 2.6262C8.14556 2.32781 8.64961 2.1673 9.1665 2.16667ZM14.9998 16.3333C14.9998 16.9964 14.7364 17.6323 14.2676 18.1011C13.7988 18.5699 13.1629 18.8333 12.4998 18.8333H7.49984C6.8368 18.8333 6.20091 18.5699 5.73207 18.1011C5.26323 17.6323 4.99984 16.9964 4.99984 16.3333V5.5H14.9998V16.3333Z" fill="black"/>
+                  <path d="M8.33333 15.5C8.55435 15.5 8.76631 15.4122 8.92259 15.2559C9.07887 15.0997 9.16667 14.8877 9.16667 14.6667V9.66668C9.16667 9.44566 9.07887 9.2337 8.92259 9.07742C8.76631 8.92114 8.55435 8.83334 8.33333 8.83334C8.11232 8.83334 7.90036 8.92114 7.74408 9.07742C7.5878 9.2337 7.5 9.44566 7.5 9.66668V14.6667C7.5 14.8877 7.5878 15.0997 7.74408 15.2559C7.90036 15.4122 8.11232 15.5 8.33333 15.5Z" fill="black"/>
+                  <path d="M11.6668 15.5C11.8878 15.5 12.0998 15.4122 12.2561 15.2559C12.4124 15.0997 12.5002 14.8877 12.5002 14.6667V9.66668C12.5002 9.44566 12.4124 9.2337 12.2561 9.07742C12.0998 8.92114 11.8878 8.83334 11.6668 8.83334C11.4458 8.83334 11.2339 8.92114 11.0776 9.07742C10.9213 9.2337 10.8335 9.44566 10.8335 9.66668V14.6667C10.8335 14.8877 10.9213 15.0997 11.0776 15.2559C11.2339 15.4122 11.4458 15.5 11.6668 15.5Z" fill="black"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_678_1256">
+                  <rect width="20" height="20" fill="white" transform="translate(0 0.5)"/>
+                  </clipPath>
+                  </defs>
+                </svg>
+              </span>
+              <!-- <i class="fa fa-edit" style="cursor: pointer;" (click)="edit(task.taskId)"></i> -->
+              <!-- <i class="fa fa-trash" style="cursor: pointer;" (click)="deleteTask(task.taskId)"></i> -->
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <mat-paginator [length]="filteredTaskData.length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="[5, 10, 20]"
+                   (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+  <div *ngIf="status === 'pending-payment'" class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
+    <button class="download-scan-btn" (click)="downloadSelectedTaskFiles()">
+      <i class="fa fa-download"></i> Download scan files
+    </button>
+
+    <div class="d-flex justify-content-end" *ngIf="status == 'pending-payment'" style="font-weight: 500;">
+        <div *ngIf="paypalOrder.purchase_units" class="align-content-center">
+            Order Total:
+            {{this.paypalOrder.purchase_units[0].amount.value}}€
+            <!-- {{this.paypalOrder.purchase_units[0].amount.currency_code}} -->
+        </div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <!-- <div id="paypal-button-container"></div> --> <!-- temporary disable paypal button, bypass payment for now -->
+         <!-- <button class="customPreActivatedButtons d-flex align-items-center gap-1 shadow" (click)="completePayment()">Pay Now</button> -->
+          <div>
+            <button style="max-width: 100%; background-image: none; background-color: #000000; border-radius: 6px; height: 50px;" class="customPreCreateTaskButtons" (click)="bypassPayment()">
+              Pay Now
+            </button>
+          </div>
+    </div>
+  </div>
+
+
+
+
+  
+ 

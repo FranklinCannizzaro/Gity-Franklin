@@ -1,0 +1,62 @@
+.loginFormMain {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loginButton {
+  background: #5ecda7;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+  color:#000000;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.inputLabels {
+  width: 100%;
+}
+
+.customInputFields {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #E4E4E4;
+  padding: 16x;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+.customInputFields:focus,
+.customInputFields:hover {
+  outline: 1px solid #C5E2DA;
+}
+
+.customInputFields::placeholder {
+  color: rgba(0, 0, 0, 0.342);
+}
+
+.loginPageMainBackground {
+  /* position: relative; */
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-image: url(../../../../public/gityLoginWallapaper.png);
+}
+
+/* .loginPageMainBackground::before {
+  background-image: url(../../../../public/images/uiConcept/Patterns/Geometric/Pattern_Geo_2.png);
+  background-color: #f9f9f9;
+  background-size: cover;
+  z-index: 1;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.27;
+} */

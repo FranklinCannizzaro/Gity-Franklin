@@ -1,0 +1,134 @@
+<div class="accordion-item" [class]="readonly ? 'info-card m-0 p-0' : ''">
+    <h2 class="accordion-header m-0">
+        <button [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''" class="accordion-button collapsed p-0 p-3" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#cutback-' + anterior + readonly">
+            Cutback &nbsp;&nbsp; <span style="font-size: small; color: #707070;">(for tooth {{rearrangedTeethOrderIgnoringBridgedTeeth(teeth)}})</span>
+        </button>
+    </h2>
+
+     <div id="cutback-{{anterior}}{{readonly}}" [class]="!readonly ? 'accordion-collapse collapse' : 'accordion'" >
+        <div class="accordion-body container text-center px-3 pt-2">
+            <div class="radio-cards-container" style="max-width: 51rem; max-height: 9rem;" [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''">
+                                    
+                <label [style]="readonly ? 'width: 100%' : ''" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['cutback'] == 'cutback-1'">
+                    <input [disabled]="readonly" type="radio" name="cutback-{{anterior}}" [(ngModel)]="orderDetailsNew.props['cutback']" value="cutback-1" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml1"></app-magnifier>
+                        <ng-template #apppropahtml1>
+                            <img width="auto" class="p-3" height="80" src="cutback-image-1.png" />
+                        </ng-template>
+                    </div>
+                    <!-- <div class="card-text">Lingual Collar a)</div> -->
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label [style]="readonly ? 'width: 100%' : ''" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['cutback'] == 'cutback-2'">
+                    <input [disabled]="readonly" type="radio" name="cutback-{{anterior}}" [(ngModel)]="orderDetailsNew.props['cutback']" value="cutback-2" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml2"></app-magnifier>
+                        <ng-template #apppropahtml2>
+                            <img width="auto" class="p-3" height="80" src="cutback-image-2.png" />
+                        </ng-template>
+                    </div>
+                    <!-- <div class="card-text">Lingual Collar b)</div> -->
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label [style]="readonly ? 'width: 100%' : ''" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['cutback'] == 'cutback-3'">
+                    <input [disabled]="readonly" type="radio" name="cutback-{{anterior}}" [(ngModel)]="orderDetailsNew.props['cutback']" value="cutback-3" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml3"></app-magnifier>
+                        <ng-template #apppropahtml3>
+                            <img width="auto" class="p-3" height="80" src="cutback-image-3.png" />
+                        </ng-template>
+                    </div>
+                    <!-- <div class="card-text">Circular Collar a)</div> -->
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label [style]="readonly ? 'width: 100%' : ''" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['cutback'] == 'cutback-4'">
+                    <input [disabled]="readonly" type="radio" name="cutback-{{anterior}}" [(ngModel)]="orderDetailsNew.props['cutback']" value="cutback-4" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml4"></app-magnifier>
+                        <ng-template #apppropahtml4>
+                            <img width="auto" class="p-3" height="80" src="cutback-image-4.png" />
+                        </ng-template>
+                    </div>
+                    <!-- <div class="card-text">Circular Collar b)</div> -->
+                    <div class="radio-card-overlay"></div>
+                </label>
+
+            </div>
+
+            <div class="radio-cards-container" style="max-width: 51rem; max-height: 9rem;" [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''">
+                
+                <label [style]="readonly ? 'width: 100%' : ''" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['cutback'] == 'cutback-5'">
+                    <input [disabled]="readonly" type="radio" name="cutback-{{anterior}}" [(ngModel)]="orderDetailsNew.props['cutback']" value="cutback-5" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml5"></app-magnifier>
+                        <ng-template #apppropahtml5>
+                            <img width="auto" class="p-3" height="80" src="cutback-image-5.png" />
+                        </ng-template>
+                    </div>
+                    <!-- <div class="card-text">Collar Proximal Contact a)</div> -->
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label [style]="readonly ? 'width: 100%' : ''" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['cutback'] == 'cutback-6'">
+                    <input [disabled]="readonly" type="radio" name="cutback-{{anterior}}" [(ngModel)]="orderDetailsNew.props['cutback']" value="cutback-6" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml6"></app-magnifier>
+                        <ng-template #apppropahtml6>
+                            <img width="auto" class="p-3" height="80" src="cutback-image-6.png" />
+                        </ng-template>
+                    </div>
+                    <!-- <div class="card-text">Collar Proximal Contact b)</div> -->
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label [style]="readonly ? 'width: 100%' : ''" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['cutback'] == 'cutback-7'">
+                    <input [disabled]="readonly" type="radio" name="cutback-{{anterior}}" [(ngModel)]="orderDetailsNew.props['cutback']" value="cutback-7" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml7"></app-magnifier>
+                        <ng-template #apppropahtml7>
+                            <img width="auto" class="p-3" height="80" src="cutback-image-7.png" />
+                        </ng-template>
+                    </div>
+                    <!-- <div class="card-text">Partial Collar 1/2</div> -->
+                    <div class="radio-card-overlay"></div>
+                </label>
+                <label [style]="readonly ? 'width: 100%' : ''" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['cutback'] == 'cutback-8'">
+                    <input [disabled]="readonly" type="radio" name="cutback-{{anterior}}" [(ngModel)]="orderDetailsNew.props['cutback']" value="cutback-8" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml8"></app-magnifier>
+                        <ng-template #apppropahtml8>
+                            <img width="auto" class="p-3" height="80" src="cutback-image-8.png" />
+                        </ng-template>
+                    </div>
+                    <!-- <div class="card-text">Partial Collar 2/3</div> -->
+                    <div class="radio-card-overlay"></div>
+                </label>
+
+            </div>
+
+            <div class="radio-cards-container" style="max-width: 51rem; max-height: 9rem;" [style]="readonly ? 'background-color: #FAF9F9; font-size: 14px;' : ''">
+                <label [style]="readonly ? 'width: 100%' : 'width: 23%'" class="radio-card-label" *ngIf="!readonly || orderDetailsNew.props['cutback'] == 'cutback-9'">
+                    <input [disabled]="readonly" type="radio" name="cutback-{{anterior}}" [(ngModel)]="orderDetailsNew.props['cutback']" value="cutback-9" class="hidden-radio-input" />
+                    <div class="custom-radio-indicator"><div class="custom-radio-indicator-dot"></div></div>
+                    <div class="card-icon">
+                        <app-magnifier [contentTemplate]="apppropahtml9"></app-magnifier>
+                        <ng-template #apppropahtml9>
+                            <img width="auto" class="p-3" height="80" src="cutback-image-9.png" />
+                        </ng-template>
+                    </div>
+                    <!-- <div class="card-text">Partial Collar 2/3</div> -->
+                    <div class="radio-card-overlay"></div>
+                </label>
+            </div>
+           
+        </div>
+    </div>
+</div>
+

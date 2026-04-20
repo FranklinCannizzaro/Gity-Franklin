@@ -1,0 +1,237 @@
+/* Spinner inside mat-slide-toggle thumb */
+.slider-spinner-wrapper {
+  position: relative;
+}
+
+.slider-spinner-inside {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .slider-spinner-inside .mat-progress-spinner {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+::ng-deep .slider-spinner-inside {
+  /* Make sure spinner overlays the thumb */
+  pointer-events: none;
+}
+
+.toggle-switch-container {
+  position: relative;
+}
+
+.toggle-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+  height: 28px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+}
+
+.toggle-switch-slider.checked {
+  background-color: #5ECDA7;
+}
+
+.toggle-switch-label {
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+
+.toggle-switch-input {
+  pointer-events: all;
+  z-index: 10;
+}
+
+.toggle-switch-input:focus+.toggle-switch-slider {
+  box-shadow: 0 0 0 0.2rem rgba(94, 205, 167, .25);
+}
+
+/* Override mat-slide-toggle track colors */
+::ng-deep .mat-slide-toggle .mat-slide-toggle-bar {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: rgba(94, 205, 167, 0.5) !important;
+  /* #5ECDA7 with opacity */
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #5ECDA7 !important;
+}
+
+/* Scoped overrides for the availability toggle (exact #5ECDA7 track and thumb) */
+::ng-deep .availability-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: #5ECDA7 !important;
+  /* solid track when checked */
+}
+
+::ng-deep .availability-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #5ECDA7 !important;
+  box-shadow: none !important;
+}
+
+/* Ensure focus ring uses the green */
+::ng-deep .availability-toggle .mat-slide-toggle-thumb::after {
+  background: transparent !important;
+}
+
+/* Custom style for availability toggle switch */
+.custom-availability-toggle .form-check-input:checked {
+  background-color: #5ECDA7 !important;
+  border-color: #5ECDA7 !important;
+}
+
+.custom-availability-toggle .form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(94, 205, 167, .25);
+}
+
+.avatar {
+  color: #353535;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  height: 30px;
+  font-weight: 500;
+  background: #008A70;
+  font-size: medium;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+
+.version-banner {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  /* background-color: #898989; */
+  /* color: #fff; */
+  padding: 2px 6px;
+  /* border-radius: 4px; */
+  font-size: 12px;
+  z-index: 1000;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.custom-badge-button .mat-badge-content {
+  background-color: #FF0000 !important;
+  color: white !important;
+}
+
+.customNotificationPills {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #faf9f9;
+  color: #1f1f1f;
+  border-radius: 5px;
+  padding: 10px 10px;
+  gap: 10px;
+  margin: 0;
+  border-bottom: 2px solid #5fcca7;
+}
+
+
+.imageNotification {
+  background: #e4e4e4;
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self:center;
+}
+
+.mainLineNotification {
+  font-weight: 800;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+.dateAgoNotification {
+  text-wrap: nowrap;
+  font-size: 0.9rem;
+}
+
+.notificationButtonDecline {
+  background: none;
+  border-radius: 4px;
+  border: none;
+  padding: 3px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+}
+
+.notificationButtonAccept {
+  background: #5fcca7;
+  border: 1px solid #10b981;
+  border-radius: 4px;
+  padding: 5px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+}
+/* Size and border moved to a class instead of inline style */
+.notif-menu {
+  width: 440px;
+  border: 1px solid #E4E4E4;
+}
+
+/* Scrollable area */
+.notif-scroll {
+  max-height: 320px;        /* adjust as you like */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  background: #fff;
+}
+
+/* Keep header visible while scrolling */
+.notif-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+/* Optional: prettier scrollbar (WebKit) */
+.notif-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.notif-scroll::-webkit-scrollbar-thumb {
+  background: #cfcfcf;
+  border-radius: 4px;
+}
+.notif-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}

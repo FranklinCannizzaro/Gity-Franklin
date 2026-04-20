@@ -1,0 +1,68 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title class="dialog-title">Create New User</h2>
+
+  <div mat-dialog-content class="dialog-content pt-2">
+    <form [formGroup]="signupForm" class="form-container">
+      <!-- User ID Field -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>User ID</mat-label>
+        <input matInput formControlName="userId" placeholder="Enter User ID" />
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-error *ngIf="signupForm.get('userId')?.hasError('required')">
+          User ID is required
+        </mat-error>
+        <mat-error *ngIf="signupForm.get('userId')?.hasError('invalidUserId')">
+          User ID can only contain letters, numbers, and hyphens
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Email Field -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="emailId" placeholder="Enter Email" type="email" />
+        <mat-icon matPrefix>email</mat-icon>
+        <mat-error *ngIf="signupForm.get('emailId')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="signupForm.get('emailId')?.hasError('email')">
+          Enter a valid email
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Role Field -->
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Select Role</mat-label>
+        <mat-select formControlName="role">
+          <mat-icon matPrefix class="select-icon">admin_panel_settings</mat-icon>
+          <mat-option *ngFor="let role of role" [value]="role">
+            {{ role }}
+          </mat-option>
+        </mat-select>
+        <mat-icon matPrefix>admin_panel_settings</mat-icon>
+        <mat-error *ngIf="signupForm.get('role')?.hasError('required')">
+          Role is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Select Country</mat-label>
+              <mat-select formControlName="country">
+               
+                <mat-option *ngFor="let country of country" [value]="country">
+                  {{ country }}
+                </mat-option>
+              </mat-select>
+      </mat-form-field>
+
+    </form>
+  </div>
+
+  <!-- Actions -->
+  <div mat-dialog-actions class="dialog-actions">
+    <div class=" w-100 d-flex align-items-center justify-content-end">
+      <button class="customPreActivatedButtons" (click)="cancel()"><mat-icon>close</mat-icon>Cancel</button>
+      <button class="customPreActivatedButtons" color="primary" (click)="onSubmit()"
+        [disabled]="signupForm.invalid"><mat-icon>check</mat-icon>Create User</button>
+    </div>
+  </div>
+</div>

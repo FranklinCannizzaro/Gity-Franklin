@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 568.17 148.54">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Branding_by_Patrick_Liddell" data-name="Branding by Patrick Liddell">
+    <g id="Logo_V3_White">
+      <g>
+        <path class="cls-1" d="M143.05,0v25.97h-75.94c-28.61,0-41.15,14.3-41.15,48.41s12.32,48.19,41.15,48.19h39.41c14.52,0,20.69-8.8,20.69-20.91s-6.16-18.93-18.27-18.93h-47.77v-22.67h50.41c26.41,0,39.39,16.29,39.39,42.03s-12.98,46.43-46.21,46.43h-37.65C23.77,148.54,0,124.11,0,74.38S23.99,0,67.12,0h75.94Z"/>
+        <path class="cls-1" d="M223.36,0v148.54h-25.97V0h25.97Z"/>
+        <path class="cls-1" d="M391.92,0v25.97h-50.73v122.57h-26.19V25.97h-50.73V0h127.65Z"/>
+        <path class="cls-1" d="M453.74,0l41.59,63.6L537.36,0h30.81l-59.86,84.5v64.04h-26.19v-64.04L422.27,0h31.47Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,226 @@
+<!-- <div class="w-100 h-100 d-flex flex-column align-items-center justify-content-center gap-3 px-0 px-md-4 px-lg-5 py-5">
+  <div class="text-center w-100" style="max-width: 800px;">
+    <div class="shadow-lg rounded-4 overflow-hidden w-100 px-4 px-md-4 px-lg-5 py-3" style="backdrop-filter: blur(10px); background: rgba(255,255,255,0.8);">
+      
+    </div>
+  </div>
+</div> -->
+
+
+<div class="d-flex w-100 h-100 align-items-center justify-content-center" style="background: #FAF9F9;">
+  <div class="container-fluid align-content-center p-4" style="max-width: 600px;">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex d-xl-none justify-content-center w-100 mb-5">
+          <img src="./images/uiConcept/Logos/Dark/Logo_V2_Dark.png" alt="" class="w-100" style="max-width: 130px;">
+        </div>
+        <div class="d-flex align-items-start justify-content-center flex-column" style="gap:8px;">
+          <h1 class="m-0" style="font-weight: 600;font-size: 32px;color: #000000;">Welcome Back!</h1>
+          <p style="font-size: 400;font-weight: 16px;color: #707070;">Create your Gity Account</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 d-flex flex-column gap-3">
+        <div class="d-flex align-items-center gap-3">
+          <button [ngClass]="{'active': regView === 'client'}" (click)="changeView('client')"
+            class="customGradientButtons">Client</button>
+          <button [ngClass]="{'active': regView === 'designer'}" (click)="changeView('designer')"
+            class="customGradientButtons">Dental Designer</button>
+        </div>
+        <div class="p-0" *ngIf="regView=='client'">
+          <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="m-0 p-0 w-100">
+
+            <div class="w-100 d-flex flex-column gap-3">
+
+              <!-- <div class="row">
+                    <div class="col">
+                      <mat-form-field class="w-100 mb-3">
+                        <mat-label>User ID</mat-label>
+                        <input matInput formControlName="userId" required>
+                        <mat-error *ngIf="userIdExists && !userIdChecked">User ID already exists!</mat-error>
+                        <mat-error *ngIf="signupForm.get('userId')?.hasError('required')">User ID is required.</mat-error>
+                        <mat-error *ngIf="signupForm.get('userId')?.hasError('maxlength')">User ID cannot exceed 40 characters.</mat-error>
+                        <mat-error *ngIf="signupForm.get('userId')?.hasError('invalidUserId')">Only letters, digits, and hyphens allowed.</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field class="w-100 mb-3">
+                        <mat-label>Email Id</mat-label>
+                        <input matInput type="email" formControlName="emailId" required>
+                        <mat-error *ngIf="signupForm.get('emailId')?.hasError('required')">Email address is required.</mat-error>
+                        <mat-error *ngIf="signupForm.get('emailId')?.hasError('email')">Please enter a valid email address.</mat-error>
+                        <mat-error *ngIf="signupForm.get('emailId')?.hasError('maxlength')">Email ID cannot exceed 100 characters.</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div> -->
+
+              <div class="">
+                <label for="userId" style="font-weight: 500;font-size: 16px;color:black;" class="w-100">Username
+                  <input type="text" class="customInputFields rounded-3" id="userId" formControlName="userId"
+                    placeholder="" />
+                </label>
+                <div style="color: #F16A70;" *ngIf="userIdExists && !userIdChecked">User ID already exists!</div>
+                <div style="color: #F16A70;" *ngIf="signupForm.get('userId')?.hasError('required')">User ID is
+                  required.</div>
+                <div style="color: #F16A70;" *ngIf="signupForm.get('userId')?.hasError('maxlength')">User ID
+                  cannot exceed 40 characters.</div>
+                <div style="color: #F16A70;" *ngIf="signupForm.get('userId')?.hasError('invalidUserId')">Only
+                  letters, digits, and hyphens allowed.</div>
+              </div>
+              <div class="">
+                <label for="emailId" style="font-weight: 500;font-size: 16px;color:black;" class="w-100">Email Address
+                  <input type="email" class="customInputFields rounded-3" id="emailId" formControlName="emailId"
+                    placeholder="" />
+                </label>
+                <div style="color: #F16A70;" *ngIf="signupForm.get('emailId')?.hasError('required')">Email address
+                  is required.</div>
+                <div style="color: #F16A70;" *ngIf="signupForm.get('emailId')?.hasError('email')">Please enter a
+                  valid email address.</div>
+                <div style="color: #F16A70;" *ngIf="signupForm.get('emailId')?.hasError('maxlength')">Email ID
+                  cannot exceed 100 characters.</div>
+              </div>
+
+              <div class="d-flex justify-content-center">
+                <button style="justify-self: end;" *ngIf="!saving" class="signupButton" color="primary" type="submit"
+                  [disabled]="signupForm.invalid">Signup</button>
+                <button style="justify-self: end;" *ngIf="saving" class="customPreActivatedButtons" color="primary"
+                  type="button">
+                  <mat-spinner diameter="20" mode="indeterminate" style="margin-left: 8px;"></mat-spinner>
+                </button>
+              </div>
+
+            </div>
+
+          </form>
+          <p class="text-center mt-3 mb-0" style="color: #000000;font-weight: 500;font-size: 16px;">Already have an
+            account? <a routerLink="/login" class="text-decoration-underline"
+              style="color:#5ECDA7;font-weight: 500;font-size: 16px;">Login</a></p>
+        </div>
+        <div class="" *ngIf="regView=='designer'">
+          <p
+            style="text-align: justify;border-radius: 8px;border: 1px solid #E4E4E4;background:none;font-weight: 400;font-size: 20px; padding: 24px;">
+            <strong style="color:#000000;">Gity</strong> is an elite network that brings together the finest
+            experts in the dental industry. To become a certified specialist, you must demonstrate your
+            expertise and qualifications.
+            Begin your application process today by contacting us at
+            <a href="mailto:yesdentalgity@gmail.com" class="text-decoration-underline"
+              style="color:#000000;font-weight: 500;">apply&#64;gity.ai</a>
+          </p>
+          <button style="justify-self: end;" class="signupButton" color="primary" type="submit">Apply now</button>
+          <p class="text-center mt-3 mb-0" style="color: #000000;font-weight: 500;font-size: 16px;">Already have an
+            account? <a routerLink="/login" class="text-decoration-underline"
+              style="color:#5ECDA7;font-weight: 500;font-size: 16px;">Login</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center d-none">
+      <div class="col-12">
+        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="left">
+          <mat-tab label="Client">
+            <div class="p-4">
+              <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="m-0 p-0 w-100">
+
+                <div class="container-fluid w-100">
+
+                  <!-- <div class="row">
+                    <div class="col">
+                      <mat-form-field class="w-100 mb-3">
+                        <mat-label>User ID</mat-label>
+                        <input matInput formControlName="userId" required>
+                        <mat-error *ngIf="userIdExists && !userIdChecked">User ID already exists!</mat-error>
+                        <mat-error *ngIf="signupForm.get('userId')?.hasError('required')">User ID is required.</mat-error>
+                        <mat-error *ngIf="signupForm.get('userId')?.hasError('maxlength')">User ID cannot exceed 40 characters.</mat-error>
+                        <mat-error *ngIf="signupForm.get('userId')?.hasError('invalidUserId')">Only letters, digits, and hyphens allowed.</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field class="w-100 mb-3">
+                        <mat-label>Email Id</mat-label>
+                        <input matInput type="email" formControlName="emailId" required>
+                        <mat-error *ngIf="signupForm.get('emailId')?.hasError('required')">Email address is required.</mat-error>
+                        <mat-error *ngIf="signupForm.get('emailId')?.hasError('email')">Please enter a valid email address.</mat-error>
+                        <mat-error *ngIf="signupForm.get('emailId')?.hasError('maxlength')">Email ID cannot exceed 100 characters.</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div> -->
+
+                  <div class="row mb-3">
+                    <div class="col">
+                      <input type="text" class="customInputFields rounded-3" formControlName="userId"
+                        placeholder="User ID" />
+                      <div style="color: #F16A70;" *ngIf="userIdExists && !userIdChecked">User ID already exists!</div>
+                      <div style="color: #F16A70;" *ngIf="signupForm.get('userId')?.hasError('required')">User ID is
+                        required.</div>
+                      <div style="color: #F16A70;" *ngIf="signupForm.get('userId')?.hasError('maxlength')">User ID
+                        cannot exceed 40 characters.</div>
+                      <div style="color: #F16A70;" *ngIf="signupForm.get('userId')?.hasError('invalidUserId')">Only
+                        letters, digits, and hyphens allowed.</div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col">
+                      <input type="email" class="customInputFields rounded-3" formControlName="emailId"
+                        placeholder="Email Id" />
+                      <div style="color: #F16A70;" *ngIf="signupForm.get('emailId')?.hasError('required')">Email address
+                        is required.</div>
+                      <div style="color: #F16A70;" *ngIf="signupForm.get('emailId')?.hasError('email')">Please enter a
+                        valid email address.</div>
+                      <div style="color: #F16A70;" *ngIf="signupForm.get('emailId')?.hasError('maxlength')">Email ID
+                        cannot exceed 100 characters.</div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col d-flex justify-content-center">
+                      <button style="justify-self: end;" *ngIf="!saving" class="customPreActivatedButtons"
+                        color="primary" type="submit" [disabled]="signupForm.invalid">Signup</button>
+                      <button style="justify-self: end;" *ngIf="saving" class="customPreActivatedButtons"
+                        color="primary" type="button">
+                        <mat-spinner diameter="20" mode="indeterminate" style="margin-left: 8px;"></mat-spinner>
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+
+              </form>
+              <hr>
+              <p class="text-center mt-3 mb-0" style="color: #205567;">Already have an account? <a routerLink="/login"
+                  class="text-decoration-none" style="color: #205567;font-weight:500;">Login</a> here.</p>
+            </div>
+          </mat-tab>
+          <mat-tab label="Dental Designer">
+            <div class="container-fluid p-3">
+              <div class="row">
+                <div class="col-12">
+                  <p style="text-align: justify;color:#205567;">
+                    <strong style="color:#205567;">Gity</strong> is an elite network that brings together the finest
+                    experts in the dental industry. To become a certified specialist, you must demonstrate your
+                    expertise and qualifications.
+                    Begin your application process today by contacting us at
+                    <a href="mailto:yesdentalgity@gmail.com" class="text-decoration-none"
+                      style="color:#205567;font-weight: 500;">apply&#64;gity.ai</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="spinner-overlay" *ngIf="dataService.progressBarActive">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>

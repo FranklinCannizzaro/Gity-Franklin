@@ -1,0 +1,788 @@
+@import "../node_modules/@angular/material/prebuilt-themes/azure-blue.css";
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap');
+
+:root {
+  --mat-toolbar-standard-height: 35px;
+  --mdc-dialog-container-shape: 12px;
+  --mdc-chip-with-avatar-avatar-shape-radius: 4px;
+  --main-bg: #008A70;
+  --main-filler: #ddffd0;
+  --main-font: sans-serif;
+
+  --mdc-checkbox-selected-icon-color: #5ECDA7;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #C5E2DA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #63D3B6;
+  border-radius: 10px;
+}
+
+.customeSkillButtons {
+  border: 1px solid #C5E2DA;
+  background: #f9f9f9;
+  font-size: .8rem;
+  color: #205567;
+}
+
+.customeSkillButtons:hover {
+  background: linear-gradient(to bottom, #63D3B6, #008A70);
+  color: #f9f9f9;
+}
+
+.mdc-slider__value-indicator-container {
+  background-color: #f9f9f9 !important;
+  color: #205567 !important;
+  border-radius: 5px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+  /* font-size: 20px !important; */
+  padding: 2px 4px !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 25px !important;
+  min-height: 20px !important;
+  text-align: center !important;
+  border: 1px solid #d9d9d9 !important;
+  font-weight: bold !important;
+  transform: none !important;
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  bottom: 38px !important;
+}
+
+.mdc-slider__value-indicator {
+  border-radius: 5px !important;
+  height: 20px !important;
+  width: auto !important;
+  background-color: transparent !important;
+  color: black !important;
+  font-size: 12px !important;
+  padding: 0 6px !important;
+  transform: none !important;
+  opacity: .7 !important;
+}
+
+
+.mat-accent.mat-mdc-radio-button {
+  --mdc-radio-selected-focus-icon-color: #205567;
+  --mdc-radio-selected-hover-icon-color: #205567;
+  --mdc-radio-selected-icon-color: #205567;
+  --mdc-radio-selected-pressed-icon-color: #205567;
+  --mat-radio-checked-ripple-color: #205567;
+}
+
+.mdc-slider__thumb-knob {
+  box-shadow: 0 0 8px #5ECDA7 !important;
+  background-color: #5ECDA7 !important;
+  border-color: #5ECDA7 !important;
+}
+
+.mdc-slider__track--active_fill {
+  border-color: #5ECDA7 !important;
+}
+
+.list-group-item.active {
+  background-color: #C5E2da !important;
+  color: #205567;
+  border-color: #008A70;
+}
+
+.list-group-item {
+  color: #205567 !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #C5E2DA;
+  color: #205567;
+}
+
+
+.mat-step-label {
+  color: #205567 !important;
+}
+
+/* .mat-step-label.mat-step-label-active{
+
+} */
+
+
+.mdc-slider__value-indicator span {
+  font-size: 1rem !important;
+}
+
+
+body {
+  /* background-image: linear-gradient(180deg, var(--main-bg), var(--main-filler)); */
+  font-family: "Maven Pro", sans-serif !important;
+}
+
+body pre {
+  margin: 0;
+}
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  /* font-size: 8pt; */
+  float: right;
+}
+
+.custom-file-input {
+  display: none;
+}
+
+.custom-file-label {
+  cursor: pointer;
+}
+
+b,
+strong {
+  font-weight: 500;
+  color: #008A70;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Maven Pro", sans-serif !important;
+  font-optical-sizing: auto;
+}
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.mdc-form-field {
+  height: 20px;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  height: 0px;
+}
+
+/* .mat-mdc-text-field-wrapper{
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+} */
+
+
+
+.mat-stepper-vertical .mat-vertical-stepper-header {
+  padding: 10px !important;
+  height: 10px !important;
+  background-color: white;
+}
+
+.mat-vertical-content {
+  background-color: white;
+}
+
+.mat-vertical-content {
+  padding: 2px !important;
+}
+
+
+.app-comments {
+  width: -webkit-fill-available;
+  border-radius: 8px;
+}
+
+
+
+.mat-badge-content {
+  width: auto !important;
+  height: auto !important;
+  background-color: #4f524f !important;
+}
+
+
+.mat-mdc-button {
+  color: rgb(78, 78, 78) !important;
+}
+
+.w-10 {
+  width: 10% !important;
+}
+
+/* slider style start */
+.slider {
+  position: fixed;
+  top: 0;
+  right: -120%;
+  width: 500px;
+  height: 100%;
+
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in-out;
+  z-index: 10001;
+
+}
+
+.show-slider-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 10000;
+}
+
+.show-slider-background-transparent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.slider.show {
+  right: 0%;
+}
+
+.slider-content {
+  padding: 10px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+/* slider style end */
+
+
+
+
+
+
+.customPreCreateTaskButtons {
+  background-image: linear-gradient(to top, #008a70, #00dfaf);
+  border: none;
+  color: white;
+  width: 100%;
+  max-width: max-content;
+  border-radius: 300px;
+  padding: 2px 20px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.customPreActivatedButtons {
+  background-image: linear-gradient(to top, #008a70, #00dfaf);
+  border: none;
+  color: #f9f9f9;
+  width: 100%;
+  max-width: max-content;
+  border-radius: 300px;
+  padding: 4px 30px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-check:checked+.btn,
+.btn.active,.btn:hover,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
+  border-color: #E4E4E4;
+  background-color: #FFFFFF;
+}
+
+.customButtonsLeftMenue {
+  font-size: 1.2rem;
+  border: none;
+  color: #205567;
+}
+
+.customButtonsLeftMenue:focus {
+  outline: none;
+}
+
+.customButtonsLeftMenue.active {
+  background-image: linear-gradient(to top, #008a70, #00dfaf);
+  border: none;
+  color: white;
+}
+
+.customButtonsLeftMenue.active:hover {
+  background-image: linear-gradient(to top, #008a70, #00dfaf);
+  border: none;
+  color: white;
+}
+
+.customButtonsLeftMenue:hover {
+  background: #C5E2DA;
+  border: none;
+}
+
+
+
+.customInputFields {
+  width: 100%;
+  border: 1px solid #E4E4E4;
+  /* color: #205567; */
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 1.1rem;
+  height: 45px;
+}
+
+.customInputFields:focus,
+.customInputFields:hover {
+  outline: 1px solid #C5E2DA;
+}
+
+.customInputFields::placeholder {
+  color: rgba(0, 0, 0, 0.342);
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+
+.mat-stepper-vertical,
+.mat-stepper-horizontal {
+  background: none !important;
+}
+
+
+.mat-step-header[aria-selected="true"] {
+  background-color: #C5E2DA !important;
+  border-radius: 20px !important;
+}
+
+
+.mat-step-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding-top: 10px !important;
+}
+
+
+
+.mat-step-icon {
+  display: none !important;
+  /* background: linear-gradient(45deg, #00dfaf, var(--main-bg));
+  height: 35px !important;
+  width: 35px !important;
+  font-size: 1.2em !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-width: 0px !important;
+  border-top-style: solid;
+  flex: auto;
+  margin: 0;
+  border-top-color: var(--main-bg) !important; */
+}
+
+.mat-horizontal-stepper-header {
+  height: auto !important;
+}
+
+.mat-horizontal-stepper-header-container {
+  background: rgba(255, 255, 255, 0.808);
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.mat-step-text-label {
+  font-size: 1.2em !important;
+}
+
+.mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: var(--main-bg) !important;
+}
+
+.mdc-tab__text-label {
+  color: #205567 !important;
+}
+
+
+.mat-accent.mat-mdc-checkbox {
+  --mdc-checkbox-selected-pressed-icon-color: #205567;
+  --mdc-checkbox-selected-checkmark-color: #ffffff;
+  --mdc-checkbox-selected-focus-icon-color: #5ECDA7;
+  --mdc-checkbox-selected-hover-icon-color: #205567;
+  --mdc-checkbox-selected-icon-color: #5ECDA7;
+  --mdc-checkbox-selected-focus-state-layer-color: #C5E2DA;
+  --mdc-checkbox-selected-hover-state-layer-color: #C5E2DA;
+  --mdc-checkbox-unselected-pressed-state-layer-color: #205567;
+  --mat-checkbox-disabled-label-color: #205567;
+  --mat-checkbox-label-text-color: #205567;
+}
+
+
+.mdc-checkbox__checkmark{
+  padding: 3px;
+}
+
+.mdc-checkbox__mixedmark{
+  margin: 3px;
+}
+
+.mdc-checkbox__background{
+  border-radius: 5px !important;
+}
+
+.customSelectFields {
+  height: 50px;
+  border: 1px solid #E4E4E4;
+  outline: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #205567;
+  box-shadow: 0 3px 5px -3px #898989;
+  width: 100%;
+  max-width: 200px;
+}
+
+.customSelectFields option {
+  background: #C5E2DA;
+}
+
+.customSelectFields option:hover {
+  background: #008A70;
+}
+
+
+.mdc-slider__value-indicator-text {
+  transform: none !important;
+  text-wrap: nowrap;
+}
+
+.list-group-item {
+  /* border: none !important; */
+  background: none !important;
+}
+
+.lastDeleteOne:nth-last-child(1) hr{
+  display: none!important;
+}
+
+.hoverExtendedButtons{
+  /* rounded-3 border-0 px-3 py-2 rounded-pill d-flex align-items-center gap-2 */
+  border-radius: 400px;
+  border: none;
+  padding: 0;
+  padding-left: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  text-wrap: nowrap;
+  transition: .4s;
+}
+.hoverExtendedButtons img{
+  height: 90%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  display: flex;
+  color:#f9f9f9;
+  font-size: 1.5em;
+}
+
+.hoverExtendedButtons:hover{
+  /* width: 80%; */
+}
+
+.customToothSelectionButtons{
+  height: 50px;
+  width: 160px;
+  border: 1px solid #63D3B6!important;
+  /* background: #C5E2DA; */
+  /* color: #205567;   */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  overflow: hidden;
+  padding: 5px 10px;
+}
+.customToothSelectionButtons:disabled{
+  border: 1px solid #89898941!important;
+  background: #f9f9f9!important;
+}
+
+.customToothSelectionButtons img{
+  aspect-ratio: 1;
+  width: 40px;
+  object-fit: contain;
+}
+.accordion-button:focus{
+  box-shadow: none!important;
+}
+
+.chatDateSaperator{
+  width: 100%;
+  border:1px solid #205567;
+}
+.chatDateText{
+  padding: 1px 10px;
+  color: #205567;
+  text-wrap: nowrap;
+  border: 1px solid #205567;
+  font-size: .7rem;
+  border-radius: 200px;
+}
+
+/* .mat-horizontal-content-container{
+  padding: 24px 0!important;
+  overflow: visible!important;
+} */
+
+
+.step-body-scroll {
+  overflow-y: auto;
+  max-height: calc(100vh - 66px);
+  padding: 4px;
+  /* scrollbar-width: none; */
+}
+
+
+
+
+/* tiles layout format start */
+
+/* Container for the radio button cards */
+.radio-cards-container {
+    display: flex;
+    flex-direction: column; /* Stack vertically on small screens */
+    gap: 1.5rem; /* Space between cards */
+    background-color: #ffffff;
+    max-width: 40rem; /* Max width for the container */
+    width: 100%; /* Full width within max-width */
+}
+
+/* Media query for larger screens (e.g., tablets and desktops) */
+@media (min-width: 640px) {
+    .radio-cards-container {
+        flex-direction: row; /* Arrange horizontally */
+    }
+}
+
+/* Styling for each individual radio card label */
+.radio-card-label {
+    position: relative; /* For absolute positioning of children */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border: 1px solid #e5e7eb; /* Light gray border */
+    border-radius: 0.75rem; /* Rounded corners for the card */
+    cursor: pointer; /* Indicates interactivity */
+    transition: all 300ms ease-in-out; /* Smooth transitions for hover and checked states */
+    width: 100%; /* Full width for cards on small screens */
+    min-height: 150px; /* Minimum height for consistency */
+    box-sizing: border-box;
+    text-align: center; /* Center text within the card */
+    overflow: hidden; /* Important: Ensures overlay doesn't spill out */
+}
+
+/* Hover effect for the cards */
+.radio-card-label:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow on hover */
+}
+
+/* Media query for larger screens to make cards take half width */
+@media (min-width: 640px) {
+    .radio-card-label {
+        width: 50%; /* Each card takes half width */
+    }
+}
+
+/* Hide the native radio input visually */
+.hidden-radio-input {
+    position: absolute; /* Take it out of flow */
+    opacity: 0; /* Make it invisible */
+    width: 0;
+    height: 0;
+    pointer-events: none; /* Do not block clicks */
+}
+
+/* Custom radio button indicator (outer circle) */
+.custom-radio-indicator {
+    position: absolute;
+    top: 1rem; /* Position from top */
+    right: 1rem; /* Position from right */
+    height: 1.5rem; /* Size of the circle */
+    width: 1.5rem;
+    border-radius: 50%; /* Make it perfectly round */
+    border: 2px solid #d1d5db; /* Gray border */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms ease-in-out;
+    z-index: 2; /* Ensure indicator is above the overlay */
+}
+
+/* Inner dot of the custom radio button indicator */
+.custom-radio-indicator-dot {
+    height: 0.75rem; /* Size of the dot */
+    width: 0.75rem;
+    border-radius: 50%;
+    background-color: #ffffff; /* White dot */
+    opacity: 0; /* Hidden by default */
+    transition: all 300ms ease-in-out;
+}
+
+/* Styles when the hidden radio input is CHECKED */
+.hidden-radio-input:checked + .custom-radio-indicator {
+    border-color: #10b981; /* Green border for checked state */
+    background-color: #10b981; /* Green background for checked state */
+}
+
+/* Show the inner dot when the radio input is CHECKED */
+.hidden-radio-input:checked + .custom-radio-indicator .custom-radio-indicator-dot {
+    opacity: 1; /* Make dot visible */
+}
+
+/* Icon styling */
+.card-icon {
+    margin-bottom: 1rem; /* Space below icon */
+    color: #374151; /* Dark gray for icons */
+    transition: color 300ms ease-in-out;
+    position: relative; /* Crucial: Establishes a new stacking context */
+    z-index: 2; /* Crucial: Ensure icon is above the overlay */
+}
+
+/* SVG specific styling to ensure size */
+.card-icon svg {
+    width: 40px; /* Set explicit width */
+    height: 40px; /* Set explicit height */
+    stroke-width: 1.5; /* Line thickness for SVG paths */
+}
+
+/* Text styling */
+.card-text {
+    font-size: 1rem; /* Large font size */
+    font-weight: 600; /* Semi-bold font weight */
+    color: #1f2937; /* Dark text color */
+    transition: color 300ms ease-in-out;
+    position: relative; /* Crucial: Establishes a new stacking context */
+    z-index: 2; /* Crucial: Ensure text is above the overlay */
+}
+
+/* Overlay for the checked state (gradient background and border) */
+.radio-card-overlay {
+    position: absolute;
+    inset: 0; /* Cover the entire card */
+    border-radius: 0.75rem;
+    pointer-events: none; /* Allow clicks to pass through to the label */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 300ms ease-in-out, border-color 300ms ease-in-out; /* Smooth transition */
+    border: 2px solid transparent; /* Default transparent border */
+    background-image: linear-gradient(180.15deg, #FFE9FF -21.72%, #ADE3D0 113.39%);
+    z-index: 1; /* Ensure overlay is below icon and text */
+    box-shadow:
+        0px 4px 10px 0px rgba(95, 204, 167, 0.05),    /* #5FCCA70D -> 0.05 opacity */
+        0px 18px 18px 0px rgba(95, 204, 167, 0.04),   /* #5FCCA70A -> 0.04 opacity */
+        0px 40px 24px 0px rgba(95, 204, 167, 0.03),   /* #5FCCA708 -> 0.03 opacity */
+        0px 70px 28px 0px rgba(95, 204, 167, 0.01),   /* #5FCCA703 -> 0.01 opacity */
+        0px 110px 31px 0px rgba(95, 204, 167, 0.00);  /* #5FCCA700 -> 0.00 opacity */
+}
+
+/* Apply gradient overlay and green border when the radio input is CHECKED */
+.hidden-radio-input:checked ~ .radio-card-overlay {
+    opacity: 1; /* Make overlay visible */
+    border-color: #10b981; /* Green border */
+}
+
+/* Change icon and text color to white when the card is CHECKED */
+.hidden-radio-input:checked ~ .card-icon {
+    color: #ffffff; /* White color */
+}
+
+
+
+/* tiles layout format end */
+
+
+
+
+
+/* task details or task summary card layout formatting - start */
+
+.info-card {
+    background-color: #FAF9F9; /* White background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Internal padding */
+    margin: 20px 0px;
+    max-width: 400px; /* Max width for readability, adjust as needed */
+    min-height: 18rem;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between; /* Puts label on left, value on right */
+    align-items: center; /* Vertically centers content */
+    padding: 10px 0; /* Vertical padding for each row */
+}
+
+.info-label {
+    font-weight: 500; /* Medium font weight */
+    font-size: 14px; /* Base font size */
+}
+
+.info-value {
+    font-size: 14px;
+    text-align: right; /* Align value to the right */
+}
+
+.info-divider {
+    border-top: 1px solid #eeeeee; /* Light grey divider line */
+    margin: 0; /* No extra margin for the divider itself */
+}
+
+/* Specific style for the "Units" label to make it look like a link */
+.custom-link-label {
+    color: #007bff; /* Bootstrap primary blue */
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* task details or task summary card layout formatting - end */

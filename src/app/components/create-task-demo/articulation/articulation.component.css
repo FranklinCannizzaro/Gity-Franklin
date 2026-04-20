@@ -1,0 +1,16 @@
+.number-input-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .number-input-container button {
+    font-size: 20px;
+    padding: 5px 10px;
+  }
+  
+  .number-input-container input {
+    width: 60px;
+    text-align: center;
+    margin: 0 10px;
+  }
+  
