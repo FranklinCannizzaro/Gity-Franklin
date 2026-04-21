@@ -1,38 +1,142 @@
-/* DESIGNER TYPE CARDS - Dental / AI - Compact */
+/* ══════════════════════════════════════════════════════════
+   DESIGNER TYPE CARDS  –  Dental / AI Designer
+   ══════════════════════════════════════════════════════════ */
 
-.radio-cards-container { display: flex; flex-direction: row; gap: 12px; width: 100%; max-width: 480px; }
-@media (max-width: 500px) { .radio-cards-container { flex-direction: column; max-width: 100%; } }
+.radio-cards-container {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 500px) {
+  .radio-cards-container { flex-direction: column; max-width: 100%; }
+}
 
 .radio-card-label {
-  position: relative; display: flex; flex-direction: column; align-items: center;
-  justify-content: center; padding: 20px 16px; background: #FFFFFF;
-  border: 1.5px solid #E4E7EC; border-radius: 14px; cursor: pointer;
-  transition: all 180ms; flex: 1; min-height: 130px; box-sizing: border-box;
-  text-align: center; overflow: hidden; font-family: 'Inter', sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  background: #FFFFFF;
+  border: 1.5px solid #E4E7EC;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 180ms ease;
+  flex: 1;
+  min-height: 128px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
 }
-.radio-card-label:hover { border-color: #6EE7B7; box-shadow: 0 4px 16px rgba(13,158,110,.1); transform: translateY(-1px); }
+.radio-card-label:hover {
+  border-color: #6EE7B7;
+  box-shadow: 0 4px 16px rgba(13,158,110,.1);
+  transform: translateY(-1px);
+}
 
-.hidden-radio-input { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
-.custom-radio-indicator { position: absolute; top: 11px; right: 11px; width: 19px; height: 19px; border-radius: 50%; border: 2px solid #D0D5DD; background: #fff; display: flex; align-items: center; justify-content: center; transition: all 180ms; z-index: 3; }
-.custom-radio-indicator-dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; opacity: 0; transition: opacity 180ms; }
+.hidden-radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.custom-radio-indicator {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  border: 2px solid #D0D5DD;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 180ms ease;
+  z-index: 3;
+}
+.custom-radio-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
 .hidden-radio-input:checked + .custom-radio-indicator { border-color: #0D9E6E; background: #0D9E6E; }
 .hidden-radio-input:checked + .custom-radio-indicator .custom-radio-indicator-dot { opacity: 1; }
 .hidden-radio-input:checked ~ .radio-card-overlay { opacity: 1; border-color: #0D9E6E; }
 .hidden-radio-input:checked ~ .card-icon { color: #0A8560; }
 .hidden-radio-input:checked ~ .card-text { color: #0A8560; }
 
-.radio-card-overlay { position: absolute; inset: 0; border-radius: 14px; pointer-events: none; opacity: 0; transition: opacity 180ms; border: 2px solid transparent; background: linear-gradient(155deg, #F0FDF9 0%, #ECFDF5 100%); z-index: 1; }
+.radio-card-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  border: 2px solid transparent;
+  background: linear-gradient(155deg, #F0FDF9 0%, #ECFDF5 100%);
+  z-index: 1;
+}
 
-.card-icon { margin-bottom: 10px; color: #475467; transition: color 180ms; position: relative; z-index: 2; }
+.card-icon {
+  margin-bottom: 10px;
+  color: #475467;
+  transition: color 180ms ease;
+  position: relative;
+  z-index: 2;
+}
 .card-icon svg { width: 36px; height: 36px; stroke-width: 1.5; }
-.card-text { font-size: 13.5px; font-weight: 600; color: #344054; transition: color 180ms; position: relative; z-index: 2; }
 
-/* Upload */
-.drag-drop-area { width: 100%; max-width: 360px; min-width: 0; height: 150px; border: 2px dashed #D0D5DD; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; cursor: pointer; gap: 8px; transition: all 150ms; background: #F9FAFB; }
-.drag-drop-area:hover { border-color: #0D9E6E; background: #F0FDF4; }
+.card-text {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #344054;
+  transition: color 180ms ease;
+  position: relative;
+  z-index: 2;
+  letter-spacing: -0.01em;
+}
+
+/* Upload Bereich */
+.drag-drop-area {
+  width: 100%;
+  max-width: 360px;
+  min-width: 0;
+  height: 148px;
+  border: 2px dashed #D0D5DD;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  gap: 8px;
+  transition: all 150ms ease;
+  background: #F9FAFB;
+  font-family: 'Inter', sans-serif;
+}
+.drag-drop-area:hover {
+  border-color: #0D9E6E;
+  background: #F0FDF4;
+}
+
+/* Datei Elemente */
 .files-stack { width: 100%; display: flex; flex-wrap: wrap; gap: 10px; }
-.upload-card { background: #F7F8FA; border-radius: 10px; padding: 12px 14px; border: 1px solid #E4E7EC; }
-.files-wrap { flex: 1 1 auto; min-height: 150px; }
+.upload-card { background: #F7F8FA; border-radius: 10px; padding: 11px 13px; border: 1px solid #E4E7EC; }
+.files-wrap { flex: 1 1 auto; min-height: 148px; }
 .row-1 { display: flex; align-items: center; gap: 8px; }
 .file-name { font-weight: 600; font-size: 13.5px; color: #101828; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .icon-btn { background: transparent; border: 0; font-size: 18px; cursor: pointer; color: #667085; padding: 0 4px; line-height: 1; }
