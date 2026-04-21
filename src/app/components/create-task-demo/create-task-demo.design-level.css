@@ -1,8 +1,9 @@
-/* ════════════════════════════════════════════════
-   DESIGN LEVEL CARDS  –  Silver / Gold / Platinum
-   Premium Redesign
-   ════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════
+   DESIGN LEVEL CARDS  ·  Silver / Gold / Platinum
+   Dental Grade · Clear Value Hierarchy · Most Popular Badge
+   ════════════════════════════════════════════════════════════ */
 
+/* ── Grid Container ─────────────────────────── */
 .tier-cards-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -13,34 +14,67 @@
 }
 
 @media (max-width: 900px) {
-  .tier-cards-container {
-    grid-template-columns: 1fr;
-  }
+  .tier-cards-container { grid-template-columns: 1fr; }
 }
 
-/* ── Card Label ─────────────────────────────── */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .tier-cards-container { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+}
+
+/* ── Card ────────────────────────────────────── */
 .tier-card-label {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 18px 18px 16px;
   background: #FFFFFF;
   border: 1.5px solid #E4E7EC;
   border-radius: 14px;
   cursor: pointer;
-  transition: all 200ms ease;
+  transition: all 180ms ease;
   width: 100%;
-  min-height: 260px;
   box-sizing: border-box;
   text-align: left;
-  overflow: hidden;
+  overflow: visible;
   font-family: 'Inter', system-ui, sans-serif;
 }
 
 .tier-card-label:hover {
   border-color: #6EE7B7;
-  box-shadow: 0 4px 20px rgba(13,158,110,.12);
+  box-shadow: 0 4px 20px rgba(13,158,110,.1);
   transform: translateY(-2px);
+}
+
+/* Gold card: slightly elevated by default (best value) */
+.tier-gradient-gold {
+  border-color: #D1FAE5;
+  box-shadow: 0 2px 12px rgba(13,158,110,.08);
+}
+
+.tier-gradient-gold:hover {
+  border-color: #0D9E6E;
+  box-shadow: 0 8px 24px rgba(13,158,110,.16);
+}
+
+/* ── Most Popular Badge (Gold only) ─────────── */
+.tier-gradient-gold::before {
+  content: 'Empfohlen';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0D9E6E;
+  color: #fff;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 2px 8px rgba(13,158,110,.3);
+  z-index: 10;
 }
 
 /* ── Hidden Radio ──────────────────────────── */
@@ -57,25 +91,26 @@
   position: absolute;
   top: 14px;
   right: 14px;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: 2px solid #D0D5DD;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 200ms ease;
+  transition: all 180ms ease;
   z-index: 3;
+  flex-shrink: 0;
 }
 
 .custom-tier-indicator-dot {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: #fff;
   opacity: 0;
-  transition: opacity 200ms ease;
+  transition: opacity 180ms ease;
 }
 
 /* ── Checked State ─────────────────────────── */
@@ -88,71 +123,60 @@
   opacity: 1;
 }
 
-/* Checked: card border + background */
 .hidden-tier-input:checked ~ .tier-card-overlay {
   opacity: 1;
   border-color: #0D9E6E;
 }
 
-/* ── Overlay ────────────────────────────────── */
+/* ── Overlay ─────────────────────────────────── */
 .tier-card-overlay {
   position: absolute;
   inset: 0;
   border-radius: 14px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 200ms ease;
+  transition: opacity 180ms ease;
   border: 2px solid transparent;
-  background: linear-gradient(160deg, #F0FDF9 0%, #ECFDF5 100%);
+  background: linear-gradient(155deg, #F0FDF9 0%, #ECFDF5 100%);
   z-index: 0;
 }
 
-/* ── Header ─────────────────────────────────── */
+/* ── Header ──────────────────────────────────── */
 .tier-card-header {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 11px;
   margin-bottom: 14px;
   position: relative;
   z-index: 2;
-  padding-right: 32px;
+  padding-right: 28px;
 }
 
 .tier-card-header-icon {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 20px;
+  font-size: 19px;
+  line-height: 1;
 }
 
-.tier-silver-icon-bg {
-  background: #F2F4F7;
-  color: #475467;
-}
-
-.tier-gold-icon-bg {
-  background: #FEF3C7;
-  color: #92400E;
-}
-
-.tier-platinum-icon-bg {
-  background: #ECFDF5;
-  color: #0A8560;
-}
+.tier-silver-icon-bg { background: #F2F4F7; }
+.tier-gold-icon-bg   { background: #FEF3C7; }
+.tier-platinum-icon-bg { background: #ECFDF5; }
 
 /* ── Title & Subtitle ──────────────────────── */
 .tier-card-title {
   font-size: 16px;
   font-weight: 700;
   color: #101828;
-  line-height: 1.2;
+  line-height: 1.15;
   position: relative;
   z-index: 2;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .tier-card-subtitle {
@@ -161,14 +185,14 @@
   margin-top: 2px;
   position: relative;
   z-index: 2;
-  line-height: 1.4;
+  font-weight: 400;
 }
 
-/* ── Features List ─────────────────────────── */
+/* ── Features ────────────────────────────────── */
 .tier-card-features {
   list-style: none;
   padding: 0;
-  margin: 0 0 auto 0;
+  margin: 0 0 16px 0;
   width: 100%;
   position: relative;
   z-index: 2;
@@ -179,7 +203,7 @@
 
 .tier-card-features li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   font-size: 12.5px;
   color: #344054;
@@ -189,43 +213,58 @@
 
 .tier-card-features li svg {
   flex-shrink: 0;
+  margin-top: 1px;
   color: #0D9E6E;
+  stroke: #0D9E6E;
 }
 
-/* ── Price ──────────────────────────────────── */
+/* ── Price Block ─────────────────────────────── */
 .tier-card-price {
-  font-size: 26px;
-  font-weight: 800;
-  color: #101828;
-  margin-top: 16px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #E4E7EC;
   width: 100%;
   position: relative;
   z-index: 2;
+}
+
+.tier-card-price > * {
+  display: inline;
+}
+
+/* The actual price number – big & bold */
+.tier-card-price {
+  font-size: 28px;
+  font-weight: 800;
+  color: #101828;
   letter-spacing: -0.03em;
   line-height: 1;
-  padding-top: 14px;
-  border-top: 1px solid #F2F4F7;
 }
 
 .tier-unit-text {
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #667085 !important;
+  letter-spacing: 0 !important;
   font-size: 13px;
-  font-weight: 400;
-  color: #667085;
-  letter-spacing: 0;
 }
 
 .tier-card-footer-text {
+  display: block;
   font-size: 11px;
   color: #98A2B3;
   margin-top: 6px;
   width: 100%;
   position: relative;
   z-index: 2;
-  line-height: 1.4;
   font-style: italic;
+  line-height: 1.4;
 }
 
-/* ── Gradient variants ─────────────────────── */
-.tier-gradient-silver { /* border will turn green on check, bg from overlay */ }
-.tier-gradient-gold   { /* same */ }
-.tier-gradient-platinum { /* same */ }
+/* ── Gradient variants (kosmetisch, kein Effekt) */
+.tier-gradient-silver { /* default */ }
+.tier-gradient-gold   { /* slightly elevated – see above */ }
+.tier-gradient-platinum { /* premium */ }
+
+/* Platinum: subtle dark accent */
+.tier-gradient-platinum .tier-card-title { color: #1e3a5f; }

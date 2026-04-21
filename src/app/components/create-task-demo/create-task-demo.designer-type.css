@@ -1,17 +1,19 @@
-/* ════════════════════════════════════════════════
-   DESIGNER TYPE CARDS  –  Dental / AI Designer
-   ════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════════════════════
+   DESIGNER TYPE CARDS  ·  Dental / AI Designer
+   Compact · Professional · Clear Selection
+   ════════════════════════════════════════════════════════════ */
 
+/* ── Container ───────────────────────────────── */
 .radio-cards-container {
   display: flex;
   flex-direction: row;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
-  max-width: 520px;
+  max-width: 480px;
   box-sizing: border-box;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .radio-cards-container { flex-direction: column; max-width: 100%; }
 }
 
@@ -22,14 +24,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px 20px;
+  padding: 20px 16px;
   background: #FFFFFF;
   border: 1.5px solid #E4E7EC;
   border-radius: 14px;
   cursor: pointer;
-  transition: all 200ms ease;
+  transition: all 180ms ease;
   flex: 1;
-  min-height: 140px;
+  min-height: 130px;
   box-sizing: border-box;
   text-align: center;
   overflow: hidden;
@@ -38,8 +40,8 @@
 
 .radio-card-label:hover {
   border-color: #6EE7B7;
-  box-shadow: 0 4px 20px rgba(13,158,110,.12);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(13,158,110,.1);
+  transform: translateY(-1px);
 }
 
 /* ── Hidden Radio ──────────────────────────── */
@@ -54,27 +56,27 @@
 /* ── Radio Indicator ───────────────────────── */
 .custom-radio-indicator {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 20px;
-  height: 20px;
+  top: 11px;
+  right: 11px;
+  width: 19px;
+  height: 19px;
   border-radius: 50%;
   border: 2px solid #D0D5DD;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 200ms ease;
+  transition: all 180ms ease;
   z-index: 3;
 }
 
 .custom-radio-indicator-dot {
-  width: 9px;
-  height: 9px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #fff;
   opacity: 0;
-  transition: opacity 200ms ease;
+  transition: opacity 180ms ease;
 }
 
 /* ── Checked State ─────────────────────────── */
@@ -92,58 +94,54 @@
   border-color: #0D9E6E;
 }
 
-.hidden-radio-input:checked ~ .card-icon {
-  color: #0A8560;
-}
+.hidden-radio-input:checked ~ .card-icon { color: #0A8560; }
+.hidden-radio-input:checked ~ .card-text { color: #0A8560; }
 
-.hidden-radio-input:checked ~ .card-text {
-  color: #0A8560;
-}
-
-/* ── Overlay ────────────────────────────────── */
+/* ── Overlay ─────────────────────────────────── */
 .radio-card-overlay {
   position: absolute;
   inset: 0;
   border-radius: 14px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 200ms ease;
+  transition: opacity 180ms ease;
   border: 2px solid transparent;
-  background: linear-gradient(160deg, #F0FDF9 0%, #ECFDF5 100%);
+  background: linear-gradient(155deg, #F0FDF9 0%, #ECFDF5 100%);
   z-index: 1;
 }
 
-/* ── Icon ───────────────────────────────────── */
+/* ── Icon ────────────────────────────────────── */
 .card-icon {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   color: #475467;
-  transition: color 200ms ease;
+  transition: color 180ms ease;
   position: relative;
   z-index: 2;
 }
 
 .card-icon svg {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   stroke-width: 1.5;
 }
 
-/* ── Text ───────────────────────────────────── */
+/* ── Text ────────────────────────────────────── */
 .card-text {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
   color: #344054;
-  transition: color 200ms ease;
+  transition: color 180ms ease;
   position: relative;
   z-index: 2;
+  letter-spacing: -0.01em;
 }
 
-/* ── Upload Area ────────────────────────────── */
+/* ── Upload Area ─────────────────────────────── */
 .drag-drop-area {
   width: 100%;
-  max-width: 380px;
+  max-width: 360px;
   min-width: 0;
-  height: 160px;
+  height: 150px;
   border: 2px dashed #D0D5DD;
   border-radius: 12px;
   display: flex;
@@ -155,33 +153,36 @@
   gap: 8px;
   transition: all 150ms ease;
   background: #F9FAFB;
+  font-family: 'Inter', sans-serif;
 }
 
 .drag-drop-area:hover {
   border-color: #0D9E6E;
-  background: #ECFDF5;
+  background: #F0FDF4;
 }
 
-/* ── File Stack ─────────────────────────────── */
-.files-stack {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+/* ── File Stack ──────────────────────────────── */
+.files-stack { width: 100%; display: flex; flex-wrap: wrap; gap: 10px; }
 
 .upload-card {
   background: #F7F8FA;
   border-radius: 10px;
   padding: 12px 14px;
   border: 1px solid #E4E7EC;
+  font-family: 'Inter', sans-serif;
 }
 
-.files-wrap { flex: 1 1 auto; min-height: 160px; }
+.files-wrap { flex: 1 1 auto; min-height: 150px; }
 
 .row-1 { display: flex; align-items: center; gap: 8px; }
-.file-name { font-weight: 600; font-size: 14px; color: #101828; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.icon-btn { background: transparent; border: 0; font-size: 18px; cursor: pointer; color: #667085; padding: 0 4px; }
+.file-name {
+  font-weight: 600; font-size: 13.5px; color: #101828;
+  flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.icon-btn {
+  background: transparent; border: 0; font-size: 18px;
+  cursor: pointer; color: #667085; padding: 0 4px; line-height: 1;
+}
 .icon-btn:hover { color: #101828; }
 
 .row-2 { display: flex; align-items: center; margin-top: 6px; gap: 6px; }
@@ -191,8 +192,8 @@
 .percent { margin-left: auto; font-weight: 600; color: #344054; font-size: 12px; }
 
 .bar-wrap { margin-top: 8px; }
-.bar-track { height: 5px; background: #E4E7EC; border-radius: 999px; overflow: hidden; }
-.bar-fill { height: 100%; background: #0D9E6E; width: 0%; transition: width .25s ease; }
+.bar-track { height: 5px; background: #E4E7EC; border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; background: #0D9E6E; width: 0%; transition: width .25s ease; border-radius: 3px; }
 
 .mini-spinner {
   width: 14px; height: 14px;
