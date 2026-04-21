@@ -1,84 +1,54 @@
-import { Component } from '@angular/core';
-import { DataService } from '../../Services/data.service';
-import { DialogService } from '../../Services/dialog.service';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { DataService } from '../../Services/data.service';
 import { BarChartComponent } from '../bar-chart/bar-chart.component';
 
 @Component({
   selector: 'app-dash-board',
   standalone: true,
-  imports: [CommonModule, BarChartComponent, RouterModule],
+  imports: [CommonModule, BarChartComponent],
   templateUrl: './dash-board.component.html',
   styleUrl: './dash-board.component.css'
 })
-export class DashBoardComponent {
-
-  dashBoardDataComplete: number = 0;
-  dashBoardDataInComplete: number = 0;
-  dashBoardDataDelivered: number = 0;
+export class DashBoardComponent implements OnInit {
+  dashBoardDataComplete: any;
+  dashBoardDataInComplete: any;
+  dashBoardDataDelivered: any;
   role: any;
-  userName: string = '';
+  firstName: any;
 
-  // Bar values for welcome card decoration
-  barVals: number[] = [38, 52, 44, 68, 58, 80, 72, 90, 65, 85, 74, 100];
-
-  constructor(
-    private dataService: DataService,
-    private dialogService: DialogService,
-    private router: Router
-  ) { }
+  constructor(public dataService: DataService, public router: Router) {}
 
   ngOnInit() {
     this.role = this.dataService.role;
-    this.userName = (this.dataService.firstName || '') + ' ' + (this.dataService.lastName || '');
+    this.firstName = this.dataService.firstName;
     this.dataService.updateTitle('Dashboard');
     this.getInProgressTasks();
     this.getCompletedTasks();
-    if (this.role === 'doctor') {
-      this.getDelivered();
-    }
+    if (this.role === 'doctor') this.getDelivered();
   }
 
-  // Calculate percentage for status bars
-  getPercent(value: number): number {
-    const total = (this.dashBoardDataComplete || 0)
-      + (this.dashBoardDataInComplete || 0)
-      + (this.dashBoardDataDelivered || 0);
-    if (total === 0) return 0;
-    return Math.round((value / total) * 100);
+  getGreeting(): string {
+    const h = new Date().getHours();
+    if (h < 12) return 'Guten Morgen';
+    if (h < 18) return 'Guten Tag';
+    return 'Guten Abend';
   }
 
   getDelivered() {
     this.dataService.getDataAsList('/tasks/delivered').subscribe({
-      next: (response) => {
-        this.dashBoardDataDelivered = response.length;
-      },
-      error: (err) => {
-        this.dialogService.handleError(err, 'Failed to get delivered tasks.');
-      }
+      next: (r) => { this.dashBoardDataDelivered = r.length; }, error: () => {}
     });
   }
-
   getInProgressTasks() {
     this.dataService.getDataAsList('/tasks/in-progress').subscribe({
-      next: (response) => {
-        this.dashBoardDataInComplete = response.length;
-      },
-      error: (err) => {
-        this.dialogService.handleError(err, 'Failed to get in-progress tasks.');
-      }
+      next: (r) => { this.dashBoardDataInComplete = r.length; }, error: () => {}
     });
   }
-
   getCompletedTasks() {
-    this.dataService.getDataAsList('/tasks/complete').subscribe({
-      next: (response) => {
-        this.dashBoardDataComplete = response.length;
-      },
-      error: (err) => {
-        this.dialogService.handleError(err, 'Failed to get completed tasks.');
-      }
+    this.dataService.getDataAsList('/tasks/completed').subscribe({
+      next: (r) => { this.dashBoardDataComplete = r.length; }, error: () => {}
     });
   }
 }
