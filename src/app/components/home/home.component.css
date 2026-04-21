@@ -1,103 +1,58 @@
-/* ═══════════════════════════════════════════════════════
-   HOME / TOPBAR  –  works with the original HTML
-   ═══════════════════════════════════════════════════════ */
+/* ════════════════════════════════════════════
+   HOME LAYOUT  –  Fixed Topbar & Icons
+   ════════════════════════════════════════════ */
 
-/* ── Global font ─────────────────────────────────────── */
-* { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-
-/* ── Topbar ──────────────────────────────────────────── */
-div[style*="height: 66px"] {
-  height: 58px !important;
-  background: #FFFFFF !important;
-  border-bottom: 1px solid #E4E7EC !important;
-  backdrop-filter: none !important;
-  box-shadow: 0 1px 0 rgba(0,0,0,.04) !important;
+/* Spinner inside toggle */
+.slider-spinner-wrapper { position: relative; display: inline-block; }
+.slider-spinner-inside {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20; pointer-events: none;
+  display: flex; align-items: center; justify-content: center;
 }
 
-/* ── Nav links ───────────────────────────────────────── */
-div[style*="height: 66px"] p[routerLink],
-div[style*="height: 66px"] p[style*="cursor: pointer"] {
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  color: #475467 !important;
-  padding: 0 12px !important;
-  height: 100% !important;
-  display: flex !important;
+/* ── TOPBAR FIX ──────────────────────────── */
+
+/* Fix overlapping icons – each icon button gets proper sizing */
+button[mat-icon-button],
+.btn-link-icon {
+  display: inline-flex !important;
   align-items: center !important;
-  border-radius: 8px !important;
-  margin: 0 !important;
-  transition: all 150ms ease !important;
-  cursor: pointer !important;
-}
-
-div[style*="height: 66px"] p[routerLink]:hover {
-  background: #F9FAFB !important;
-  color: #101828 !important;
-}
-
-/* "New Design" gradient text link */
-div[style*="height: 66px"] p[style*="background: linear-gradient"] {
-  font-weight: 600 !important;
-  background: var(--c-brand, #0D9E6E) !important;
-  background-clip: text !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  font-size: 14px !important;
-}
-
-/* Logo */
-div[style*="height: 66px"] img {
-  max-width: 120px !important;
-  height: auto !important;
-}
-
-/* Underline indicator */
-div[style*="height: 66px"] div[ngStyle] {
-  height: 2px !important;
-  border-radius: 2px !important;
-}
-
-/* ── Right side icons ────────────────────────────────── */
-.material-symbols-outlined {
-  font-size: 22px !important;
-  color: #475467 !important;
-  cursor: pointer !important;
-  transition: color 150ms ease !important;
-}
-.material-symbols-outlined:hover { color: #101828 !important; }
-
-/* Cart / Notification icon buttons */
-div[style*="height: 66px"] button[mat-icon-button],
-div[style*="height: 66px"] .btn.btn-link {
+  justify-content: center !important;
   width: 36px !important;
   height: 36px !important;
   border-radius: 8px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important;
   background: transparent !important;
   border: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
   transition: background 150ms ease !important;
-  color: #475467 !important;
+  flex-shrink: 0 !important;
 }
 
-div[style*="height: 66px"] button[mat-icon-button]:hover,
-div[style*="height: 66px"] .btn.btn-link:hover {
-  background: #F2F4F7 !important;
-  color: #101828 !important;
+button[mat-icon-button]:hover { background: #F2F4F7 !important; }
+
+/* Material icon text → proper icon size */
+.material-symbols-outlined,
+.material-icons {
+  font-size: 20px !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  width: 20px !important;
+  height: 20px !important;
+  vertical-align: middle !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  direction: ltr !important;
+  -webkit-font-smoothing: antialiased !important;
 }
 
-/* Badge */
-.badge.rounded-pill.bg-danger {
-  font-size: 9px !important;
-  min-width: 16px !important;
-  height: 16px !important;
-  padding: 0 4px !important;
-  line-height: 16px !important;
+/* Badge on notification icon */
+.custom-badge-button {
+  position: relative !important;
 }
 
-/* ── Avatar (initials circle) ────────────────────────── */
+/* Avatar */
 .avatar {
   width: 32px !important;
   height: 32px !important;
@@ -110,169 +65,111 @@ div[style*="height: 66px"] .btn.btn-link:hover {
   align-items: center !important;
   justify-content: center !important;
   cursor: pointer !important;
-  border: 2px solid rgba(13,158,110,.25) !important;
   flex-shrink: 0 !important;
+  font-family: 'Inter', sans-serif !important;
 }
 
-/* Name/role text */
-div[style*="height: 66px"] div p.m-0:first-child {
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  color: #101828 !important;
-}
-div[style*="height: 66px"] div p.m-0:last-child {
-  font-size: 11px !important;
-  color: #98A2B3 !important;
-}
-
-/* Dividers */
-div[style*="height: 66px"] hr[style*="height: 35px"] {
-  width: 1px !important;
-  height: 24px !important;
-  background-color: #E4E7EC !important;
-  margin: 0 4px !important;
-  opacity: 1 !important;
-}
-
-/* ── Availability toggle ──────────────────────────────── */
-.availability-toggle { transform: scale(0.85) !important; }
-label[style*="margin: 0"]:contains("Available") {
-  font-size: 13px !important;
-  color: #475467 !important;
+/* Topbar nav links */
+div[style*="height: 66px"] p[routerLink],
+div[style*="height: 66px"] p[style*="cursor: pointer"] {
+  font-size: 14px !important;
   font-weight: 500 !important;
+  color: #475467 !important;
+  cursor: pointer !important;
+  padding: 0 4px !important;
+  transition: color 150ms ease !important;
 }
 
-/* ── User Dropdown Menu ───────────────────────────────── */
-.shadow.p-0[aria-labelledby="dropdownManual"],
-div[aria-labelledby="dropdownManual"].shadow {
-  border-radius: 14px !important;
+div[style*="height: 66px"] p[routerLink]:hover { color: #101828 !important; }
+
+/* Dropdown menu */
+.shadow.p-0[ngbdropdownmenu],
+div[ngbDropdownMenu].shadow {
+  border-radius: 12px !important;
   border: 1px solid #E4E7EC !important;
   box-shadow: 0 12px 32px rgba(16,24,40,.12) !important;
   overflow: hidden !important;
-  background: #FFFFFF !important;
-  min-width: 240px !important;
-  padding: 8px !important;
-}
-
-/* Dropdown items */
-.shadow.p-0 .nav {
-  gap: 4px !important;
-}
-
-.shadow.p-0 li.nav-item[ngbdropdownitem],
-.shadow.p-0 li.nav-item[ngbDropdownItem] {
-  border-radius: 8px !important;
-  overflow: hidden !important;
+  min-width: 220px !important;
+  padding: 6px !important;
 }
 
 .shadow.p-0 .nav-link {
-  font-size: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: 13.5px !important;
   font-weight: 500 !important;
   color: #344054 !important;
   padding: 9px 12px !important;
   border-radius: 8px !important;
   background: transparent !important;
   transition: background 150ms ease !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
+  cursor: pointer !important;
 }
 
-.shadow.p-0 .nav-link:hover {
-  background: #F9FAFB !important;
-  color: #101828 !important;
-}
+.shadow.p-0 .nav-link:hover { background: #F9FAFB !important; }
 
-.shadow.p-0 li[style*="background-color: #FAF9F9"] {
-  background: transparent !important;
-}
+.shadow.p-0 li:last-child .nav-link { color: #DC2626 !important; }
+.shadow.p-0 li:last-child .nav-link:hover { background: #FEF2F2 !important; }
+.shadow.p-0 li[style*="background-color: #FAF9F9"] { background: transparent !important; }
 
-/* SVG icons in dropdown */
-.shadow.p-0 .nav-link svg {
-  flex-shrink: 0 !important;
-  opacity: 0.65 !important;
-}
-.shadow.p-0 .nav-link:hover svg { opacity: 1 !important; }
-
-/* Logout item – red */
-.shadow.p-0 li:last-child .nav-link {
-  color: #DC2626 !important;
-}
-.shadow.p-0 li:last-child .nav-link:hover {
-  background: #FEF2F2 !important;
-}
-.shadow.p-0 li:last-child .nav-link svg path { fill: #DC2626 !important; }
-
-/* ── Notification dropdown ────────────────────────────── */
-.notif-menu,
-.dropdown-menu-end.notif-menu {
-  border-radius: 14px !important;
+/* Notification dropdown */
+.notif-menu {
+  border-radius: 12px !important;
   border: 1px solid #E4E7EC !important;
   box-shadow: 0 12px 32px rgba(16,24,40,.12) !important;
-  overflow: hidden !important;
-  background: #FFFFFF !important;
-  min-width: 360px !important;
+  min-width: 340px !important;
   padding: 0 !important;
 }
 
-.notif-scroll {
-  max-height: 320px !important;
-  overflow-y: auto !important;
-}
+.notif-scroll { max-height: 300px; overflow-y: auto; }
 
-/* Notification pills */
 .customNotificationPills {
   background: #F9FAFB !important;
   border: 1px solid #E4E7EC !important;
   border-radius: 10px !important;
   padding: 10px 12px !important;
   cursor: pointer !important;
-  transition: background 150ms ease !important;
-}
-.customNotificationPills:hover { background: #ECFDF5 !important; }
-
-.mainLineNotification { font-size: 13px !important; color: #344054 !important; }
-.dateAgoNotification { font-size: 11px !important; color: #98A2B3 !important; white-space: nowrap !important; }
-.imageNotification {
-  width: 32px !important; height: 32px !important;
-  border-radius: 50% !important;
-  background: linear-gradient(135deg, #0D9E6E, #059669) !important;
-  color: #fff !important; font-size: 12px !important; font-weight: 700 !important;
-  display: flex !important; align-items: center !important; justify-content: center !important;
-  flex-shrink: 0 !important;
+  transition: background 150ms !important;
 }
 
 .notificationButtonAccept {
   flex: 1 !important;
-  background: #0D9E6E !important; color: #fff !important;
-  border: none !important; border-radius: 8px !important;
-  padding: 7px 12px !important; font-size: 12px !important; font-weight: 600 !important;
-  cursor: pointer !important; transition: background 150ms ease !important;
+  background: #0D9E6E !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 7px 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
   font-family: 'Inter', sans-serif !important;
 }
-.notificationButtonAccept:hover { background: #0A8560 !important; }
 
 .notificationButtonDecline {
   flex: 1 !important;
-  background: #fff !important; color: #475467 !important;
-  border: 1px solid #D0D5DD !important; border-radius: 8px !important;
-  padding: 7px 12px !important; font-size: 12px !important; font-weight: 500 !important;
-  cursor: pointer !important; transition: all 150ms ease !important;
+  background: #fff !important;
+  color: #475467 !important;
+  border: 1px solid #D0D5DD !important;
+  border-radius: 8px !important;
+  padding: 7px 12px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
   font-family: 'Inter', sans-serif !important;
 }
-.notificationButtonDecline:hover { border-color: #DC2626 !important; color: #DC2626 !important; }
 
-/* ── Page Content Area ────────────────────────────────── */
-.h-100.w-100:last-child > div {
-  height: 100% !important;
-  overflow-y: auto !important;
+/* Availability toggle */
+.availability-toggle { transform: scale(0.85); }
+
+/* User name/role text */
+div[style*="height: 66px"] .d-flex.flex-column p.m-0:first-child {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #101828 !important;
 }
 
-/* ── Spinner overlay ──────────────────────────────────── */
-.spinner-overlay {
-  position: fixed !important; inset: 0 !important;
-  background: rgba(255,255,255,.85) !important;
-  display: flex !important; align-items: center !important;
-  justify-content: center !important; z-index: 9999 !important;
-  backdrop-filter: blur(4px) !important;
+div[style*="height: 66px"] .d-flex.flex-column p.m-0:last-child {
+  font-size: 11px !important;
+  color: #98A2B3 !important;
 }
